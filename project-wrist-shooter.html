@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrist Shooter – Ramzi</title>
+    <meta name="description" content="Wrist Shooter: a DIY wrist-worn modular play system for kids 6+, designed during my internship at Smartivity Labs. From a self-written brief to a sales-approved toy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="case-study.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="cs">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ 1. HERO ============ -->
+        <section class="cs-hero">
+            <div class="cs-wrap">
+                <!-- Title sits inside the picture frame, on the left; the kid fills the right -->
+                <div class="hero-stage">
+                    <span class="blob blob--sun" aria-hidden="true"></span>
+                    <div class="hero-copy">
+                        <img class="logo-badge" src="images/sketch-toy/cs/logo.webp" width="158" height="53" alt="Smartivity">
+                        <h1>A superhero gadget kids <span class="blue">build</span> themselves.</h1>
+                        <p>A DIY wrist-worn modular play system for kids 6+: one arm unit, three swappable modules, zero boredom.</p>
+                    </div>
+                    <img class="hero-kid" src="images/wrist-shooter/cs/final-5.webp" width="1260" height="924"
+                         alt="A kid wearing the Wrist Shooter with a paper glider loaded, ready to launch">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ META + TL;DR ============ -->
+        <section class="meta-sec">
+            <div class="cs-wrap">
+                <div class="ov">
+                    <div class="ov-item"><small>Role</small><strong>Product Design Intern</strong></div>
+                    <div class="ov-item"><small>Duration</small><strong>3 Months</strong><em>Jan - Mar 2026</em></div>
+                    <div class="ov-item"><small>Company</small><strong>Smartivity Labs</strong><em>Delhi, India</em></div>
+                    <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Sales Approved</strong></div>
+                </div>
+                <div class="stats">
+                    <div class="stat reveal"><b>53</b><span>parents surveyed before choosing a direction</span></div>
+                    <div class="stat reveal"><b>6</b><span>concepts tested head to head</span></div>
+                    <div class="stat stat--yellow reveal"><b>4.58</b><span>appeal score out of 5 for the wearable</span></div>
+                    <div class="stat stat--dark reveal"><b>✓</b><span>approved by sales for production</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PLAY FIRST ============ -->
+        <section class="play-sec" id="play">
+            <div class="cs-wrap">
+                <div class="play-box dark-block">
+                    <div class="play-head">
+                        <div>
+                            <span class="pill pill--caps">PLAY FIRST</span>
+                            <h2>Try it before you read how I made it.</h2>
+                            <p>Spin the gadget, shoot the darts or launch the glider. Maybe knock down a few targets. Takes about 20 seconds.</p>
+                        </div>
+                        <a class="cs-btn cs-btn--light" href="#story">Skip to the story ↓</a>
+                    </div>
+
+                    <!-- The game loads only when someone clicks, so the page stays fast -->
+                    <div class="game" id="game" data-src="games/wrist-launcher/index.html">
+                        <button class="game-cover" type="button" id="game-start">
+                            <span class="play-dot" aria-hidden="true">▶</span>
+                            <span class="hand">Mini game: shoot the targets</span>
+                            <small>20-second round · score at the end · click to start</small>
+                        </button>
+                    </div>
+                    <div class="game-tools">
+                        <button class="cs-btn cs-btn--light" type="button" id="game-fs">⤢ Fullscreen</button>
+                        <a class="cs-btn cs-btn--light" href="games/wrist-launcher/index.html" target="_blank" rel="noopener">Open in new tab ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 01 BACKGROUND ============ -->
+        <section class="sec" id="story" style="padding-top:0">
+            <div class="cs-wrap">
+                <div class="two-col">
+                    <div class="sec-head">
+                        <div class="sec-tag"><span class="num">01</span><span class="cs-label">THE BACKGROUND</span></div>
+                        <h2 class="cs-h2">I wasn't given a brief. So I made one.</h2>
+                        <p class="cs-lead">During my internship I was asked to explore opportunities for expanding Smartivity's STEM DIY toy portfolio. Instead of waiting for a predefined project, I started by asking three questions.</p>
+                    </div>
+                    <div class="notes">
+                        <p class="note reveal">What play styles were missing for 6+ age groups?</p>
+                        <p class="note reveal">What kinds of toys are kids this age reaching for, and why?</p>
+                        <p class="note reveal">What have competitors done that Smartivity hasn't?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 02 RESEARCH ============ -->
+        <section class="sec sec--white">
+            <div class="cs-wrap">
+                <div class="sec-head">
+                    <div class="sec-tag"><span class="num">02</span><span class="cs-label">RESEARCH</span></div>
+                    <h2 class="cs-h2">Finding the gap nobody was playing in.</h2>
+                    <p class="cs-lead">I mapped Smartivity's existing range against competitors to see where the white space was, then grouped what I found into four opportunity areas.</p>
+                </div>
+                <div class="research-grid">
+                    <figure class="market reveal">
+                        <img src="images/wrist-shooter/cs/market-map.webp" width="1474" height="928" loading="lazy"
+                             alt="Competitor map. Axes run from desk-bound to kinetic, and from abstract engineering to narrative and expression. Thames & Cosmos, Smartivity, LEGO and 4M sit on the engineering side, KiwiCo on desk STEM; the kinetic, narrative corner is empty and highlighted.">
+                    </figure>
+                    <div class="areas">
+                        <div class="area reveal"><small>AREA 01</small><h3>Creative &amp; Art Tech</h3></div>
+                        <div class="area reveal"><small>AREA 02</small><h3>STEM &amp; Logic</h3></div>
+                        <div class="area area--pick reveal"><small>AREA 03 · THE ONE</small><h3>Wearable &amp; Role Play</h3></div>
+                        <div class="area reveal"><small>AREA 04</small><h3>Active &amp; Competitive Play</h3></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 CONCEPTS + DATA ============ -->
+        <section class="sec">
+            <div class="cs-wrap">
+                <div class="sec-head">
+                    <div class="sec-tag"><span class="num">03</span><span class="cs-label">CONCEPT VALIDATION</span></div>
+                    <h2 class="cs-h2">Six ideas. I let parents pick the winner.</h2>
+                    <p class="cs-lead">Before committing, I turned the opportunity areas into six concepts and asked 53 parents to rate them 1 to 5.</p>
+                </div>
+                <div class="concepts">
+                    <div class="concept reveal">
+                        <div class="shotNone" style="--r:1.0781"><img src="images/wrist-shooter/cs/concept-wearable.webp" alt="Sketch of the wearable concept" loading="lazy"></div>
+                        <b>Wearable ★</b><span>4.58 / 5</span>
+                    </div>
+                    <!-- Concepts 2 to 6 are confidential: change the names and scores below when ready -->
+                    <div class="concept reveal"><div class="slot slot--conf"><span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>CONFIDENTIAL</span></div><b>[Concept 2]</b><span>4.58 / 5</span></div>
+                    <div class="concept reveal"><div class="slot slot--conf"><span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>CONFIDENTIAL</span></div><b>[Concept 3]</b><span>4.58 / 5</span></div>
+                    <div class="concept reveal"><div class="slot slot--conf"><span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>CONFIDENTIAL</span></div><b>[Concept 4]</b><span>4.58 / 5</span></div>
+                    <div class="concept reveal"><div class="slot slot--conf"><span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>CONFIDENTIAL</span></div><b>[Concept 5]</b><span>4.58 / 5</span></div>
+                    <div class="concept reveal"><div class="slot slot--conf"><span class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>CONFIDENTIAL</span></div><b>[Concept 6]</b><span>4.58 / 5</span></div>
+                </div>
+                <div class="findings">
+                    <span class="cs-label">WHAT THE SURVEY ALSO TOLD ME</span>
+                    <div class="cards4">
+                        <div class="finding reveal"><h3>Kids get bored fast</h3><p>"Boring after short time" was the #1 frustration mentioned by the majority of parents.</p></div>
+                        <div class="finding reveal"><h3>Superheroes &amp; space rule</h3><p>Top themes were superheroes, space, and building. All pointing toward action and imagination.</p></div>
+                        <div class="finding reveal"><h3>One time use = dealbreaker</h3><p>Parents want replay value. A toy that's done after one session doesn't justify the cost.</p></div>
+                        <div class="finding reveal"><h3>Active play wins</h3><p>Most kids play actively, i.e running, moving, playing with others. Desk-bound toys have limited appeal.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ STATEMENT BAND ============ -->
+        <section class="band">
+            <div class="cs-wrap">
+                <h2 class="reveal">The direction was clear:<br>build the <span class="yellow">wearable.</span></h2>
+                <p class="hand">(parents voted,<br>not me!)</p>
+            </div>
+        </section>
+
+        <!-- ============ 04 THE BRIEF ============ -->
+        <section class="sec">
+            <div class="cs-wrap">
+                <div class="brief-top">
+                    <div class="sec-head">
+                        <div class="sec-tag"><span class="num">04</span><span class="cs-label">THE BRIEF I WROTE</span></div>
+                        <h2 class="cs-h2">Modular D.I.Y action toy</h2>
+                        <p class="cs-lead">Design a DIY wearable toy with a standard wrist mount and interchangeable play modules, delivering varied action based play while staying affordable, easy to assemble and compatible with Smartivity's manufacturing process.</p>
+                    </div>
+                    <span class="pill pill--dark">Target age 6+</span>
+                </div>
+                <div class="modules">
+                    <div class="module module--orange reveal"><div class="slot">Shooter</div></div>
+                    <div class="module module--yellow reveal"><div class="slot">Extending Claw</div></div>
+                    <div class="module module--blue reveal"><div class="slot">Binoc / Telescope</div></div>
+                </div>
+                <div class="goals">
+                    <span class="cs-label">DESIGN GOALS</span>
+                    <span class="chip">Fun first</span>
+                    <span class="chip">Comfortable to wear</span>
+                    <span class="chip">DIY assembly</span>
+                    <span class="chip">Swappable modules</span>
+                    <span class="chip">Safe for children</span>
+                    <span class="chip">Lightweight</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 05 SKETCHES ============ -->
+        <section class="sec sec--white">
+            <div class="cs-wrap" style="gap:48px">
+                <div class="sec-head" style="max-width:760px">
+                    <div class="sec-tag"><span class="num">05</span><span class="cs-label">IDEATION</span></div>
+                    <h2 class="cs-h2">Pencil first, prototyping second.</h2>
+                </div>
+                <figure class="board reveal">
+                    <a href="images/wrist-shooter/cs/sketch-board.webp" target="_blank" rel="noopener" aria-label="Open the sketches at full size">
+                    <img src="images/wrist-shooter/cs/sketch-board.webp" width="1800" height="868" loading="lazy"
+                         alt="Ideation sketches: an arm unit with snap rails, and three modules that clip on — a shooter module for foam darts or disks, a binocular/telescope module, and a grabber claw worked by wrist movement. On the right, the shooter with its trigger strap and button, and the arm unit with snap plugs, foam cushion, foam wrist support and wrist lock.">
+                    </a>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 06 BUILD & ITERATE ============ -->
+        <section class="sec build">
+            <div class="cs-wrap">
+                <div class="sec-head">
+                    <div class="sec-tag"><span class="num">06</span><span class="cs-label">PROTOTYPING</span></div>
+                    <h2 class="cs-h2">Build it, break it, fix it.</h2>
+                    <p class="cs-lead">I started with some rough prototypes constantly changing things,</p>
+                </div>
+
+                <!-- A. Arm unit -->
+                <div class="mod-row">
+                    <div class="mod-text">
+                        <span class="letter">A.</span>
+                        <h3>The arm unit</h3>
+                        <div class="log">
+                            <p><b>Tried:</b> clamping foldable lock</p>
+                            <p><b>Broke:</b> It was supposed to fail as its mechanical</p>
+                            <p class="fix"><b>Fixed:</b> switched the lock to velcro, simple and kid-proof.</p>
+                        </div>
+                    </div>
+                    <div class="mod-pics jrow">
+                        <div class="shot reveal" style="--r:1.0494"><img src="images/wrist-shooter/cs/arm-frame.webp" alt="Early wooden arm-unit frame with the clamping lock" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.0494"><img src="images/wrist-shooter/cs/arm-strap.webp" alt="Arm unit worn on the wrist with a yellow strap" loading="lazy"></div>
+                    </div>
+                </div>
+
+                <!-- Velcro (mirrored) -->
+                <div class="mod-row mod-row--flip">
+                    <div class="mod-pics jrow">
+                        <div class="shot reveal" style="--r:1.0559"><img src="images/wrist-shooter/cs/velcro-1.webp" alt="Fastening the velcro strap around the wrist" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.0559"><img src="images/wrist-shooter/cs/velcro-2.webp" alt="Arm unit held on with velcro" loading="lazy"></div>
+                    </div>
+                    <div class="mod-text">
+                        <h3>Velcro made it better and also reduced the cost too</h3>
+                        <div class="log">
+                            <p><b>Why:</b> Sizing differences were now not an issue</p>
+                            <p><b>drawback:</b> little bit increase in time to wear/play</p>
+                            <p class="fix"><b>Fixed:</b> made it shorter and easy to slip on to</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B. Shooter -->
+                <div class="mod-row">
+                    <div class="mod-text">
+                        <span class="letter letter--orange">B.</span>
+                        <h3>The Shooter</h3>
+                        <div class="log">
+                            <p><b>Tried:</b> Shooter mechanism with the trigger and firing areas exposed.</p>
+                            <p><b>Broke:</b> Accidental firing occurred, and the darts would fall out when kids ran.</p>
+                            <p class="fix"><b>Fixed:</b> Developed a new mechanism that holds the Nerf darts securely and transfers force more effectively.</p>
+                        </div>
+                    </div>
+                    <div class="mod-pics jrow">
+                        <div class="shot reveal" style="--r:1.0618"><img src="images/wrist-shooter/cs/shooter-proto.webp" alt="First shooter prototype held in hand" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.0379"><img src="images/wrist-shooter/cs/shooter-top.webp" alt="Improved shooter mounted on the arm unit" loading="lazy"></div>
+                    </div>
+                </div>
+
+                <!-- B2 (mirrored) -->
+                <div class="mod-row mod-row--flip">
+                    <div class="mod-pics jrow">
+                        <div class="shot reveal" style="--r:1.0465"><img src="images/wrist-shooter/cs/dart-wrist.webp" alt="Foam dart loaded on the wrist shooter" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.0523"><img src="images/wrist-shooter/cs/glider-wrist.webp" alt="Paper glider loaded on the wrist shooter" loading="lazy"></div>
+                    </div>
+                    <div class="mod-text">
+                        <h3>now darts can sit better, and it shoots gliders too</h3>
+                        <div class="log">
+                            <p><b>Why:</b> The foam darts can be inserted directly onto the plug.</p>
+                            <p><b>drawback:</b> It can only shoot one dart or glider at a time</p>
+                            <p class="fix"><b>Fixed:</b> Redesigned the mechanism so both darts and gliders can be shot. I also designed a glider with a Nerf dart attachment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. Claw -->
+                <div class="mod-row">
+                    <div class="mod-text">
+                        <span class="letter">C.</span>
+                        <h3>A claw you control with your wrist</h3>
+                        <div class="log">
+                            <p><b>Tried:</b> A claw using a scissor mechanism that could be operated with one hand.</p>
+                            <p><b>Broke:</b> The mechanism was not intuitive to use.</p>
+                            <p class="fix"><b>Fixed:</b> Redesigned the mechanism so that wrist movement opens the claw, while moving the wrist down closes it, made it easier and more intuitive to grab</p>
+                        </div>
+                    </div>
+                    <div class="mod-pics jrow">
+                        <div class="shot reveal" style="--r:1.2872"><img src="images/wrist-shooter/cs/claw-wrist-up.webp" alt="Claw module: wrist up opens the claw" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.0523"><img src="images/wrist-shooter/cs/claw-top.webp" alt="Claw module on the arm unit, seen from above" loading="lazy"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PLOT TWIST ============ -->
+        <section class="twist-sec">
+            <div class="cs-wrap">
+                <div class="twist dark-block reveal">
+                    <div>
+                        <span class="pill">....</span>
+                        <h2>Halfway through, sales said yes, and the brief changed.</h2>
+                        <p>Smartivity saw enough commercial potential in the concept to approve it for sale. The product was hitting the sweet spot, which meant I had to shift my focus from developing other modular units to refining the shooter. Here’s how I adapted.</p>
+                    </div>
+                    <div class="before-after">
+                        <div><b>Before:</b> Modular attachements</div>
+                        <div><b>After:</b> Focus shifted to shooter</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 07 USER TESTING ============ -->
+        <section class="sec sec--white">
+            <div class="cs-wrap" style="gap:48px">
+                <div class="sec-head">
+                    <div class="sec-tag"><span class="num">07</span><span class="cs-label">USER TESTING</span></div>
+                    <h2 class="cs-h2">Then I handed it to the real experts.</h2>
+                </div>
+                <div class="test-grid">
+                    <div class="test-pics">
+                                                <div class="jrow">
+                        <div class="shot reveal" style="--r:1.2641"><img src="images/wrist-shooter/cs/testing-1.webp" alt="Two kids testing the wrist shooter" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.2606"><img src="images/wrist-shooter/cs/testing-2.webp" alt="A kid wearing the wrist shooter outdoors" loading="lazy"></div>
+                        </div>
+                        <div class="jrow">
+                        <div class="shot reveal" style="--r:1.2606"><img src="images/wrist-shooter/cs/testing-3.webp" alt="A kid launching the paper glider" loading="lazy"></div>
+                        <div class="shot reveal" style="--r:1.2606"><img src="images/wrist-shooter/cs/testing-4.webp" alt="A group of kids trying the toy" loading="lazy"></div>
+                        </div>
+                    </div>
+                    <div class="test-notes">
+                        <div class="quote reveal">
+                            <p class="hand">"It’s really fun, I love it”</p>
+                            <span>Prayansh 8</span>
+                        </div>
+                        <p class="saw reveal"><b>Observed:</b> The toy goes through rough use during active play.<br><b>Changed:</b> Swapped PVC for MDF in the parts that can bend or experience stress.</p>
+                        <p class="saw reveal"><b>Observed:</b> If the strap fails, the toy cannot shoot.<br><b>Changed:</b> Added an extra firing button at the back, allowing it to shoot accurately.</p>
+                        <p class="saw reveal"><b>Observed:</b> Adults were interested in trying the toy.<br><b>Changed:</b> Tweaked the dimensions of the arm unit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 08 FINAL DESIGN ============ -->
+        <!-- A dark "showroom": your cut-out photos float on colour, the wall photos tell the dart → glider → launch story -->
+        <section class="final">
+            <div class="cs-wrap">
+                <div class="final-top">
+                    <div class="sec-head">
+                        <div class="sec-tag"><span class="num">08</span><span class="cs-label">FINAL DESIGN</span></div>
+                        <h2>Final <span>Prototype.</span></h2>
+                    </div>
+                    <div class="final-tags">
+                        <span class="pill">Kid-tested</span>
+                        <span class="pill pill--outline">Sales approved ✓</span>
+                    </div>
+                </div>
+
+                <!-- PRODUCT FILM: drop your video in videos/ and replace the placeholder below with:
+                     <video src="videos/wrist-shooter.mp4" poster="images/wrist-shooter/cs/final-4.webp" autoplay muted loop playsinline></video> -->
+                <div class="film-slot reveal">
+                    <span class="film-play" aria-hidden="true">▶</span>
+                    <span class="hand">final product film</span>
+                    <small>coming soon</small>
+                </div>
+
+                <!-- Up close: the three hand cut-outs on colour tiles -->
+                <div class="final-label"><span class="cs-label">UP CLOSE</span><span class="rule" aria-hidden="true"></span></div>
+                <div class="closeups">
+                    <figure class="closeup closeup--orange reveal"><img src="images/wrist-shooter/cs/final-1.webp" width="824" height="728" loading="lazy" alt="The final Wrist Shooter on the wrist, side view"></figure>
+                    <figure class="closeup closeup--yellow reveal"><img src="images/wrist-shooter/cs/final-2.webp" width="820" height="720" loading="lazy" alt="Using the trigger strap on the final prototype"></figure>
+                    <figure class="closeup closeup--blue reveal"><img src="images/wrist-shooter/cs/final-3.webp" width="832" height="728" loading="lazy" alt="Loading the final prototype from the top"></figure>
+                </div>
+
+                <!-- Sequence: dart mode, glider loaded, launch -->
+                <div class="final-label"><span class="cs-label">DART MODE · GLIDER MODE</span><span class="rule" aria-hidden="true"></span></div>
+                <div class="sequence jrow">
+                    <figure class="shot reveal" style="--r:1.3593"><img src="images/wrist-shooter/cs/final-4.webp" loading="lazy" alt="Final prototype with a foam dart loaded"><figcaption class="hand">dart loaded</figcaption></figure>
+                    <figure class="shot reveal" style="--r:1.5042"><img src="images/wrist-shooter/cs/final-6.webp" loading="lazy" alt="Glider loaded, ready to fire"><figcaption class="hand">glider loaded</figcaption></figure>
+                    <figure class="shot reveal" style="--r:1.5291"><img src="images/wrist-shooter/cs/final-7.webp" loading="lazy" alt="Glider launching off the shooter"><figcaption class="hand">launch!</figcaption></figure>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============ 09 OUTCOME ============ -->
+        <section class="sec">
+            <div class="cs-wrap">
+                <div class="two-col">
+                    <div class="sec-head">
+                        <div class="sec-tag"><span class="num">09</span><span class="cs-label">OUTCOME</span></div>
+                        <h2 class="cs-h2">From a self-written brief to a sales-approved toy.</h2>
+                        <p class="cs-lead">The project was handed over to a senior designer along with my suggestions and feedback. The design evolved through my involvement at different stages, and it is now set to launch in <b>October 2026.</b></p>
+                    </div>
+                    <div class="lessons">
+                        <span class="cs-label">WHAT I LEARNED IN THIS JOURNEY</span>
+                        <p class="lesson reveal"><b>1</b><span>Design evolves at every stage, and good design comes from collaboration.</span></p>
+                        <p class="lesson reveal"><b>2</b><span>User testing is really important at every stage because it gives you insights you might otherwise miss</span></p>
+                        <p class="lesson reveal"><b>3</b><span>Early failure gives us useful feedback sooner</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 10 WHAT'S NEXT (NDA teaser) ============ -->
+        <section class="nda-sec">
+            <div class="cs-wrap">
+                <div class="nda-top">
+                    <div class="sec-head">
+                        <div class="sec-tag"><span class="num">10</span><span class="cs-label">WHAT'S NEXT</span></div>
+                        <h2 class="cs-h2">It's still in the works. And it's top secret.</h2>
+                        <p class="cs-lead">The product is now in development at Smartivity. I can't show the details yet, but here's a peek.</p>
+                    </div>
+                    <span class="pill pill--dark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                        Under NDA
+                    </span>
+                </div>
+                <!-- Already pixelated and darkened, so no clear product photo is published -->
+                <figure class="classified reveal">
+                    <img src="images/wrist-shooter/cs/classified.webp" width="1280" height="600" loading="lazy"
+                         alt="Classified: two heavily pixelated, darkened previews of the product in development">
+                </figure>
+                <div class="cta">
+                    <p>Want the full story? I'm happy to walk you through it in person.</p>
+                    <a class="cs-btn cs-btn--dark" href="index.html#about">Get in touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="cs-foot">
+        <div class="cs-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-diy-sketch-toy.html">DIY Sketch Toy <span>→</span></a>
+            </div>
+            <a class="cs-btn cs-btn--light" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, taken from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'wrist-shooter');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'wrist-shooter') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        // Back to top
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Play first: load the game on click, then offer fullscreen
+        (function () {
+            const box = document.getElementById('game');
+            const fs = document.getElementById('game-fs');
+            const start = () => {
+                if (box.classList.contains('is-live')) return;
+                const f = document.createElement('iframe');
+                f.src = box.dataset.src;
+                f.title = 'Wrist Shooter: interactive 3D model and target game';
+                f.allow = 'fullscreen; autoplay';
+                f.allowFullscreen = true;
+                box.replaceChildren(f);
+                box.classList.add('is-live');
+                f.addEventListener('load', () => f.focus());
+            };
+            document.getElementById('game-start').addEventListener('click', start);
+            // Fullscreen starts the game if needed; phones without fullscreen (iPhone) open it in a new tab instead
+            fs.addEventListener('click', () => {
+                start();
+                const go = box.requestFullscreen || box.webkitRequestFullscreen;
+                if (go) go.call(box);
+                else window.open(box.dataset.src, '_blank');
+            });
+        })();
+
+        // Photo boxes take each picture's own shape, so nothing gets cropped
+        document.querySelectorAll('.jrow .shot img').forEach(img => {
+            const fit = () => { if (img.naturalWidth) img.parentElement.style.setProperty('--r', img.naturalWidth / img.naturalHeight); };
+            img.complete ? fit() : img.addEventListener('load', fit);
+        });
+
+        // Gentle fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach(el => el.classList.add('is-in')); return;
+            }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

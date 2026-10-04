@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Out – Ramzi</title>
+    <meta name="description" content="Splash Out: a physics-puzzle game in Unity where a tiny fish escapes a restaurant kitchen before it dries out. A one-week group project where I worked on gameplay and code.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="splash-out.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="so">
+    <!-- One fish drawing, reused everywhere on the page -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="fish" viewBox="0 0 64 32">
+            <g transform="matrix(-1 0 0 1 64 0)">
+            <path d="M6 16 C14 4 34 2 46 9 L58 3 L55 16 L58 29 L46 23 C34 30 14 28 6 16 Z" fill="currentColor"/>
+            <path d="M6 16 C14 4 34 2 46 9 L58 3 L55 16 L58 29 L46 23 C34 30 14 28 6 16 Z" fill="none" stroke="#173a52" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M22 9 C26 13 26 19 22 23 M29 8 C33 13 33 19 29 24 M36 9 C39 13 39 19 36 23" fill="none" stroke="#173a52" stroke-width="1.1" opacity=".55"/>
+            <path d="M24 22 L30 29 L33 22" fill="currentColor" stroke="#173a52" stroke-width="1.2" stroke-linejoin="round"/>
+            <circle cx="14" cy="14" r="2.6" fill="#fff" stroke="#173a52" stroke-width="1.1"/>
+            <circle cx="13.4" cy="14" r="1.2" fill="#173a52"/>
+        </g>
+        </symbol>
+    </svg>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="so-wrap">
+            <section class="so-hero">
+                <div class="bubbles" id="bubbles" aria-hidden="true"></div>
+                <div class="so-hero-copy">
+                    <span class="chip">Unity game · Level design</span>
+                    <h1>Splash<br><span>Out</span></h1>
+                    <p class="tagline hand">Out of the bowl. Into the chaos.</p>
+                    <p class="intro">A tiny fish escapes a restaurant kitchen and has to flop, slide and puzzle its way back to the sea before it dries out.</p>
+                </div>
+                <div class="journey" aria-label="Animation: Ori the fish flops out of its bag and along a dotted trail to the sea">
+                    <svg viewBox="0 0 480 400" aria-hidden="true">
+                        <!-- the plastic fish bag Ori starts in -->
+                        <path class="line" d="M46 60 C40 110 44 150 60 168 C80 190 130 190 150 168 C166 150 168 110 160 60"/>
+                        <path class="line" d="M46 60 C60 52 70 54 78 60 M128 60 C140 52 150 54 160 60"/>
+                        <path class="line" d="M78 60 C80 30 70 18 62 14 M128 60 C126 30 136 18 146 14"/>
+                        <path d="M50 112 C80 104 128 104 158 112 C160 140 156 156 146 168 C128 186 80 186 62 168 C52 156 48 140 50 112Z" fill="#6cb8de" opacity=".25"/>
+                        <!-- the trail -->
+                        <path class="trail" d="M110 96 C190 40 300 60 330 150 C360 240 250 250 300 320 C330 360 390 350 420 330"/>
+                        <!-- home: the sea -->
+                        <g class="wave">
+                            <path class="line" d="M240 344 C262 330 276 356 298 342 C318 330 330 352 352 340 C370 330 384 348 404 338 C420 330 436 346 452 336 C466 328 478 340 492 334"/>
+                            <path class="line" d="M300 364 C322 352 338 372 360 360 C380 350 396 368 418 358 C436 350 452 364 470 356" opacity=".6"/>
+                            <path class="line" d="M360 382 C378 374 392 388 410 380 C426 373 440 384 456 378" opacity=".35"/>
+                        </g>
+                        <circle class="splash-ring" cx="420" cy="340" r="22"/>
+                        <!-- Ori -->
+                        <g class="ori"><g class="ori-body"><g transform="scale(-1 1)">
+                            <path d="M-24 0 C-16 -12 6 -14 16 -6 L28 -13 L25 0 L28 13 L16 6 C6 14 -16 12 -24 0Z" fill="#f2892c" stroke="#fbf3e3" stroke-width="2.2" stroke-linejoin="round"/>
+                            <circle cx="-14" cy="-2" r="2.4" fill="#23262b"/>
+                            <path d="M-2 -8 C2 -3 2 3 -2 8" fill="none" stroke="#23262b" stroke-width="1.4" opacity=".6"/>
+                        </g></g></g>
+                    </svg>
+                </div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Gameplay &amp; Programming</strong><em>Group project</em></div>
+                <div class="ov-item"><small>Duration</small><strong>1 Week</strong></div>
+                <div class="ov-item"><small>Course</small><strong>Game Level Design</strong></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Playable build</strong><em>PC, made in Unity</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE HOOK ============ -->
+        <section class="sec so-wrap">
+            <div class="label"><b>01</b><span>The hook</span></div>
+            <h2 class="so-h2">A fish with somewhere to be.</h2>
+            <div class="hook">
+                <div>
+                    <div class="hook-cards">
+                        <div class="hook-card reveal"><small>Story</small><p>A tiny fish escapes a restaurant kitchen and journeys across a lethal human world, back to the sea.</p></div>
+                        <div class="hook-card reveal"><small>What makes it different</small><p>Realistic fish movement meets physics-based puzzles: water flow and clumsy controls create the fun and the challenge.</p></div>
+                    </div>
+                    <ul class="facts">
+                        <li><b>Genre:</b> Environmental puzzle · Physics-action · Survival</li>
+                        <li><b>Platform:</b> PC</li>
+                        <li><b>Engine:</b> Unity</li>
+                    </ul>
+                </div>
+                <figure class="art art--bowl reveal" aria-label="Illustration: the orange fish leaping out of its bowl">
+                    <svg viewBox="0 0 380 460" aria-hidden="true">
+                        <path class="arc" d="M120 300 C140 120 280 90 320 210" fill="none" stroke="#f2892c" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+                        <ellipse cx="150" cy="420" rx="120" ry="12" fill="#173a52" opacity=".12"/>
+                        <path d="M70 250 Q60 330 100 380 Q150 425 200 380 Q240 330 230 250 Z" fill="#cfe8f5" stroke="#173a52" stroke-width="3"/>
+                        <path d="M66 290 Q150 270 234 290 Q238 340 200 380 Q150 425 100 380 Q62 340 66 290 Z" fill="#6cb8de" opacity=".75"/>
+                        <ellipse cx="150" cy="250" rx="82" ry="12" fill="none" stroke="#173a52" stroke-width="3"/>
+                        <circle cx="120" cy="345" r="6" fill="#fff" opacity=".7"/><circle cx="170" cy="320" r="4" fill="#fff" opacity=".7"/><circle cx="140" cy="300" r="3" fill="#fff" opacity=".7"/>
+                        <g class="leap"><use href="#fish" x="-40" y="-20" width="80" height="40" style="color:#f2892c"/></g>
+                        <g fill="#6cb8de"><circle cx="110" cy="230" r="6"/><circle cx="185" cy="215" r="5"/><circle cx="96" cy="205" r="4"/><circle cx="205" cy="240" r="4"/></g>
+                        <text x="300" y="330" text-anchor="middle" class="svg-hand">bye bowl!</text>
+                    </svg>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 02 HOW YOU PLAY ============ -->
+        <section class="sec so-wrap">
+            <div class="label"><b style="--c: var(--water)">02</b><span>How you play</span></div>
+            <h2 class="so-h2">Plan. Flop. Escape.</h2>
+            <div class="play">
+                <figure class="art art--puddles reveal" aria-label="Illustration: the fish hopping from puddle to puddle across the kitchen floor towards a drain">
+                    <svg viewBox="0 0 380 560" aria-hidden="true">
+                        <defs><pattern id="tiles" width="38" height="38" patternUnits="userSpaceOnUse"><path d="M38 0H0V38" fill="none" stroke="#173a52" stroke-opacity=".08" stroke-width="2"/></pattern></defs>
+                        <rect width="380" height="560" fill="url(#tiles)"/>
+                        <path d="M70 470 C40 380 160 380 150 300 C140 220 290 230 280 140 C276 100 300 70 320 60" fill="none" stroke="#f2892c" stroke-width="3" stroke-dasharray="2 11" stroke-linecap="round"/>
+                        <path d="M30 480 q20 -22 60 -14 q40 6 30 26 q-14 20 -56 14 q-44 -6 -34 -26z" fill="#9fd2ec"/>
+                        <path d="M110 300 q24 -24 66 -12 q36 12 22 30 q-18 18 -62 10 q-40 -8 -26 -28z" fill="#9fd2ec"/>
+                        <path d="M236 150 q22 -22 62 -10 q34 10 20 28 q-18 16 -58 8 q-38 -8 -24 -26z" fill="#9fd2ec"/>
+                        <circle cx="320" cy="56" r="26" fill="#173a52"/><path d="M304 56h32M320 40v32M309 45l22 22M331 45l-22 22" stroke="#9fd2ec" stroke-width="3"/>
+                        <text x="300" y="112" text-anchor="end" class="svg-hand">drain = way out</text>
+                        <g class="hop"><use href="#fish" x="-32" y="-16" width="64" height="32" style="color:#f2892c"/></g>
+                        <g transform="translate(250 400) rotate(-28)"><rect x="0" y="-6" width="74" height="12" rx="3" fill="#dfe6ea" stroke="#173a52" stroke-width="2"/><rect x="74" y="-8" width="40" height="16" rx="5" fill="#f2892c" stroke="#173a52" stroke-width="2"/></g>
+                        <circle cx="300" cy="500" r="26" fill="#f6dc8a" stroke="#173a52" stroke-width="2"/><text x="300" y="545" text-anchor="middle" class="svg-hand">oil!</text>
+                        <text x="160" y="360" text-anchor="middle" class="svg-hand">splash</text>
+                    </svg>
+                </figure>
+                <div>
+                    <ol class="loop">
+                        <li class="reveal"><b>01</b><h3>Plan</h3><p>Spot the water sources and the exit routes.</p></li>
+                        <li class="reveal"><b>02</b><h3>Move</h3><p>Master momentum and land precise flops between puddles.</p></li>
+                        <li class="reveal"><b>03</b><h3>Manipulate</h3><p>Interact with objects to create a path.</p></li>
+                        <li class="reveal"><b>04</b><h3>Escape</h3><p>Reach safety before the dehydration timer hits zero.</p></li>
+                    </ol>
+                    <div class="controls reveal">
+                        <small>CONTROLS</small>
+                        <span class="ctrl"><span class="key">A</span><span class="key">D</span>Move left / right</span>
+                        <span class="ctrl"><span class="key">E</span>Interact</span>
+                        <span class="ctrl"><span class="key key--space">Space</span>Jump</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 SURVIVAL MECHANICS ============ -->
+        <section class="band">
+            <div class="inner">
+                <div class="label"><b>03</b><span>Survival mechanics</span></div>
+                <h2 class="so-h2">Every second out of water counts.</h2>
+                <div class="mech">
+                    <div class="mech-card reveal">
+                        <h3>Dehydration timer</h3>
+                        <p>A fish can't survive out of water for long. Every puddle buys you time.</p>
+                        <div class="timer" aria-hidden="true"><i></i></div>
+                        <p class="timer-note hand">find water… fast</p>
+                    </div>
+                    <div class="mech-card reveal">
+                        <h3>Flop physics</h3>
+                        <p>Skill-based movement driven by weight and momentum, so every jump is a little bit clumsy.</p>
+                        <div class="flop" aria-hidden="true"><span class="puddle"></span><svg class="flopper" viewBox="0 0 64 32"><use href="#fish" style="color:#f2892c"/></svg></div>
+                    </div>
+                </div>
+                <h3 style="margin-top:56px; font-size:28px">What you land on changes everything</h3>
+                <ul class="hazards">
+                    <li class="hz-water reveal"><span aria-hidden="true">💧</span><h3>Water</h3><p>Normal mobility.</p></li>
+                    <li class="hz-oil reveal"><span aria-hidden="true">🛢️</span><h3>Oil</h3><p>High speed, low control.</p></li>
+                    <li class="hz-hot reveal"><span aria-hidden="true">🔥</span><h3>Hot / chemical</h3><p>Rapid health drain.</p></li>
+                    <li class="hz-ice reveal"><span aria-hidden="true">🧊</span><h3>Ice</h3><p>Uncontrolled sliding.</p></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 04 MY PART: GAMEPLAY & CODE ============ -->
+        <section class="sec so-wrap">
+            <div class="label"><b style="--c: var(--deep)">04</b><span>My part</span></div>
+            <h2 class="so-h2">Where I lived: the code.</h2>
+            <p class="lead" style="margin-top:20px; max-width:780px">This was a group project. I contributed heavily to the gameplay and the coding, and it's the part of the project I loved most: turning the rules above into something that actually plays in Unity.</p>
+            <div class="mine">
+                <pre class="code reveal" aria-label="Pseudo-code of the core loop"><span class="c">// the core loop, in plain words</span>
+<span class="k">void</span> <span class="t">Update</span>() {
+    <span class="k">if</span> (fish.InWater)  dryness.<span class="t">Refill</span>();
+    <span class="k">else</span>               dryness.<span class="t">Drain</span>(surface.rate);
+
+    fish.<span class="t">Flop</span>(input, surface.<span class="t">grip</span>);   <span class="c">// oil, ice…</span>
+
+    <span class="k">if</span> (dryness.Empty)  <span class="t">GameOver</span>(<span class="s">"dried out"</span>);
+    <span class="k">if</span> (fish.AtExit)    <span class="t">NextLevel</span>();
+}</pre>
+                <ul class="mine-list">
+                    <li class="reveal"><b>Gameplay</b> shaping how the fish moves, jumps and reacts to each surface.</li>
+                    <li class="reveal"><b>Coding</b> the interactions and puzzle logic that open up a path through the kitchen.</li>
+                    <li class="reveal"><b>Playtesting</b> and tuning, so the clumsiness feels fun rather than frustrating.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 05 ENVIRONMENTAL PROGRESSION ============ -->
+        <section class="sec so-wrap">
+            <div class="label"><b style="--c: var(--water)">05</b><span>Level progression</span></div>
+            <h2 class="so-h2">From the kitchen to the ocean.</h2>
+            <ol class="route">
+                <li class="here reveal"><span class="dot">1</span><span class="tag hand">built ↓</span><h3>Kitchen</h3><p class="ch">Immediate threats: heat, knives, cats.</p><span class="fo">Stealth &amp; micro-physics</span></li>
+                <li class="reveal"><span class="dot">2</span><h3>Street</h3><p class="ch">Water scarcity, high traffic.</p><span class="fo">Timing &amp; resources</span></li>
+                <li class="reveal"><span class="dot">3</span><h3>Drainage</h3><p class="ch">Complex physics: currents, toxins.</p><span class="fo">Flow control &amp; speed</span></li>
+                <li class="reveal"><span class="dot">4</span><h3>River / Ocean</h3><p class="ch">Predators, a large ecosystem.</p><span class="fo">Simulation &amp; social puzzles</span></li>
+            </ol>
+        </section>
+
+        <!-- ============ 06 GAMEPLAY ============ -->
+        <section class="sec so-wrap">
+            <div class="label"><b>06</b><span>Gameplay</span></div>
+            <h2 class="so-h2">Level one: the kitchen.</h2>
+            <div class="shots">
+                <img class="reveal" src="images/splash-out/cs/shot-1.webp" width="487" height="246" loading="lazy" alt="The kitchen level: shelves, sink and counters">
+                <img class="reveal" src="images/splash-out/cs/shot-2.webp" width="487" height="246" loading="lazy" alt="The kitchen level from another angle, with the fish bowl on the counter">
+                <img class="reveal" src="images/splash-out/cs/shot-3.webp" width="487" height="247" loading="lazy" alt="The stove with a flame, pots and shelves of food">
+                <img class="reveal" src="images/splash-out/cs/shot-4.webp" width="487" height="247" loading="lazy" alt="The corner of the kitchen with the stove and shelves">
+            </div>
+            <iframe class="film-slot film-slot--video reveal" loading="lazy"
+                    src="https://www.youtube-nocookie.com/embed/hLDSYl76qiE?controls=0&amp;modestbranding=1&amp;disablekb=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=hLDSYl76qiE&amp;playsinline=1&amp;rel=0"
+                    title="Splash Out gameplay video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <div class="tools-row">
+                <div class="tools">
+                    <span>Tools used</span>
+                    <div class="logo"><img src="images/dragon-island/cs/logo-unity.webp" width="518" height="189" loading="lazy" alt="Unity"></div>
+                </div>
+                <a class="play-btn" href="https://ramzi99.itch.io/splash-out" target="_blank" rel="noopener">
+                    <span class="pb-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+                    <span><b>Play the game</b><small>free on itch.io ↗</small></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="so-foot">
+        <div class="so-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'splash-out');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'splash-out') { a.href = projectLink(next); a.innerHTML = escapeHTML(next.title) + ' <span>→</span>'; }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Bubbles rising behind the hero
+        (function () {
+            let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+            let html = '';
+            for (let i = 0; i < 18; i++) {
+                const d = 8 + Math.round(rnd() * 22);
+                html += `<i style="width:${d}px;height:${d}px;left:${(rnd() * 96).toFixed(1)}%;--t:${(6 + rnd() * 7).toFixed(1)}s;--dl:-${(rnd() * 12).toFixed(1)}s;--dx:${Math.round(rnd() * 60 - 30)}px"></i>`;
+            }
+            document.getElementById('bubbles').innerHTML = html;
+        })();
+
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(el => el.classList.add('is-in')); return; }
+            const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

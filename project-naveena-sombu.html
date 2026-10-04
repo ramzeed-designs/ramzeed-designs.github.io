@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveena Sombu – Ramzi</title>
+    <meta name="description" content="Naveena Sombu, a modern lota: a one hand spit container for drivers who chew pan or gutka, designed by a team of 8 in the Design Process course.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="naveena-sombu.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="ns">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="ns-wrap">
+            <section class="ns-hero">
+                <svg class="splat" viewBox="0 0 200 200" aria-hidden="true"><path d="M101 18c9 0 12 22 20 25s22-14 29-7-6 22-1 29 26 1 27 11-20 13-21 21 18 18 12 26-25-1-31 5 1 27-8 30-16-17-25-17-17 21-26 17-2-25-8-30-26 4-29-5 16-17 13-25-22-8-20-18 22-7 24-15-10-22-3-28 21 6 27 0 2-19 10-19z"/></svg>
+                <div class="ns-hero-copy">
+                    <span class="chip">Product design · Design Process course</span>
+                    <h1>Naveena <span>Sombu</span></h1>
+                    <p class="tagline hand">a.k.a. the modern lota. <i>Spit happens!</i></p>
+                    <p class="intro">A one hand spit container for drivers who chew pan or gutka, so the spit goes into the lota instead of onto the road.</p>
+                </div>
+                <figure class="hero-pic">
+                    <img src="images/naveena-sombu/cs/hero.webp" width="761" height="1280"
+                         alt="A hand holding the black 3D-printed lota with its flip cap open, against grass">
+                    <figcaption class="hand">our 3D-printed prototype</figcaption>
+                </figure>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Product Designer</strong><em>team of 8, involved in every stage</em></div>
+                <div class="ov-item"><small>Duration</small><strong>2 Weeks</strong><em>Oct 2023</em></div>
+                <div class="ov-item"><small>Course</small><strong>Design Process</strong><em>mentor: Charuta Bhatt</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Prototype</strong><em>exhibited at the course show</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE PROBLEM ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b>01</b><span>The problem</span></div>
+            <h2 class="ns-h2">Redwashing.</h2>
+            <figure class="redwash reveal">
+                <img src="images/naveena-sombu/cs/redwash.webp" width="1600" height="1109" loading="lazy" alt="A corridor wall stained brown and red from pan spit, with our framed red splash artwork leaning against it">
+                <figcaption><b>Redwashing</b> <em>(verb)</em>: covering your surroundings in red "abstract art" made of pan and gutka spit. Walls, corners, stairs, the space around dustbins.</figcaption>
+            </figure>
+            <div class="lota-story">
+                <div class="lota-copy">
+                    <p class="lead reveal">The <b>Sombu</b> (Tamil) or <b>Lota</b> (Hindi) is one of India's most familiar designed objects, in use since the 2nd millennium BC for rituals, drinking water and storing liquids. Over time it picked up one more use: <b>a pot to spit pan into</b>.</p>
+                    <p class="question reveal">Could the iconic lota be redesigned for this one extreme use?</p>
+                </div>
+                <figure class="lota-pic reveal">
+                    <img src="images/naveena-sombu/cs/lota.webp" width="207" height="292" loading="lazy" alt="A traditional brass lota with a flared rim and round body">
+                    <figcaption class="hand">the classic lota</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 02 THE BRIEF ============ -->
+        <div class="ns-wrap">
+            <section class="brief reveal">
+                <div class="label"><b style="--c: var(--brown)">02</b><span>The brief</span></div>
+                <h2 class="ns-h2">Design for an extreme user.</h2>
+                <p class="big">An <b>extreme user</b> sits at the far ends of a product's usual user spectrum: they use it more intensely, more often, or in unconventional ways than the average person.</p>
+            </section>
+        </div>
+
+        <!-- ============ 03 DISCOVER ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b>03</b><span>Discover</span></div>
+            <h2 class="ns-h2">First, break our own structure.</h2>
+            <p class="lead" style="margin-top:20px; max-width:760px">For most of us this was the first time treating design as a process. We kept falling back on a tidy, engineering-style approach, and it showed.</p>
+
+            <ol class="steps">
+                <li class="reveal">
+                    <img src="images/naveena-sombu/cs/sheet.webp" width="1302" height="746" loading="lazy" alt="An A1 brainstorming sheet with domains like Healthcare, Education and Transportation, mostly empty">
+                    <div><small>Try 1</small><h3>Domains first</h3><p>We listed domains (healthcare, transport, food…) and tried to force extreme scenarios out of each. The A1 sheet stayed almost empty.</p></div>
+                </li>
+                <li class="reveal">
+                    <img src="images/naveena-sombu/cs/discuss-2.webp" width="1600" height="700" loading="lazy" alt="Our team around a table in discussion, with our mentor standing at the back">
+                    <div><small>Try 2</small><h3>Our own lives</h3><p>Our mentor told us to stop boxing ideas into domains and write in every direction, in different colours. We also looked at our own and our classmates' life experiences.</p></div>
+                </li>
+                <li class="reveal">
+                    <img src="images/naveena-sombu/cs/discuss-1.webp" width="1600" height="833" loading="lazy" alt="Four of us at a table, talking through ideas">
+                    <div><small>Try 3</small><h3>Situations first</h3><p>We paired short user personas with situations, then asked if there was a problem. It got rid of "that's a you problem" and let us see things from the user's side.</p></div>
+                </li>
+            </ol>
+
+            <div class="hmw reveal">
+                <div class="hmw-head">
+                    <p class="hand">user trait × situation =</p>
+                    <h3>21 "How might we" statements</h3>
+                </div>
+                <ul class="hmw-cloud">
+                    <li>Traffic police × heat</li><li>Long nails × typing</li><li>Drunk driving</li><li>Sewage cleaners</li>
+                    <li>Old age × loneliness</li><li>Introverts × team meetings</li><li>Army veterans</li><li class="pick">Redwashing</li>
+                    <li>Alzheimer's × old age</li><li>Tissues × wet hands</li><li>Motion sickness × kids</li><li>Claustrophobic construction workers</li>
+                    <li>Sneakers × bike riders</li><li>Tinnitus × workspaces</li><li>Elderly × finding train seats</li><li>Deaf students × school</li>
+                    <li>Hoarding × ADHD</li><li>Flat feet × exercise</li><li>Eyesight × sports</li><li>Steroids × gym</li><li>Sleep × back pain</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 04 DEFINE ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b style="--c: var(--brown)">04</b><span>Define</span></div>
+            <h2 class="ns-h2">From 21, to 7, to 1.</h2>
+            <p class="lead" style="margin-top:20px; max-width:780px">We contacted people living each situation and cut statements on two things: could we reach these users in person this week, and did <i>they</i> even see it as a problem?</p>
+
+            <div class="field">
+                <figure class="reveal"><img src="images/naveena-sombu/cs/interview.webp" width="1600" height="840" loading="lazy" alt="Three people smiling together at a busy market at night, during an interview for our redwashing research"><figcaption><small>In-person interviews</small><p>Their experience, how they cope, their daily routines and habits.</p></figcaption></figure>
+                <figure class="reveal"><img src="images/naveena-sombu/cs/stairs.webp" width="1600" height="865" loading="lazy" alt="A staircase in a food court with its walls stained brown from spit"><figcaption><small>In-situation observation</small><p>Watching from a distance revealed things even the users didn't notice.</p></figcaption></figure>
+            </div>
+            <div class="mini-row">
+                <img class="reveal" src="images/naveena-sombu/cs/mindmap.webp" width="860" height="656" loading="lazy" alt="A colourful mind map of sticky notes around the word Hoarding">
+                <img class="reveal" src="images/naveena-sombu/cs/night.webp" width="1567" height="692" loading="lazy" alt="Talking to a balloon seller at night">
+                <img class="reveal" src="images/naveena-sombu/cs/board.webp" width="1077" height="948" loading="lazy" alt="Two teammates working through notes at a table, in black and white">
+            </div>
+
+            <div class="matrix reveal">
+                <div class="matrix-head">
+                    <h3>Ranking the final 7</h3>
+                    <p class="sub">A mentor, Nikhil, introduced us to the priority matrix. We ranked each statement on four parameters.</p>
+                    <ul class="key">
+                        <li><i style="--k: var(--k1)"></i>Societal impact</li>
+                        <li><i style="--k: var(--k2)"></i>Width of users</li>
+                        <li><i style="--k: var(--k3)"></i>Criticality of solution</li>
+                        <li><i style="--k: var(--k4)"></i>User accessibility</li>
+                    </ul>
+                </div>
+                <ul class="cols">
+                    <li><span class="bars4"><b style="--v:.22"></b><b style="--v:.35"></b><b style="--v:.22"></b><b style="--v:.8"></b></span><span>Long nails × touch typing</span></li>
+                    <li class="win"><span class="bars4"><b style="--v:1"></b><b style="--v:.8"></b><b style="--v:.8"></b><b style="--v:.46"></b></span><span>Redwashing × drivers</span><em class="hand">picked!</em></li>
+                    <li><span class="bars4"><b style="--v:.22"></b><b style="--v:.76"></b><b style="--v:.46"></b><b style="--v:.46"></b></span><span>Sneaker fans × bikers</span></li>
+                    <li><span class="bars4"><b style="--v:.5"></b><b style="--v:.5"></b><b style="--v:.72"></b><b style="--v:.5"></b></span><span>Hoarding × ADHD</span></li>
+                    <li><span class="bars4"><b style="--v:.82"></b><b style="--v:.5"></b><b style="--v:.22"></b><b style="--v:.22"></b></span><span>Deaf students × school</span></li>
+                    <li><span class="bars4"><b style="--v:.5"></b><b style="--v:.22"></b><b style="--v:.5"></b><b style="--v:.78"></b></span><span>Eyewear × sports</span></li>
+                    <li><span class="bars4"><b style="--v:.24"></b><b style="--v:.5"></b><b style="--v:.5"></b><b style="--v:.24"></b></span><span>Tinnitus × workspaces</span></li>
+                </ul>
+            </div>
+
+            <blockquote class="hmw-final reveal">
+                <p class="hand">our final HMW</p>
+                <p>How might we help car drivers who chew pan or gutka while travelling <b>dispose of their spit safely</b>, while reducing the disgust it causes for others on the road and in the car?</p>
+            </blockquote>
+        </section>
+
+        <!-- ============ 05 RE-DISCOVERY ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b>05</b><span>Re-discovery</span></div>
+            <h2 class="ns-h2">Wait. Did we rush that?</h2>
+            <div class="redo">
+                <p class="lead reveal">The decision felt rushed by the deadline, and if it was wrong, the whole second week would be wasted. With another mentor, Kabyashree, backing us, we went back to Discover and Define, this time digging only into redwashing. We came out with <b>three extreme-user scenarios</b> and carried all three forward.</p>
+                <img class="reveal" src="images/naveena-sombu/cs/rediscover.webp" width="832" height="898" loading="lazy" alt="Three teammates sketching and taking notes around a table full of sticky notes">
+            </div>
+            <ul class="scen">
+                <li class="reveal"><img src="images/naveena-sombu/cs/car.webp" width="595" height="1023" loading="lazy" alt="A teammate leaning out of an open car door, acting out spitting while driving"><div><small>Scenario 1</small><h3>Car drivers</h3><p>Who chew pan on the move and spit out of the car, leaving a mess for others on the road and in the car.</p></div></li>
+                <li class="reveal"><img src="images/naveena-sombu/cs/bike.webp" width="504" height="867" loading="lazy" alt="A rider in a helmet spitting pan onto the road from a moving bike"><div><small>Scenario 2</small><h3>Bike riders</h3><p>Who need to spit while wearing a helmet, without spraying the people around them.</p></div></li>
+                <li class="reveal"><img src="images/naveena-sombu/cs/bin.webp" width="747" height="1285" loading="lazy" alt="An overflowing blue public dustbin with spit stains around it"><div><small>Scenario 3</small><h3>Around dustbins</h3><p>Where redwashing makes people avoid using the bin at all.</p></div></li>
+            </ul>
+            <div class="cloak reveal">
+                <p class="hand">the metaphor: an invisibility cloak</p>
+                <p>We weren't trying to stop people from eating pan. We wanted the spit to <b>disappear safely</b>, so both the person chewing and everyone around them are safe.</p>
+            </div>
+        </section>
+
+        <!-- ============ 06 DEVELOP (dark band) ============ -->
+        <section class="band">
+            <div class="ns-wrap">
+                <div class="label"><b>06</b><span>Develop</span></div>
+                <h2 class="ns-h2">50+ sketches, against the clock.</h2>
+                <div class="dev-intro">
+                    <p>Getting ideas out of our heads had been our weak spot. A time-boxed sketch sprint fixed that. We split the three scenarios 3–3–2 between us, then drew for any scenario whenever an idea came up.</p>
+                    <img class="reveal" src="images/naveena-sombu/cs/sketching.webp" width="1480" height="1600" loading="lazy" alt="Teammates sketching at a table covered in coloured sticky flags">
+                </div>
+                <div class="sk-grid">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-1.webp" width="750" height="1000" loading="lazy" alt="Sketch: a vase-shaped spit container with a wide funnel lid">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-2.webp" width="750" height="1000" loading="lazy" alt="Sketch: a tall angled spit container">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-3.webp" width="750" height="1000" loading="lazy" alt="Sketch: a slim folding spit pouch for car drivers">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-4.webp" width="750" height="1000" loading="lazy" alt="Sketch: a jar with a tissue insert to soak up spit">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-5.webp" width="750" height="1000" loading="lazy" alt="Sketch: a disposable cone-shaped cup">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-6.webp" width="750" height="1000" loading="lazy" alt="Sketch: a target sticker on a wall corner with smell absorbers">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-7.webp" width="750" height="1000" loading="lazy" alt="Sketch: small pouches and a lidded pot">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-8.webp" width="750" height="1000" loading="lazy" alt="Sketch: a public spit fountain with drainage, for bike riders">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-9.webp" width="750" height="1000" loading="lazy" alt="Sketch: a candy-wrapped gum-style pan">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-10.webp" width="750" height="1000" loading="lazy" alt="Sketch: a round luminescent spit pouch">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-11.webp" width="750" height="1000" loading="lazy" alt="Sketch: helmet attachments with a tissue dispenser and pull tab">
+                    <img class="reveal" src="images/naveena-sombu/cs/sk-12.webp" width="750" height="1000" loading="lazy" alt="Sketch: a spit box mounted on a bike's handlebar">
+                </div>
+                <p class="cap hand">a few of the 50+ sketches</p>
+
+                <div class="integrate">
+                    <figure class="reveal"><img src="images/naveena-sombu/cs/sketch-wall.webp" width="1517" height="706" loading="lazy" alt="The team in front of a wall of pinned concept sketches, in black and white"></figure>
+                    <div>
+                        <h3>Combine, don't cut.</h3>
+                        <p>We scored ideas on <b>disposability, recyclability, cost, storage efficiency and ease of use</b>. Then, instead of throwing out the low scorers, we grouped ideas that worked well together or shared a principle, and merged them into stronger ones.</p>
+                    </div>
+                </div>
+
+                <ul class="ideas">
+                    <li class="go reveal"><b>1</b>Naveena Sombu, a modern lota</li>
+                    <li class="reveal"><b>2</b>Spit in pouches</li>
+                    <li class="reveal"><b>3</b>Portable spit sucker</li>
+                    <li class="reveal"><b>4</b>Spit and win</li>
+                    <li class="reveal"><b>5</b>Self-cleaning barricade</li>
+                    <li class="go reveal"><b>6</b>Portable sand spit bin</li>
+                    <li class="go backup reveal"><b>+</b>Backup: the Mural</li>
+                </ul>
+                <p class="ideas-note">The integrated concepts, plus a few backups. Three went into the Deliver phase (highlighted), picked on whether we could prototype them in 2 days and how much they could solve.</p>
+            </div>
+        </section>
+
+        <!-- ============ 07 DELIVER ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b style="--c: var(--brown)">07</b><span>Deliver</span></div>
+            <h2 class="ns-h2">Three prototypes, one finalist.</h2>
+            <ul class="three">
+                <li class="reveal pick"><small>Prototype 1 · final</small><h3>Naveena Sombu</h3><p>A modern take on a design that has survived millennia, redesigned for car drivers who chew pan while driving.</p></li>
+                <li class="reveal"><small>Prototype 2</small><h3>Portable spit tray</h3><p>Picked for its novelty, and because it could scale up to the size of a dustbin.</p></li>
+                <li class="reveal"><small>Prototype 3</small><h3>The Mural</h3><p>A backup idea we came back to: we felt strongly that this problem needs awareness, too.</p></li>
+            </ul>
+
+            <h3 class="sub-h">Material &amp; process exploration</h3>
+            <div class="mats">
+                <figure class="reveal"><img src="images/naveena-sombu/cs/terracotta.webp" width="952" height="1600" loading="lazy" alt="A teammate shaping a terracotta lota form by hand"><figcaption><small>Form</small><p>Lota forms in thermocol and terracotta, to feel the ergonomics in the hand.</p></figcaption></figure>
+                <figure class="reveal"><img src="images/naveena-sombu/cs/laser.webp" width="670" height="1140" loading="lazy" alt="Two teammates at a disc sander, checking a laser-cut part"><figcaption><small>Mechanism</small><p>Laser-cut MDF, plywood and acrylic for the lota's cap and the other two prototypes.</p></figcaption></figure>
+                <figure class="reveal"><img src="images/naveena-sombu/cs/absorb.webp" width="507" height="884" loading="lazy" alt="A teammate testing absorbent pads and cotton at a workbench"><figcaption><small>Absorbents</small><p>Chemical and fabric absorbents to soak up the liquid and the smell.</p></figcaption></figure>
+            </div>
+
+            <h3 class="sub-h">From sketch to print</h3>
+            <ol class="flow">
+                <li class="reveal"><img src="images/naveena-sombu/cs/form-sketch.webp" width="942" height="1600" loading="lazy" alt="Pencil sketches of grip and spout forms"><span><b>Sketch</b>Grip type, and where the cap and hinge go for one hand use.</span></li>
+                <li class="reveal"><img src="images/naveena-sombu/cs/blender.webp" width="942" height="1600" loading="lazy" alt="A laptop showing a row of red lota variations in Blender"><span><b>Blender</b>Quick form iterations side by side.</span></li>
+                <li class="reveal"><img src="images/naveena-sombu/cs/fusion.webp" width="1438" height="1600" loading="lazy" alt="A tablet showing the lota body modelled in Fusion 360"><span><b>Fusion 360</b>Parametric model with tolerances for printing and a smooth hinge.</span></li>
+                <li class="reveal"><img src="images/naveena-sombu/cs/print.webp" width="942" height="1600" loading="lazy" alt="The black lota body on the 3D printer bed with support material"><span><b>3D print</b>Printed, supports removed, cap and hinge assembled.</span></li>
+            </ol>
+        </section>
+
+        <!-- ============ 08 THE FINAL PRODUCT ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b>08</b><span>The final product</span></div>
+            <h2 class="ns-h2">Grip, flip, spit, shut.</h2>
+            <div class="final">
+                <figure class="renders reveal">
+                    <img src="images/naveena-sombu/cs/renders.webp" width="400" height="570" loading="lazy" alt="Four renders of the lota: in red with the cap closed, in brown with the cap open, from the back and from the side">
+                    <figcaption class="hand">final renders</figcaption>
+                </figure>
+                <div class="final-copy">
+                    <ul class="feat">
+                        <li class="reveal"><span class="hand">grip</span>A curved body we tested in thermocol and terracotta so it sits right in one hand.</li>
+                        <li class="reveal"><span class="hand">flip</span>The cap and hinge sit where one hand can flip them open, so the other stays on the wheel.</li>
+                        <li class="reveal"><span class="hand">shut</span>The cap closes over the mouth, so the spit stays inside the lota and off the road.</li>
+                    </ul>
+                    <p class="tagline-big">"Spit happens!"</p>
+                </div>
+            </div>
+            <div class="shots">
+                <figure class="s-tall reveal"><img src="images/naveena-sombu/cs/final-hand.webp" width="901" height="1061" loading="lazy" alt="A hand holding the lota with the cap flipped open"><figcaption class="hand">one hand use</figcaption></figure>
+                <figure class="reveal"><img src="images/naveena-sombu/cs/final-car.webp" width="609" height="629" loading="lazy" alt="A teammate in the driver's seat using the lota"><figcaption class="hand">in the car</figcaption></figure>
+                <figure class="reveal"><img src="images/naveena-sombu/cs/cap-open.webp" width="719" height="1280" loading="lazy" alt="The black lota on a table with its cap open"><figcaption class="hand">cap open</figcaption></figure>
+                <figure class="reveal"><img src="images/naveena-sombu/cs/print-hand.webp" width="720" height="1280" loading="lazy" alt="A hand holding the lota sideways, showing its curved profile"><figcaption class="hand">the profile</figcaption></figure>
+            </div>
+        </section>
+
+        <!-- ============ 09 OUR PROCESS ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b style="--c: var(--brown)">09</b><span>Our process</span></div>
+            <h2 class="ns-h2">Not quite a double diamond.</h2>
+            <figure class="map reveal">
+                <img src="images/naveena-sombu/cs/process-map.webp" width="1338" height="526" loading="lazy" alt="Hand-drawn diagram of our process: a wiggly start, a spiral of confusion after a rushed Define, three overlapping diamonds for the three HMWs, then smooth Develop and Deliver diamonds to the final prototype">
+            </figure>
+            <div class="map-notes">
+                <p class="reveal"><span class="hand">wiggly start</span>We had no direction until we understood what an extreme user is. Once that clicked, Discover went smoothly.</p>
+                <p class="reveal"><span class="hand">the spiral</span>Define was rushed and left us unsure, so we went back and re-discovered and re-defined three related HMWs in parallel.</p>
+                <p class="reveal"><span class="hand">back on track</span>We merged them into one, then sailed through Develop and Deliver, with a detour into materials on the way.</p>
+            </div>
+        </section>
+
+        <!-- ============ 10 OUTCOME ============ -->
+        <section class="sec ns-wrap">
+            <div class="label"><b>10</b><span>Outcome</span></div>
+            <h2 class="ns-h2">On the wall, and on the table.</h2>
+            <div class="outcome">
+                <figure class="reveal"><img src="images/naveena-sombu/cs/display.webp" width="646" height="1236" loading="lazy" alt="Our exhibition stand: the Red Washing poster above a framed red splash artwork, with the black lota, the spit tray and a terracotta form on the table"><figcaption class="tag hand">our final display</figcaption></figure>
+                <div>
+                    <p class="lead">At the end-of-course show we learnt from our batchmates' work and got valuable feedback on what to improve next.</p>
+                    <h3 class="sub-h" style="margin-top:34px">What I took away</h3>
+                    <ul class="learn">
+                        <li class="reveal">Time-bound thinking: knowing <b>where to stop</b> and <b>when to revisit</b>.</li>
+                        <li class="reveal">How to run user interviews and get to the key points quickly.</li>
+                        <li class="reveal">Explaining ideas clearly, in a team and in formal reviews.</li>
+                        <li class="reveal">Still learning: being creative within limits of time, resources and deliverables.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team reveal">
+                <img src="images/naveena-sombu/cs/team.webp" width="1559" height="1040" loading="lazy" alt="Our team of eight and our mentor standing in front of the exhibition stand">
+                <div>
+                    <p class="hand">Team 8</p>
+                    <p class="names">Natesh Aravind S · Dinesh Kumar M · Chitra Singh · <b>Mohammed Ramzeed (me)</b> · Ramprasad · Basil Moncy · Diksha Lokhande · Anurag Bohra</p>
+                    <p class="mentor"><small>Mentor</small> Charuta Bhatt</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="ns-foot">
+        <div class="ns-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'naveena-sombu');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'naveena-sombu') { a.href = projectLink(next); a.innerHTML = escapeHTML(next.title) + ' <span>→</span>'; }
+        })();
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(el => el.classList.add('is-in')); return; }
+            const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+/* =====================================================================
+   Dragon Island (AR class project), built from the Figma frame "AR - DRAGON ISLAND".
+   Loaded after style.css; everything is scoped under body.di.
+   Shorter than the other case studies, same sizes and building blocks.
+   ===================================================================== */
+
+body.di {
+    --paper: #fbfbf4;
+    --ink: #24224d;
+    --body: #545275;
+    --card: #ffffff;
+    --mist: #e9e7e8;          /* the hero grey, same as the illustration's background */
+    --peri: #8183c0;          /* periwinkle from the Figma bands */
+    --peri-deep: #5f61a8;
+    --peri-soft: #e6e6f6;
+    --orange: #f1845b;
+    --orange-soft: #fde3d6;
+    --green: #6db86f;
+
+    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-hand: 'Caveat', 'Comic Sans MS', cursive;
+
+    --bg: var(--paper);
+    --fg: var(--ink);
+    --muted: var(--body);
+    --side: clamp(20px, 5.556vw, 80px);
+
+    /* overview row status colours (shared .ov styles in style.css) */
+    --ov-bg: var(--peri-soft); --ov-line: var(--peri-deep); --ov-ink: var(--ink); --ov-tick: var(--peri-deep); --ov-tick-ink: #fff;
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+}
+[data-theme="ink"] body.di {
+    --paper: #13131f;
+    --ink: #f0f0fa;
+    --body: #c4c3dc;
+    --card: #1e1e30;
+    --peri-soft: #2a2a4a;
+    --orange-soft: #3a2620;
+    --ov-line: #a9abe8; --ov-tick: #a9abe8; --ov-tick-ink: #13131f;
+    --bg: var(--paper);
+    --fg: var(--ink);
+}
+
+.di-wrap { max-width: 1200px; margin: 0 auto; padding-inline: var(--side); box-sizing: content-box; }
+.di img { display: block; max-width: 100%; height: auto; }
+.di section { scroll-margin-top: 90px; }
+
+/* ---------- Shared type ---------- */
+.di h1, .di h2, .di h3 { font-family: var(--f-display); font-weight: 800; color: var(--ink); margin: 0; }
+.di-h2 { font-size: clamp(38px, 3.9vw, 56px); line-height: 1.02; letter-spacing: -1.68px; }
+:where(.di) p { margin: 0; }
+.lead { font-size: 18px; line-height: 1.5; color: var(--body); }
+.hand { font-family: var(--f-hand); font-weight: 700; }
+
+.label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.label b {
+    width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--c, var(--peri)); color: #fff; font-size: 12px; font-weight: 700;
+}
+.label span { font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; }
+.sec { padding-top: 130px; }
+
+/* ---------- HERO ---------- */
+.di-hero {
+    position: relative; overflow: hidden; background: var(--mist); border-radius: 40px;
+    min-height: 600px; display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+}
+.di-hero-copy { position: relative; z-index: 2; padding: 72px 0 80px 72px; }
+.chip {
+    display: inline-block; border: 1.5px solid var(--peri-deep); color: var(--peri-deep);
+    border-radius: 999px; padding: 6px 16px; font-size: 14px; font-weight: 600; margin-bottom: 26px;
+}
+.di-hero h1 { font-size: clamp(60px, 7.2vw, 104px); line-height: .9; letter-spacing: -3px; color: #24224d; }
+.di-hero h1 span { color: var(--peri-deep); }
+.di-hero .quote { margin-top: 26px; font-size: 30px; line-height: 1.15; color: var(--orange); max-width: 420px; }
+.di-hero .intro { margin-top: 18px; font-size: 19px; line-height: 1.45; color: #545275; max-width: 440px; }
+.island { position: absolute; right: 0; top: 0; height: 100%; width: 50%; }
+.island img {
+    position: absolute; right: 2%; top: -4%; width: 96%; max-width: none;
+    animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 50% { translate: 0 -12px; } }
+
+/* ---------- 01 ABOUT (periwinkle band) ---------- */
+.about {
+    margin-top: 80px; background: var(--peri); color: #fff; border-radius: 40px 40px 0 0;
+    padding: 96px var(--side) 110px;
+}
+.about .inner { max-width: 1056px; margin: 0 auto; }
+.about .label span { color: #fff; }
+.about h2 { color: #fff; font-size: clamp(38px, 3.9vw, 56px); line-height: 1.02; letter-spacing: -1.68px; }
+.about p { margin-top: 24px; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.45; max-width: 900px; color: #f3f3fb; }
+.about p b { color: #fff; }
+
+/* ---------- 02 HOW TO EXPERIENCE IT ---------- */
+.steps {
+    list-style: none; margin: 40px 0 0; padding: 0; position: relative;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+.steps::before {                 /* the dashed walking path behind the three steps */
+    content: ""; position: absolute; left: 16%; right: 16%; top: 118px;
+    border-top: 3px dashed var(--orange); opacity: .8;
+}
+.step {
+    position: relative; background: var(--card); border-radius: 32px; padding: 36px 30px 34px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.step .icon {
+    width: 168px; height: 168px; border-radius: 36px; background: var(--peri-soft);
+    display: grid; place-items: center;
+}
+.step .icon img { width: 120px; }
+.step .n {
+    position: absolute; top: 22px; left: 24px; width: 34px; height: 34px; border-radius: 50%;
+    background: var(--orange); color: #fff; font-weight: 700; font-size: 14px; display: grid; place-items: center;
+}
+.step h3 { font-size: 28px; letter-spacing: -.6px; margin-top: 8px; }
+.step p { font-size: 17px; line-height: 1.5; color: var(--body); max-width: 280px; }
+
+/* ---------- 03 CONSTRUCTION (zig-zag along a dashed path) ---------- */
+.build { list-style: none; margin: 48px 0 0; padding: 0; position: relative; display: flex; flex-direction: column; gap: 56px; }
+.build::before {
+    content: ""; position: absolute; left: 50%; top: 20px; bottom: 20px;
+    border-left: 3px dashed var(--orange); opacity: .8;
+}
+.build li { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.build li::after {               /* dot where each step meets the path */
+    content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--orange); border: 4px solid var(--paper); translate: -50% -50%;
+}
+.build figure { margin: 0; }
+.build img { width: 100%; border-radius: 26px; }
+.build li:nth-child(even) figure { order: 2; }
+.build .txt { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.build li:nth-child(odd) .txt { padding-left: 8px; }
+.build li:nth-child(even) .txt { align-items: flex-end; text-align: right; }
+.build .step-no { font-family: var(--f-hand); font-size: 28px; color: var(--orange); line-height: 1; }
+.build h3 { font-size: 30px; letter-spacing: -.6px; line-height: 1.1; }
+.build p { font-size: 17px; line-height: 1.5; color: var(--body); max-width: 360px; }
+.tool {
+    display: inline-flex; align-items: center; background: #fff; border-radius: 14px; padding: 8px 14px;
+    box-shadow: 0 1px 0 rgba(36,34,77,.08);
+}
+.di .tool img { height: 34px; width: auto; max-width: none; border-radius: 0; }
+.di .tool--v img { height: 46px; }
+
+/* ---------- 04 VIDEO + TOOLS (periwinkle band) ---------- */
+.video-band {
+    margin-top: 130px; background: var(--peri); border-radius: 40px 40px 0 0; padding: 96px var(--side) 110px;
+}
+.video-band .inner { max-width: 1200px; margin: 0 auto; }
+.video-band .label span, .video-band h2 { color: #fff; }
+.film-slot {
+    margin-top: 36px; aspect-ratio: 16 / 9; border-radius: 32px; background: #24224d; color: #fff; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 20px;
+}
+.film-slot .play {
+    width: 104px; height: 104px; border-radius: 50%; background: var(--orange); display: grid; place-items: center;
+    animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 50% { transform: scale(1.06); } }
+.film-slot .hand { color: var(--orange); font-size: 34px; }
+.film-slot small { color: #c9c9ea; font-size: 15px; }
+.tools { display: flex; align-items: center; gap: 24px; margin-top: 64px; flex-wrap: wrap; }
+.tools > span { color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 1.1px; text-transform: uppercase; margin-right: 8px; }
+.tools .logo { background: #fff; border-radius: 22px; height: 110px; padding: 0 36px; display: grid; place-items: center; }
+.tools .logo img { height: 64px; width: auto; }
+
+/* ---------- FOOTER: next project ---------- */
+.di-foot { background: #24224d; color: #fff; padding-block: 88px; }
+.di-foot .di-wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.di-foot small { display: block; font-size: 14px; font-weight: 700; letter-spacing: 1.4px; color: var(--orange); margin-bottom: 12px; }
+.di-foot a.next {
+    display: inline-block; margin-left: -24px; padding: 6px 24px 10px; border-radius: 999px;
+    font-family: var(--f-display); font-weight: 800; font-size: clamp(34px, 4.2vw, 60px); line-height: 1.1;
+    color: #fff; text-decoration: none; transition: background-color .3s ease, color .3s ease, transform .35s var(--bounce);
+}
+.di-foot a.next span { display: inline-block; transition: transform .35s var(--bounce); }
+.di-foot a.next:hover, .di-foot a.next:focus-visible { background: var(--orange); color: #24224d; transform: translateY(-4px); outline: none; }
+.di-foot a.next:hover span { transform: translateX(8px); }
+.top-btn {
+    display: inline-block; text-decoration: none; font-weight: 700; font-size: 16px; color: #fff;
+    padding: 15px 25px; border-radius: 999px; border: 1px solid currentColor; transition: background-color .25s ease, color .25s ease;
+}
+.top-btn:hover { background: #fff; color: #24224d; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; translate: 0 26px; transition: opacity .7s ease var(--d, 0ms), translate .7s ease var(--d, 0ms); }
+.reveal.is-in { opacity: 1; translate: none; }
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1000px) {
+    .di-hero { grid-template-columns: 1fr; }
+    .di-hero-copy { padding: 56px 40px 0; }
+    .island { position: relative; width: 100%; height: auto; aspect-ratio: 1155 / 900; overflow: hidden; }
+    .island img { width: 80%; right: 10%; top: 0; }
+    .steps { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+    .steps::before { left: 50%; right: auto; top: 40px; bottom: 40px; border-top: 0; border-left: 3px dashed var(--orange); }
+    .build::before { left: 18px; }
+    .build li { grid-template-columns: 1fr; gap: 20px; padding-left: 52px; }
+    .build li::after { left: 19px; top: 24px; }
+    .build li:nth-child(even) figure { order: 0; }
+    .build li:nth-child(even) .txt { align-items: flex-start; text-align: left; }
+    .build li .txt { order: -1; padding-left: 0 !important; }
+}
+
+/* ---------- Phone ---------- */
+@media (max-width: 640px) {
+    .sec { padding-top: 90px; }
+    .di-hero { border-radius: 28px; }
+    .di-hero-copy { padding: 36px 22px 0; }
+    .di-hero h1 { letter-spacing: -1.5px; }
+    .di-hero .quote { font-size: 26px; }
+    .di-hero .intro { font-size: 17px; }
+    .about, .video-band { border-radius: 28px 28px 0 0; padding-block: 64px 72px; margin-top: 56px; }
+    .step { padding: 30px 22px; }
+    .step .icon { width: 140px; height: 140px; }
+    .step .icon img { width: 100px; }
+    .build { gap: 44px; }
+    .build h3 { font-size: 26px; }
+    .film-slot { aspect-ratio: 4 / 3; border-radius: 24px; }
+    .film-slot .play { width: 76px; height: 76px; }
+    .film-slot .hand { font-size: 28px; }
+    .tools { gap: 14px; margin-top: 44px; }
+    .tools .logo { height: 84px; padding: 0 24px; }
+    .tools .logo img { height: 48px; }
+    .di-foot { padding-block: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .island img, .film-slot .play { animation: none; }
+    .reveal { opacity: 1; translate: none; }
+}
+
+/* YouTube player in the video slot */
+iframe.film-slot--video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; padding: 0; border: 0; }
+@media (max-width: 640px) { iframe.film-slot--video { aspect-ratio: 16 / 9; } }

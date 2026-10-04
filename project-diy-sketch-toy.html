@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Sketch Toy – Ramzi</title>
+    <meta name="description" content="DIY Sketch Toy: a build-it-yourself drawing toy that helps kids draw, designed during my internship at Smartivity Labs. From an optics-based prototype to a product on Amazon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sketch-toy.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="sk">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="sk-wrap">
+            <section class="sk-hero">
+                <div class="sk-hero-copy">
+                    <img class="logo-badge" src="images/sketch-toy/cs/logo.webp" width="158" height="53" alt="Smartivity">
+                    <h1>DIY Sketch Toy</h1>
+                    <p>A Built-it-Yourself drawing toy that helps kids draw.</p>
+                </div>
+                <img class="hero-shot" src="images/sketch-toy/cs/hero.webp" width="1060" height="1064"
+                     alt="The DIY Sketch Toy in use: a picture of Winnie the Pooh clipped above, and the traced drawing on paper below">
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Product Design Intern</strong></div>
+                <div class="ov-item"><small>Duration</small><strong>1 Month</strong><em>Nov - Dec 2025</em></div>
+                <div class="ov-item"><small>Company</small><strong>Smartivity Labs</strong><em>Delhi, India</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Sales Approved</strong></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE BRIEF ============ -->
+        <div class="sk-wrap">
+            <section class="brief reveal">
+                <span class="mrp">Target MRP <span>₹999</span></span>
+                <div class="label"><b>01</b><span>The brief</span></div>
+                <h2 class="sk-h2"><span class="doodle">Help kids to draw.</span></h2>
+                <p class="big">Design a toy, built from Smartivity's existing material and manufacturing vocabulary, that helps children develop sketching and drawing skills through play.</p>
+            </section>
+        </div>
+
+        <!-- ============ 02 RESEARCH ============ -->
+        <section class="sec sk-wrap">
+            <div class="sk-inner">
+                <div class="label"><b>02</b><span>Research</span></div>
+                <h2 class="sk-h2"><span class="doodle">Kids stay hooked when they make it.</span></h2>
+                <div class="two-text">
+                    <p class="lead">I started with what kids want when they draw. Then I mapped what's already on the market spirographs, stencil kits, tactile drawing tools..etc.</p>
+                    <p class="lead"><b>The pattern:</b> kids stayed engaged longest with toys that produced something visible through their own motion, not a fixed template.</p>
+                </div>
+                <div class="compare">
+                    <article class="cmp reveal">
+                        <img src="images/sketch-toy/cs/stencil.webp" width="196" height="153" loading="lazy" alt="Stencil kit">
+                        <div>
+                            <ul class="pros"><li>Teaches basic shapes and forms</li><li>Simple, low-cost</li></ul>
+                            <ul class="cons"><li>Limited to pre-made shapes</li><li>Kids outgrow it quickly</li></ul>
+                        </div>
+                    </article>
+                    <article class="cmp reveal">
+                        <img src="images/sketch-toy/cs/spiro.webp" width="197" height="151" loading="lazy" alt="Spirograph">
+                        <div>
+                            <ul class="pros"><li>Satisfying, fast result</li><li>No battery needed</li></ul>
+                            <ul class="cons"><li>Fixed geometric patterns only</li><li>No real drawing skill transfer</li></ul>
+                        </div>
+                    </article>
+                    <article class="cmp reveal">
+                        <img src="images/sketch-toy/cs/projector.webp" width="196" height="153" loading="lazy" alt="Image-tracing projector toy">
+                        <div>
+                            <ul class="pros"><li>Lets kids copy real images</li><li>high engagement</li></ul>
+                            <ul class="cons"><li>Needs power/battery</li><li>Limited image range, can't replicate things</li></ul>
+                        </div>
+                    </article>
+                    <article class="cmp reveal">
+                        <img src="images/sketch-toy/cs/slate.webp" width="196" height="151" loading="lazy" alt="Magnetic drawing slate">
+                        <div>
+                            <ul class="pros"><li>Reusable, screen-free</li><li>Encourages freehand drawing</li></ul>
+                            <ul class="cons"><li>No guidance or skill-building</li><li>Doesn't teach technique</li></ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 THE DIRECTION (dark band) ============ -->
+        <section class="band">
+            <div class="sk-wrap">
+                <div class="sk-inner">
+                    <div>
+                        <div class="label"><b>03</b><span>The direction</span></div>
+                        <h2>Optics, not motors.</h2>
+                        <p>I chose an <b>optics-based mechanism</b> over gears or motors. No battery, safer, cheaper, fully hands-on. Optics is also a real STEM topic, so the toy teaches something true while it helps kids draw. That fit Smartivity's STEM identity better than a plain mechanical option.</p>
+                    </div>
+                    <figure class="reveal">
+                        <img src="images/sketch-toy/cs/optics.webp" width="640" height="528" loading="lazy" alt="A camera obscura drawing toy, the optics reference">
+                        <figcaption class="hand">Camera Obscura</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 04 PROTOTYPING (timeline) ============ -->
+        <section class="sec sk-wrap">
+            <div class="sk-inner">
+                <div class="label"><b>04</b><span>Prototyping</span></div>
+                <h2 class="sk-h2"><span class="doodle">Getting the light right.</span></h2>
+                <div class="proto-cols">
+                    <div>
+                        <h3>Mechanism Validation</h3>
+                        <p class="lead">I started by getting the mechanism right proving the <b>Camera Obscura</b> principle could work in a toy form factor before designing anything around it.</p>
+                    </div>
+                    <div>
+                        <h3>Initial Prototypes</h3>
+                        <p class="lead">Built early prototypes purely to test one thing, <b>Could the mechanism actually be used to draw something?.</b> Confirmed it worked.</p>
+                    </div>
+                </div>
+                <p class="timeline-cap">PROTOTYPES 0 → V</p>
+                <div class="timeline">
+                    <figure class="reveal"><img src="images/sketch-toy/cs/proto-0.webp" width="150" height="190" loading="lazy" alt="Prototype 0: a first hand-held optics test"><span class="dot"></span><figcaption>0</figcaption></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/proto-1.webp" width="150" height="190" loading="lazy" alt="Prototype I in MDF"><span class="dot"></span><figcaption>I</figcaption></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/proto-2.webp" width="150" height="190" loading="lazy" alt="Prototype II in MDF"><span class="dot"></span><figcaption>II</figcaption></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/proto-3.webp" width="150" height="190" loading="lazy" alt="Prototype III in MDF"><span class="dot"></span><figcaption>III</figcaption></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/proto-4.webp" width="150" height="190" loading="lazy" alt="Prototype IV in MDF"><span class="dot"></span><figcaption>IV</figcaption></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/proto-5.webp" width="150" height="190" loading="lazy" alt="Prototype V in MDF"><span class="dot"></span><figcaption>V</figcaption></figure>
+                </div>
+                <p class="rounds hand">6 rounds of MDF, rubberbands &amp; tiny fixes</p>
+            </div>
+        </section>
+
+        <!-- ============ 05 TESTING WITH KIDS ============ -->
+        <section class="sec sk-wrap testing">
+            <div class="sk-inner">
+                <div class="label"><b>05</b><span>Testing with kids</span></div>
+                <h2 class="sk-h2">Then kids got their hands on it.</h2>
+                <p class="lead">Refined the prototype and ran user testing with kids. Kids could draw with it. Collected feedback through interviews kids and parents both.</p>
+                <div class="photos">
+                    <img class="reveal" src="images/sketch-toy/cs/test-1.webp" width="319" height="230" loading="lazy" alt="A kid drawing with the toy">
+                    <img class="reveal" src="images/sketch-toy/cs/test-2.webp" width="319" height="230" loading="lazy" alt="A kid showing a traced drawing">
+                    <img class="reveal" src="images/sketch-toy/cs/test-3.webp" width="319" height="230" loading="lazy" alt="Looking through the eyepiece at a Winnie the Pooh card">
+                    <img class="reveal" src="images/sketch-toy/cs/test-4.webp" width="319" height="230" loading="lazy" alt="A kid with a finished drawing">
+                    <img class="reveal" src="images/sketch-toy/cs/test-5.webp" width="319" height="230" loading="lazy" alt="A traced drawing on paper">
+                    <img class="reveal" src="images/sketch-toy/cs/test-6.webp" width="319" height="230" loading="lazy" alt="A kid drawing through the toy">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 06 HOW IT WORKS ============ -->
+        <section class="sec sk-wrap">
+            <div class="sk-inner">
+                <div class="label"><b>06</b><span>to use it</span></div>
+                <div class="how-head">
+                    <h2 class="sk-h2">How it works</h2>
+                    <img class="phone" src="images/sketch-toy/cs/phone.webp" width="237" height="160" alt="">
+                    <span class="or">or phone!</span>
+                </div>
+                <ol class="steps">
+                    <li class="reveal"><img src="images/sketch-toy/cs/step-1.webp" width="238" height="146" loading="lazy" alt=""><p>Place the picture card on the stand</p></li>
+                    <li class="reveal"><img src="images/sketch-toy/cs/step-2.webp" width="231" height="144" loading="lazy" alt=""><p>Place the paper below</p></li>
+                    <li class="reveal"><img src="images/sketch-toy/cs/step-3.webp" width="240" height="147" loading="lazy" alt=""><p>Look through the eye piece</p></li>
+                    <li class="reveal"><img src="images/sketch-toy/cs/step-4.webp" width="231" height="148" loading="lazy" alt=""><p>Draw through the outline</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ 07 OUTCOME ============ -->
+        <section class="outcome sk-wrap">
+            <div class="wrapper reveal">
+                <div class="label"><b>07</b><span>Outcome</span></div>
+                <div class="ok-card">
+                    <h2>Approved for sale.</h2>
+                    <p>Positive feedback from kids and parents across both rounds of testing helped the project win sales approval.</p>
+                </div>
+                <img class="star" src="images/sketch-toy/cs/star.webp" width="92" height="90" alt="">
+            </div>
+        </section>
+
+        <!-- ============ 08 LAUNCH (lilac panel) ============ -->
+        <section class="sk-wrap">
+            <div class="launch">
+                <div class="launch-top">
+                    <div>
+                        <div class="label"><b>08</b><span>Launch</span></div>
+                        <h2 class="sk-h2"><span class="doodle">From MDF to the shelf.</span></h2>
+                        <p class="lead">Handed off to a senior designer for final design and production, continued giving feedback through that process. Product launched with the mechanism and concept carried through, form changed under the new design pass.</p>
+                    </div>
+                    <div class="amazon">
+                        <p class="hand">live on Amazon ↓</p>
+                        <a class="amz" href="https://www.amazon.in/dp/B0H8738N9W" target="_blank" rel="noopener" aria-label="See the Smartivity Drawing Machine on Amazon (opens in a new tab)">
+                            <img src="images/sketch-toy/cs/amazon.webp" width="376" height="128" loading="lazy"
+                                 alt="Amazon listing: Smartivity Drawing Machine Toy for Kids Ages 6-12, Drawing &amp; Sketching Kit, rated 5.0">
+                        </a>
+                    </div>
+                </div>
+                <div class="boxes">
+                    <figure class="reveal"><img src="images/sketch-toy/cs/box-1.webp" width="291" height="340" loading="lazy" alt="The launched Smartivity Drawing Machine box"></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/box-2.webp" width="290" height="340" loading="lazy" alt="Build your own Drawing Machine: a kid building the kit"></figure>
+                    <figure class="reveal"><img src="images/sketch-toy/cs/box-3.webp" width="291" height="340" loading="lazy" alt="Special features: trace pictures from a phone, easy to store, adjustable height"></figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="sk-foot">
+        <div class="sk-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'diy-sketch-toy');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'diy-sketch-toy') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach(el => el.classList.add('is-in')); return;
+            }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

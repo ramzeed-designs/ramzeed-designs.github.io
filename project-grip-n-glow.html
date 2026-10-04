@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grip-n-Glow – Ramzi</title>
+    <meta name="description" content="Grip-n-Glow: a reimagined physiotherapy device for grip exercises for children with cerebral palsy. A one-week Design for Special Needs project: Arduino prototype tested with physiotherapists.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="grip-n-glow.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="gg">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="gg-wrap">
+            <section class="gg-hero">
+                <div class="gg-hero-copy">
+                    <span class="chip">Mechatronics</span>
+                    <h1>Grip-n-<br><span>Glow</span></h1>
+                    <p class="quote hand">See your strength shine.</p>
+                    <p class="intro">A reimagined physiotherapy device that makes grip exercises for children with cerebral palsy feel like play.</p>
+                </div>
+                <div class="gg-hero-art" aria-hidden="true">
+                    <svg class="device" viewBox="0 0 400 520" role="img">
+                        <defs>
+                            <linearGradient id="gg-base" x1="0" x2="0" y1="0" y2="1">
+                                <stop offset="0" stop-color="#3a3a44"/><stop offset="1" stop-color="#1f1f26"/>
+                            </linearGradient>
+                            <radialGradient id="gg-bulb" cx=".38" cy=".35" r=".7">
+                                <stop offset="0" stop-color="#f6a06a"/><stop offset=".6" stop-color="#d9622b"/><stop offset="1" stop-color="#a8431a"/>
+                            </radialGradient>
+                            <radialGradient id="gg-halo"><stop offset="0" stop-color="#3fd0ee" stop-opacity=".55"/><stop offset="1" stop-color="#3fd0ee" stop-opacity="0"/></radialGradient>
+                        </defs>
+                        <!-- base -->
+                        <ellipse cx="205" cy="448" rx="150" ry="40" fill="#000" opacity=".08"/>
+                        <path d="M55 400 v26 a150 40 0 0 0 300 0 v-26z" fill="url(#gg-base)"/>
+                        <ellipse cx="205" cy="400" rx="150" ry="40" fill="#45454f"/>
+                        <ellipse class="halo" cx="205" cy="398" rx="60" ry="18" fill="url(#gg-halo)"/>
+                        <rect x="193" y="390" width="24" height="12" rx="3" fill="#2b6fe0"/>
+                        <!-- tube -->
+                        <path d="M217 398 C 300 392, 360 420, 330 460 S 230 470, 178 478" fill="none" stroke="#2f7fd6" stroke-width="5" stroke-linecap="round"/>
+                        <!-- pole + LEDs -->
+                        <rect x="196" y="36" width="18" height="360" rx="4" fill="#1d4fa8"/>
+                        <g class="leds"></g>
+                        <!-- squeeze bulb -->
+                        <g class="bulb">
+                            <rect x="170" y="471" width="16" height="14" rx="3" fill="#d8d8d8" transform="rotate(-12 178 478)"/>
+                            <ellipse cx="130" cy="490" rx="44" ry="26" fill="url(#gg-bulb)" transform="rotate(-12 130 490)"/>
+                            <path d="M92 498 l-14 6 v-12 z" fill="#a8431a"/>
+                        </g>
+                    </svg>
+                </div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Research, design &amp; prototyping</strong><em>Team project</em></div>
+                <div class="ov-item"><small>Duration</small><strong>1 Week</strong><em>Brief to tested prototype</em></div>
+                <div class="ov-item"><small>Course</small><strong>Design for Special Needs</strong><em>Class project</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Working prototype</strong><em>tested with physiotherapists</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE CHALLENGE ============ -->
+        <section class="sec gg-wrap">
+            <div class="label"><b style="--c: var(--coral)">01</b><span>The challenge</span></div>
+            <h2 class="gg-h2">Holding things gently is hard work.</h2>
+            <div class="cp">
+                <div class="cp-card reveal">
+                    <span class="hand">What is cerebral palsy?</span>
+                    <p><b>Cerebral palsy (CP)</b> is a group of conditions caused by damage to the developing brain, usually before or around birth. It affects movement, muscle tone and posture. It lasts for life, but regular therapy helps children build strength and control.</p>
+                </div>
+                <p class="lead">For our Design for Special Needs module, we started by spending time with the people we were designing for. We visited the CP unit at Health and Care Foundation Hospital and the Blind People's Association in Ahmedabad, and went into the homes of children with special needs to understand their daily lives beyond the clinic. Across these visits, one everyday struggle stood out for children with CP: <b>holding things with the right amount of force</b>. A cup is squeezed too hard, or slips away. That control depends on three things CP affects:</p>
+            </div>
+            <ul class="causes">
+                <li class="reveal"><span class="hand">1</span>Motor skills</li>
+                <li class="reveal"><span class="hand">2</span>Muscle tone</li>
+                <li class="reveal"><span class="hand">3</span>Sensory feedback</li>
+            </ul>
+            <p class="lead">This leads to frustration, less independence, and dropped or broken things, or even getting hurt.</p>
+
+            <div class="exercise reveal">
+                <div class="ex-copy">
+                    <span class="hand">The exercise</span>
+                    <h3>Squeeze, hold, let go. Again.</h3>
+                    <p>Physiotherapists build grip with simple squeeze exercises, repeated many times in every session. Each squeeze strengthens the hand muscles and teaches the brain how much force to use. It works, but it is repetitive, and a child can't see how hard they are squeezing.</p>
+                </div>
+                <ol class="ex-loop" aria-label="The squeeze exercise">
+                    <li><span>1</span>Squeeze</li>
+                    <li><span>2</span>Hold</li>
+                    <li><span>3</span>Let go</li>
+                    <li class="again">↻ repeat</li>
+                </ol>
+            </div>
+            <div class="insight reveal">
+                <p>Grip exercises help, but they are repetitive and there are <b>few playful tools for grip control</b>. Activities that mix <b>something to see</b>, <b>something to feel</b> and <b>lots of repetition</b> are known to help motor coordination, so we gave every squeeze a light to chase.</p>
+            </div>
+        </section>
+
+        <!-- ============ 02 HOW IT WORKS (dark band) ============ -->
+        <section class="how">
+            <div class="inner">
+                <div class="how-copy">
+                    <div class="label"><b style="--c: var(--glow)">02</b><span>How it works</span></div>
+                    <h2 class="gg-h2">Squeeze, and the light climbs.</h2>
+                    <ol class="flow">
+                        <li><span class="n">1</span><div><h3>Squeeze the bulb</h3><p>The child grips a rubber squeezer. It takes real effort, so each squeeze is an exercise.</p></div></li>
+                        <li><span class="n">2</span><div><h3>The sensor feels it</h3><p>An air tube carries the pressure to a sensor read by an Arduino Uno.</p></div></li>
+                        <li><span class="n">3</span><div><h3>Light climbs to the top</h3><p>The harder the grip, the higher the LEDs climb. The goal: make it reach the top.</p></div></li>
+                    </ol>
+                    <ul class="parts" aria-label="Parts">
+                        <li>Arduino Uno</li><li>Air-pressure sensor</li><li>LED strip</li><li>Squeeze bulb + air tube</li><li>Wooden housing</li>
+                    </ul>
+                </div>
+
+                <div class="meter-card reveal">
+                    <p class="try hand">Try it: hold to squeeze</p>
+                    <div class="meter" id="meter" aria-hidden="true"></div>
+                    <button class="squeeze" id="squeeze" type="button" aria-describedby="meter-status">
+                        <span class="bulb-btn" aria-hidden="true"></span>
+                        <span>Hold to squeeze</span>
+                    </button>
+                    <p class="meter-status" id="meter-status" role="status" aria-live="polite">Hold the button, or the space bar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 PROTOTYPING ============ -->
+        <section class="sec gg-wrap">
+            <div class="label"><b style="--c: var(--violet)">03</b><span>Prototyping</span></div>
+            <h2 class="gg-h2">A working prototype in a week.</h2>
+            <div class="proto">
+                <figure class="reveal">
+                    <img src="images/grip-n-glow/cs/proto-1.webp" width="362" height="483" loading="lazy" alt="An Arduino Uno wired to the pressure sensor, with the air tube and a coil of LED strip">
+                    <figcaption>Wiring the Arduino to the pressure sensor</figcaption>
+                </figure>
+                <figure class="reveal">
+                    <img src="images/grip-n-glow/cs/proto-2.webp" width="363" height="483" loading="lazy" alt="Workbench with a laptop, the squeeze bulb and a glowing green LED strip">
+                    <figcaption>First light on the strip</figcaption>
+                </figure>
+                <figure class="reveal">
+                    <img src="images/grip-n-glow/cs/proto-3.webp" width="351" height="626" loading="lazy" alt="A hand squeezing the bulb while the purple LED strip lights up on the desk">
+                    <figcaption>Squeeze-testing and tuning the code</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 04 FEEDBACK ============ -->
+        <section class="sec gg-wrap">
+            <div class="label"><b style="--c: var(--coral)">04</b><span>Expert feedback</span></div>
+            <h2 class="gg-h2">What the physiotherapists said.</h2>
+            <div class="feedback">
+                <figure class="reveal">
+                    <img src="images/grip-n-glow/cs/physio-test.webp" width="514" height="569" loading="lazy" alt="A physiotherapist squeezes the bulb and the LED pole lights up purple while colleagues watch">
+                    <figcaption class="hand">Physiotherapists trying the prototype</figcaption>
+                </figure>
+                <div class="fb-lists">
+                    <p class="lead">We took the working prototype to a therapy centre. The physiotherapists tried it first, and our mentor's review was just as positive.</p>
+                    <div class="fb fb--good reveal">
+                        <h3>What worked</h3>
+                        <ul>
+                            <li>Therapists can see <b>how much pressure</b> the child is applying</li>
+                            <li>The lights make the exercise <b>less intimidating</b></li>
+                            <li>Fun for kids, so they keep going</li>
+                        </ul>
+                    </div>
+                    <div class="fb fb--next reveal">
+                        <h3>What they asked for</h3>
+                        <ul>
+                            <li>A <b>softer bulb</b>, like a BP bulb with a valve</li>
+                            <li>A <b>force sensor</b> for hand and leg force too</li>
+                            <li>Different kinds of grips</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 05 USER TESTING ============ -->
+        <section class="sec gg-wrap">
+            <div class="label"><b style="--c: var(--glow)">05</b><span>User testing</span></div>
+            <h2 class="gg-h2">Testing with children.</h2>
+            <p class="lead">With their therapists guiding them, we tried the prototype with two children who both need to build grip strength.</p>
+            <div class="tests">
+                <article class="test reveal">
+                    <img src="images/grip-n-glow/cs/test-1.webp" width="418" height="655" loading="lazy" alt="A young boy grips the squeeze bulb while a tester leans in and the LED pole lights up beside them">
+                    <div class="test-txt">
+                        <span class="age hand">Boy, 5 years</span>
+                        <h3>Hemiplegic CP</h3>
+                        <p><b>Hemiplegia</b> is the most common type of CP. It affects one side of the body: muscle weakness or stiffness, trouble grasping objects, poor fine motor skills, and muscles that stay clenched (spasticity).</p>
+                        <ul class="tags"><li>Right side affected</li><li>Grip strength needed</li></ul>
+                    </div>
+                </article>
+                <article class="test reveal">
+                    <img src="images/grip-n-glow/cs/test-2.webp" width="393" height="669" loading="lazy" alt="A toddler, seen from behind, sits with a therapist and a tester in front of the lit LED pole">
+                    <div class="test-txt">
+                        <span class="age hand">Toddler, 2 years</span>
+                        <h3>Developmental delay</h3>
+                        <p>A child who reaches movement milestones later than expected. Grip work at this age helps the hands catch up for everyday things like holding a cup or a crayon.</p>
+                        <ul class="tags"><li>Grip strength needed</li></ul>
+                    </div>
+                </article>
+            </div>
+            <p class="test-note hand">These sessions showed us it isn't only for CP: anyone building grip strength or learning to judge force can use it.</p>
+        </section>
+
+        <!-- ============ 06 WHAT'S NEXT ============ -->
+        <section class="sec gg-wrap">
+            <div class="next-card reveal">
+                <div class="label"><b style="--c: var(--violet)">06</b><span>Where it stopped</span></div>
+                <h2 class="gg-h2">A next version, on paper.</h2>
+                <p>Using the feedback, we planned a next version: one device that works for more than grip, with a force sensor so therapists can use it for other hand and leg exercises too, and more of a game, with levels and a way to track each child's progress from session to session. The course ended before we built it and we didn't take it further, but the therapists' response showed the idea works.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="gg-foot">
+        <div class="gg-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'grip-n-glow');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'grip-n-glow') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Hero: LEDs on the pole climb and fall as the bulb is squeezed
+        (function () {
+            const g = document.querySelector('.device .leds');
+            const bulb = document.querySelector('.device .bulb');
+            const N = 16, ns = 'http://www.w3.org/2000/svg', leds = [];
+            for (let k = 0; k < N; k++) {
+                const r = document.createElementNS(ns, 'rect');
+                r.setAttribute('x', 200); r.setAttribute('y', 366 - k * 20.5);
+                r.setAttribute('width', 10); r.setAttribute('height', 12); r.setAttribute('rx', 2);
+                r.style.setProperty('--h', 190 + k * 5.5);      // cyan at the bottom → violet at the top
+                g.appendChild(r); leds.push(r);
+            }
+            const show = lvl => leds.forEach((r, k) => r.classList.toggle('on', k < lvl));
+            if (reduced) { show(12); return; }
+            const T = 4200;
+            (function tick(t) {
+                const p = (t % T) / T;                                         // 0 → 1 per cycle
+                const s = p < .55 ? Math.sin((p / .55) * Math.PI / 2) : Math.max(0, 1 - (p - .55) / .35);
+                show(Math.round(s * N));
+                bulb.style.transform = `scale(${1 - s * .12}, ${1 + s * .04})`;
+                requestAnimationFrame(tick);
+            })(0);
+        })();
+
+        // Interactive meter: hold the button to squeeze
+        (function () {
+            const meter = document.getElementById('meter');
+            const btn = document.getElementById('squeeze');
+            const status = document.getElementById('meter-status');
+            const N = 20, cells = [];
+            for (let k = 0; k < N; k++) {
+                const c = document.createElement('span');
+                c.style.setProperty('--h', 188 + k * 4.6);
+                meter.prepend(c); cells.push(c);
+            }
+            let level = 0, holding = false, last = 0, won = false, raf = 0;
+            const draw = () => cells.forEach((c, k) => c.classList.toggle('on', k < Math.round(level)));
+            function loop(t) {
+                const dt = Math.min(64, t - (last || t)); last = t;
+                level += (holding ? 0.012 : -0.03) * dt * (holding && level > N * .7 ? .55 : 1);
+                level = Math.max(0, Math.min(N, level));
+                draw();
+                if (level >= N && !won) {
+                    won = true; meter.classList.add('win');
+                    status.textContent = 'You reached the top!';
+                }
+                if (level <= 0 && !holding) {
+                    if (won) { won = false; meter.classList.remove('win'); status.textContent = 'Nice grip! Try again?'; }
+                    raf = 0; last = 0; return;
+                }
+                raf = requestAnimationFrame(loop);
+            }
+            function start(e) { if (e) e.preventDefault(); holding = true; btn.classList.add('is-held'); if (!raf) raf = requestAnimationFrame(loop); }
+            function stop() { holding = false; btn.classList.remove('is-held'); }
+            btn.addEventListener('pointerdown', e => { btn.setPointerCapture?.(e.pointerId); start(e); });
+            btn.addEventListener('pointerup', stop);
+            btn.addEventListener('pointercancel', stop);
+            btn.addEventListener('lostpointercapture', stop);
+            btn.addEventListener('contextmenu', e => e.preventDefault());
+            btn.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) start(e); });
+            btn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') stop(); });
+            btn.addEventListener('blur', stop);
+            draw();
+        })();
+
+        // Fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || reduced) { els.forEach(el => el.classList.add('is-in')); return; }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

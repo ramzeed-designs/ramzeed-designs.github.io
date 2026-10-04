@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project – Ramzi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- This one page shows every project. Which one comes from the link: project.html?p=wrist-shooter
+         The content lives in projects.js. -->
+    <main class="project" id="project"></main>
+
+    <footer class="site-footer">
+        <div class="wrap">© Ramzi</div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        (function () {
+            const slug = new URLSearchParams(location.search).get('p');
+            const entry = findEntry(slug);
+            const main = document.getElementById('project');
+
+            if (!entry) {
+                main.innerHTML = `
+                    <div class="wrap project-head">
+                        <a class="back" href="index.html#work">← Back to work</a>
+                        <h1>Project not found</h1>
+                        <p class="lead">This project doesn't exist yet, or the link is wrong.</p>
+                    </div>`;
+                return;
+            }
+
+            const p = entry.item;
+            const back = entry.from === 'playground'
+                ? { href: 'playground.html', text: '← Back to playground' }
+                : { href: 'index.html#work', text: '← Back to work' };
+            document.title = p.title + ' – Ramzi';
+
+            const meta = Object.entries(p.meta || {}).map(([k, v]) =>
+                `<div><dt>${escapeHTML(k)}</dt><dd>${escapeHTML(v)}</dd></div>`).join('');
+
+            const blocks = (p.blocks || []).map((b, n) => {
+                if (b.type === 'video') {
+                    return `<video class="block-media" src="${escapeHTML(b.src)}" ${b.poster ? `poster="${escapeHTML(b.poster)}"` : ''}
+                                autoplay muted loop playsinline controls preload="metadata"></video>`;
+                }
+                if (b.type === 'game') {
+                    // Click-to-play: the game only loads when the visitor asks for it
+                    return `<section class="block-game" data-src="${escapeHTML(b.src)}">
+                        <div class="game-head">
+                            <div>
+                                <p class="eyebrow">${escapeHTML(b.eyebrow || 'Try it yourself')}</p>
+                                <h2>${escapeHTML(b.title || 'Play with it')}</h2>
+                                ${b.text ? `<p class="muted">${escapeHTML(b.text)}</p>` : ''}
+                            </div>
+                            <div class="game-actions">
+                                <button class="btn btn-small game-fs" type="button" hidden>Fullscreen</button>
+                                <a class="btn btn-small" href="${escapeHTML(b.src)}" target="_blank" rel="noopener">Open in new tab ↗</a>
+                            </div>
+                        </div>
+                        <div class="game-frame" ${b.cover ? `style="--cover: url('${escapeHTML(b.cover)}')"` : ''}>
+                            <button class="game-start" type="button">
+                                <span class="game-play" aria-hidden="true">▶</span>
+                                <span>${escapeHTML(b.button || 'Play')}</span>
+                            </button>
+                        </div>
+                        ${b.hint ? `<p class="game-hint muted">${escapeHTML(b.hint)}</p>` : ''}
+                    </section>`;
+                }
+                if (b.type === 'embed') {
+                    return `<div class="block-embed"><iframe src="${escapeHTML(b.url)}" title="${escapeHTML(b.title || p.title + ' video')}"
+                                loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+                }
+                return `<img class="block-media" src="${escapeHTML(b.src)}" alt="${escapeHTML(b.alt || '')}"
+                            ${n > 0 ? 'loading="lazy"' : ''} decoding="async">`;
+            }).join('');
+
+            // Next project (skips "coming soon" and wraps round to the first)
+            const live = entry.list.filter(q => !q.soon);
+            const next = live[(live.indexOf(p) + 1) % live.length];
+
+            main.innerHTML = `
+                <div class="wrap project-head">
+                    <a class="back" href="${back.href}">${back.text}</a>
+                    <p class="eyebrow">${escapeHTML(p.category || p.tag)}</p>
+                    <h1>${escapeHTML(p.title)}</h1>
+                    <p class="lead">${escapeHTML(p.summary)}</p>
+                    ${meta ? `<dl class="meta">${meta}</dl>` : ''}
+                </div>
+                <div class="project-body">${blocks}</div>
+                ${next && next !== p ? `
+                <div class="wrap">
+                    <a class="next-project" href="${escapeHTML(projectLink(next))}">
+                        <span class="muted">Next project</span>
+                        <strong>${escapeHTML(next.title)} →</strong>
+                    </a>
+                </div>` : ''}`;
+
+            // Game blocks: load on click, then offer fullscreen
+            document.querySelectorAll('.block-game').forEach(block => {
+                const frame = block.querySelector('.game-frame');
+                const fs = block.querySelector('.game-fs');
+                block.querySelector('.game-start').addEventListener('click', () => {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = block.dataset.src;
+                    iframe.title = 'Interactive 3D model and game';
+                    iframe.allow = 'fullscreen; autoplay';
+                    iframe.allowFullscreen = true;
+                    frame.replaceChildren(iframe);
+                    frame.classList.add('is-live');
+                    iframe.addEventListener('load', () => iframe.focus());
+                    if (frame.requestFullscreen) fs.hidden = false;
+                });
+                fs.addEventListener('click', () => frame.requestFullscreen && frame.requestFullscreen());
+            });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

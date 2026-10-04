@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlowPli – Ramzi</title>
+    <meta name="description" content="BlowPli: a three-tier maze toy for 3–5 year olds in Anganwadi centres, where kids blow or tap a coir ball down with a bamboo straw. Designed with Gulab Tribe.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="blowpli.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="bp">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="bp-wrap">
+            <section class="bp-hero">
+                <div class="bp-hero-copy">
+                    <span class="chip">Toy design · with Gulab Tribe</span>
+                    <h1>Blow<span>Pli</span></h1>
+                    <p class="tagline hand"><i>Breathe.</i> <i>Aim.</i> <i>Play!</i></p>
+                    <p class="intro">A three-tier maze toy for 3–5 year olds in Anganwadi centres. Blow or tap a coir ball through the layers with a bamboo straw, alone or together.</p>
+                </div>
+                <div class="tower">
+                    <img src="images/blowpli/cs/hero-cut.webp" width="851" height="1516"
+                         alt="BlowPli: a round wooden tower with green, yellow and red tiers inside a cage of wooden dowels">
+                    <img class="ball b1" src="images/blowpli/cs/ball.webp" width="177" height="177" alt="">
+                    <img class="ball b2" src="images/blowpli/cs/ball.webp" width="177" height="177" alt="">
+                    <img class="ball b3" src="images/blowpli/cs/ball.webp" width="177" height="177" alt="">
+                </div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Product Designer</strong><em>research as a team, toy solo</em></div>
+                <div class="ov-item"><small>Duration</small><strong>6 Weeks</strong><em>Design Project I</em></div>
+                <div class="ov-item"><small>Collaboration</small><strong>Gulab Tribe</strong><em>for Anganwadi centres</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Exhibited</strong><em>Toy-Biz 2024 Expo</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 BRIEF ============ -->
+        <div class="bp-wrap">
+            <section class="brief reveal">
+                <div class="label"><b>01</b><span>The brief</span></div>
+                <h2 class="bp-h2">Low-tech play, big growth.</h2>
+                <p class="big">Design a playful, low-tech toy that encourages <b>cognitive, physical and social development</b> for 3–5 year old children in Anganwadi centres, in collaboration with Gulab Tribe.</p>
+                <ul class="chips">
+                    <li>Ages 3–5</li>
+                    <li>Anganwadi centres</li>
+                    <li>Low-tech, low-cost</li>
+                    <li>5 ideas shortlisted, 2 developed</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- ============ 02 RESEARCH ============ -->
+        <section class="sec bp-wrap">
+            <div class="bp-inner">
+                <div class="label"><b class="dark-text" style="--c: var(--yellow)">02</b><span>Research</span></div>
+                <h2 class="bp-h2">What's missing from play?</h2>
+                <p class="lead" style="margin-top:20px; max-width:780px">We started with the frameworks behind early childhood education, then spent time in Anganwadi classrooms watching how children actually play.</p>
+                <span class="credit">🤝 Research done as a team · the toy was designed and built by me</span>
+
+                <div class="walls">
+                    <figure class="wall reveal">
+                        <img src="images/blowpli/cs/research-wall.webp" width="570" height="610" loading="lazy" alt="A research wall of sticky notes connected with string, mapping ECCE objectives and types of play">
+                        <figcaption><small>Secondary research</small><h3>Frameworks, books &amp; theories</h3><p>Early Childhood Care and Education (ECCE), the National Education Policy and the National Curriculum Framework, plus play and developmental psychology for 3–5 year olds.</p></figcaption>
+                    </figure>
+                    <figure class="wall reveal">
+                        <img src="images/blowpli/cs/observation-wall.webp" width="505" height="626" loading="lazy" alt="A board of classroom photos linked with yellow string to types of play">
+                        <figcaption><small>Primary research</small><h3>Observing &amp; playing along</h3><p>We observed children's play-based learning in Anganwadi classrooms, then brought in toys and played with them to see how play and learning connect.</p></figcaption>
+                    </figure>
+                </div>
+
+                <div class="charts">
+                    <div class="chart reveal">
+                        <h3>Stages of play we observed</h3>
+                        <p class="sub">times seen during observation</p>
+                        <ul class="bars">
+                            <li><span>Solitary</span><span class="track"><span class="fill" style="--v:9"></span></span><b>9</b></li>
+                            <li><span>Onlooker</span><span class="track"><span class="fill" style="--v:6; --dl:.1s"></span></span><b>6</b></li>
+                            <li><span>Parallel</span><span class="track"><span class="fill" style="--v:6; --dl:.2s"></span></span><b>6</b></li>
+                            <li class="low"><span>Associative</span><span class="track"><span class="fill" style="--v:2; --dl:.3s"></span></span><b>2</b></li>
+                            <li class="low"><span>Co-operative</span><span class="track"><span class="fill" style="--v:1; --dl:.4s"></span></span><b>1</b></li>
+                        </ul>
+                    </div>
+                    <div class="chart reveal">
+                        <h3>Types of play we observed</h3>
+                        <p class="sub">times seen during observation</p>
+                        <ul class="bars">
+                            <li><span>Object</span><span class="track"><span class="fill" style="--v:9"></span></span><b>9</b></li>
+                            <li><span>Locomotor</span><span class="track"><span class="fill" style="--v:6; --dl:.1s"></span></span><b>6</b></li>
+                            <li><span>Explorative</span><span class="track"><span class="fill" style="--v:6; --dl:.2s"></span></span><b>6</b></li>
+                            <li><span>Imaginative</span><span class="track"><span class="fill" style="--v:4; --dl:.3s"></span></span><b>4</b></li>
+                            <li><span>Creative</span><span class="track"><span class="fill" style="--v:3.5; --dl:.4s"></span></span><b>3</b></li>
+                            <li><span>Symbolic</span><span class="track"><span class="fill" style="--v:3; --dl:.5s"></span></span><b>3</b></li>
+                            <li><span>Deep</span><span class="track"><span class="fill" style="--v:3; --dl:.6s"></span></span><b>3</b></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="insight reveal">
+                    <p class="hand">the gap ↓</p>
+                    <p class="big">Kids mostly played <b>alone or side by side</b>. Associative and co-operative play barely happened, and the objects they used as toys weren't designed for holistic development. When we brought toys in, restless energy turned into <b>confident, explorative play</b>.</p>
+                </div>
+
+                <figure class="part reveal">
+                    <img src="images/blowpli/cs/participatory.webp" width="1116" height="296" loading="lazy" alt="Four photos of the team sitting on the floor playing with children in an Anganwadi">
+                    <figcaption class="hand">participatory research: playing with the kids</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 03 PLAY AT ANGANWADI ============ -->
+        <section class="sec bp-wrap">
+            <div class="label"><b style="--c: var(--red)">03</b><span>Play at Anganwadi</span></div>
+            <h2 class="bp-h2">Play isn't just fun. It's foundation.</h2>
+            <div class="dev">
+                <div>
+                    <p class="lead">Children in Anganwadi settings often have limited access to structured, engaging play materials that nurture early growth. Play lays the groundwork for development across every domain, so one toy should feed all three.</p>
+                    <div class="field">
+                        <img class="reveal" src="images/blowpli/cs/anganwadi-2.webp" width="1200" height="540" loading="lazy" alt="Children sitting on the floor of an Anganwadi playing with toys">
+                        <img class="reveal" src="images/blowpli/cs/anganwadi-1.webp" width="1200" height="679" loading="lazy" alt="An Anganwadi classroom with children and teachers">
+                    </div>
+                </div>
+                <ul class="domains">
+                    <li class="reveal"><h3>Cognitive</h3><p>Focus &amp; patience · problem-solving · cause &amp; effect · decision making</p></li>
+                    <li class="reveal"><h3>Physical</h3><p>Fine motor skills · hand-eye coordination · oral motor strength · controlled breathing</p></li>
+                    <li class="reveal"><h3>Social &amp; emotional</h3><p>Collaborative play · sense of achievement · emotional regulation · inclusive interaction</p></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 04 THE TOY (green band) ============ -->
+        <section class="band">
+            <div class="bp-wrap">
+                <div class="toy">
+                    <div>
+                        <div class="label"><b>04</b><span>BlowPli</span></div>
+                        <h2 class="bp-h2">A maze you play with your breath.</h2>
+                        <p>BlowPli is a <b>three-tiered maze</b> made of stacked discs with unique cutouts. Drop a light coir ball in at the top, then guide it down through the layers to the hole at the bottom.</p>
+                        <ul class="how">
+                            <li><span class="hand">blow</span><span>through the hollow bamboo straw to push the ball along</span></li>
+                            <li><span class="hand">tap</span><span>or strike the ball with the straw to nudge it</span></li>
+                            <li><span class="hand">together</span><span>play solo, or race and help each other</span></li>
+                        </ul>
+                        <div class="spec"><span>Wood, plywood, bamboo straw, cork-coir balls</span><span>30 cm wide · 70 cm tall</span></div>
+                    </div>
+                    <div class="scale reveal"><img src="images/blowpli/cs/scale.webp" width="690" height="384" loading="lazy" alt="Size diagram: two seated children on either side of the 70 cm tall, 30 cm wide toy"></div>
+                </div>
+
+                <h3 style="margin-top:90px; font-size:30px; letter-spacing:-.6px">Three levels, three difficulties</h3>
+                <ul class="levels" style="margin-top:24px">
+                    <li class="reveal"><img src="images/blowpli/cs/level-mountains.webp" width="401" height="194" loading="lazy" alt="Top tier: green disc with curvy wooden mountains"><div><small>Level 1 · green</small><h3>Curvy mountains</h3><p>Gentle bumps to learn how hard to blow.</p></div></li>
+                    <li class="reveal"><img src="images/blowpli/cs/level-swings.webp" width="401" height="194" loading="lazy" alt="Middle tier: yellow disc with hanging rings"><div><small>Level 2 · yellow</small><h3>Naughty swings &amp; bumps</h3><p>Hanging rings that knock the ball off course.</p></div></li>
+                    <li class="reveal"><img src="images/blowpli/cs/level-trees.webp" width="401" height="194" loading="lazy" alt="Bottom tier: red disc with a dense line of wooden trees"><div><small>Level 3 · red</small><h3>Dense tree line</h3><p>Tight gaps that need careful aim.</p></div></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 05 TYPES OF PLAY ============ -->
+        <section class="sec bp-wrap">
+            <div class="label"><b class="dark-text" style="--c: var(--yellow)">05</b><span>Types of play</span></div>
+            <h2 class="bp-h2">One toy, a lot of ways to play.</h2>
+            <ul class="plays">
+                <li class="reveal"><img src="images/blowpli/cs/icon-solo.webp" width="99" height="99" alt=""><h3>Solitary</h3><p>Navigate the maze alone, building focus and self-direction.</p></li>
+                <li class="reveal fills-gap"><img src="images/blowpli/cs/icon-social.webp" width="89" height="89" alt=""><h3>Social &amp; co-operative</h3><p>Group modes promote interaction, sharing and empathy.</p><span class="gap-tag hand">fills the gap!</span></li>
+                <li class="reveal"><img src="images/blowpli/cs/icon-explore.webp" width="93" height="93" alt=""><h3>Exploratory</h3><p>Kids try different techniques and paths.</p></li>
+                <li class="reveal"><img src="images/blowpli/cs/icon-surprise.webp" width="96" height="96" alt=""><h3>Surprise</h3><p>Unpredictable ball paths trigger excitement and curiosity.</p></li>
+                <li class="reveal"><img src="images/blowpli/cs/icon-object.webp" width="95" height="95" alt=""><h3>Object play</h3><p>Using the straw and ball builds cause-and-effect learning.</p></li>
+            </ul>
+        </section>
+
+        <!-- ============ 06 HOW TO WIN ============ -->
+        <section class="sec bp-wrap">
+            <div class="label"><b style="--c: var(--red)">06</b><span>How to win</span></div>
+            <div class="win">
+                <div>
+                    <p class="big">Race to the bottom!</p>
+                    <ol>
+                        <li class="reveal">Each player drops a ball in through the top hole.</li>
+                        <li class="reveal">Blow or tap it down through mountains, swings and trees.</li>
+                        <li class="reveal">First ball out of the bottom hole wins. Or work together to get them all out.</li>
+                    </ol>
+                </div>
+                <img class="reveal" src="images/blowpli/cs/race.webp" width="800" height="1000" loading="lazy" alt="The bottom tier of BlowPli with coir balls rolling out of the bottom">
+            </div>
+        </section>
+
+        <!-- ============ 07 EARLY PROTOTYPES ============ -->
+        <section class="sec bp-wrap">
+            <div class="label"><b>07</b><span>Early prototypes</span></div>
+            <h2 class="bp-h2">Where it started.</h2>
+            <div class="protos">
+                <figure class="reveal"><img src="images/blowpli/cs/proto-1.webp" width="651" height="1400" loading="lazy" alt="Early concept: stacked wooden discs with clear acrylic walls"></figure>
+                <figure class="reveal"><img src="images/blowpli/cs/proto-2.webp" width="520" height="1080" loading="lazy" alt="Early concept: wooden tiers with cutouts, an acrylic shell and a straw"></figure>
+                <div class="note reveal">
+                    <p class="hand">wood + acrylic</p>
+                    <p>The first concepts used wood and clear acrylic so kids could watch the ball travel. Due to material and cost limits, these couldn't make it to the final prototype, so the walls became an open cage of wooden dowels instead.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 08 MAKING IT ============ -->
+        <section class="sec bp-wrap">
+            <div class="label"><b style="--c: var(--red)">08</b><span>Making it</span></div>
+            <h2 class="bp-h2">Built by hand, in the workshop.</h2>
+            <p class="lead" style="margin-top:20px; max-width:760px">Every part of the final prototype was made by hand: stuffing the coir balls, turning the wooden parts on the lathe and sanding the discs smooth for small hands.</p>
+            <div class="making">
+                <figure class="m-tall reveal"><img src="images/blowpli/cs/make-lathe.webp" width="1000" height="1333" loading="lazy" alt="Me turning a wooden part on the lathe"><figcaption class="hand">turning on the lathe</figcaption></figure>
+                <figure class="reveal"><img src="images/blowpli/cs/make-balls-1.webp" width="1000" height="1333" loading="lazy" alt="Hands stuffing coir into a ball shell"><figcaption class="hand">stuffing coir balls</figcaption></figure>
+                <figure class="reveal"><img src="images/blowpli/cs/make-balls-2.webp" width="1000" height="1333" loading="lazy" alt="Coir, ball shells and finished balls on newspaper"><figcaption class="hand">light enough to blow</figcaption></figure>
+                <figure class="m-wide reveal"><img src="images/blowpli/cs/make-sanding.webp" width="1000" height="750" loading="lazy" alt="Me sanding a wooden disc on the floor"><figcaption class="hand">sanding the discs</figcaption></figure>
+                <figure class="m-wide reveal"><img src="images/blowpli/cs/make-straw.webp" width="1000" height="750" loading="lazy" alt="A turned wooden part held next to the lathe"><figcaption class="hand">fresh off the lathe</figcaption></figure>
+            </div>
+        </section>
+
+        <!-- ============ 08 EXHIBITED ============ -->
+        <section class="sec bp-wrap">
+            <div class="label"><b class="dark-text" style="--c: var(--yellow)">09</b><span>Outcome</span></div>
+            <h2 class="bp-h2">Built, and shown at Toy-Biz 2024.</h2>
+            <figure class="expo reveal">
+                <img src="images/blowpli/cs/expo.webp" width="1920" height="1086" loading="lazy" alt="Me at the Toy-Biz 2024 Expo with the finished BlowPli prototype on the table">
+                <figcaption class="tag hand">at Toy-Biz 2024 Expo</figcaption>
+            </figure>
+            <div class="tools">
+                <span>Tools used</span>
+                <div class="logo"><img src="images/blowpli/cs/logo-fusion.webp" width="182" height="193" loading="lazy" alt="Fusion 360"></div>
+                <div class="logo"><img src="images/blowpli/cs/logo-sketchup.webp" width="348" height="193" loading="lazy" alt="SketchUp"></div>
+                <div class="logo"><img src="images/blowpli/cs/logo-enscape.webp" width="259" height="194" loading="lazy" alt="Enscape"></div>
+            </div>
+
+            <a class="sibling reveal" href="project-binome.html">
+                <img src="images/binome/cs/thumb.webp" width="1200" height="900" loading="lazy" alt="">
+                <span><small class="hand">another toy I made in the same course</small><strong>BinoMe</strong><em>A role-play toy that helps kids explore emotions through stacked face discs.</em></span>
+                <span class="go" aria-hidden="true">→</span>
+            </a>
+        </section>
+    </main>
+
+    <footer class="bp-foot">
+        <div class="bp-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'blowpli');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'blowpli') { a.href = projectLink(next); a.innerHTML = escapeHTML(next.title) + ' <span>→</span>'; }
+        })();
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(el => el.classList.add('is-in')); return; }
+            const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

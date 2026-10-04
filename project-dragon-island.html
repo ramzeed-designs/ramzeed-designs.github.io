@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Island – Ramzi</title>
+    <meta name="description" content="Dragon Island: an augmented reality experience that turns the campus table-tennis area into a magical encounter. A one-week class project built with Unity and Vuforia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dragon-island.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="di">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="di-wrap">
+            <section class="di-hero">
+                <div class="di-hero-copy">
+                    <span class="chip">AR Experience</span>
+                    <h1>Dragon<br><span>Island</span></h1>
+                    <p class="quote hand">"Transforming traditional spaces into magical encounters."</p>
+                    <p class="intro">An augmented reality experience that turns the campus table-tennis area into a floating island with a dragon to find.</p>
+                </div>
+                <div class="island">
+                    <img src="images/dragon-island/cs/island.webp" width="2310" height="2508"
+                         alt="Illustration: a floating island with a purple mountain and a small pink dragon">
+                </div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>AR Designer</strong><em>Solo project</em></div>
+                <div class="ov-item"><small>Duration</small><strong>1 Week</strong><em>Nov 2024</em></div>
+                <div class="ov-item"><small>Course</small><strong>Technology III</strong><em>Class project</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Built &amp; tested</strong><em>on campus</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 ABOUT ============ -->
+        <section class="about">
+            <div class="inner reveal">
+                <div class="label"><b style="--c: var(--orange)">01</b><span>About Dragon Island</span></div>
+                <h2>An ordinary corner, made magical.</h2>
+                <p>Imagine transforming an ordinary, familiar space into something magical, something playful and unexpected. <b>Dragon Island reimagines the real world through augmented reality</b>, allowing users to not just observe, but to engage and interact with the environment in delightful ways.</p>
+            </div>
+        </section>
+
+        <!-- ============ 02 HOW TO EXPERIENCE IT ============ -->
+        <section class="sec di-wrap">
+            <div class="label"><b>02</b><span>How to experience it</span></div>
+            <h2 class="di-h2">Scan, walk, step inside.</h2>
+            <ol class="steps">
+                <li class="step reveal">
+                    <span class="n">1</span>
+                    <span class="icon"><img src="images/dragon-island/cs/icon-scan.webp" width="484" height="484" loading="lazy" alt=""></span>
+                    <h3>Scan</h3>
+                    <p>Begin by scanning the designated TT Area.</p>
+                </li>
+                <li class="step reveal">
+                    <span class="n">2</span>
+                    <span class="icon"><img src="images/dragon-island/cs/icon-walk.webp" width="480" height="480" loading="lazy" alt=""></span>
+                    <h3>Interact</h3>
+                    <p>As you move within the environment, your position triggers various events.</p>
+                </li>
+                <li class="step reveal">
+                    <span class="n">3</span>
+                    <span class="icon"><img src="images/dragon-island/cs/icon-immerse.webp" width="488" height="488" loading="lazy" alt=""></span>
+                    <h3>Immerse</h3>
+                    <p>Reach a specific point and immerse yourself in the environment.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ============ 03 CONSTRUCTION ============ -->
+        <section class="sec di-wrap">
+            <div class="label"><b style="--c: var(--green)">03</b><span>Construction</span></div>
+            <h2 class="di-h2">From ping-pong table to dragon island.</h2>
+            <ol class="build">
+                <li class="reveal">
+                    <figure><img src="images/dragon-island/cs/build-1.webp" width="850" height="540" loading="lazy" alt="The campus table-tennis area chosen for the experience"></figure>
+                    <div class="txt">
+                        <span class="step-no">step 1</span>
+                        <h3>Targeted area: the TT Area</h3>
+                        <p>Picked the table-tennis area on campus as the stage for the experience.</p>
+                    </div>
+                </li>
+                <li class="reveal">
+                    <figure><img src="images/dragon-island/cs/build-2.webp" width="850" height="502" loading="lazy" alt="3D scan of the table-tennis area"></figure>
+                    <div class="txt">
+                        <span class="step-no">step 2</span>
+                        <h3>Mapping the area</h3>
+                        <p>3D-scanned the space so the virtual world lines up with the real one.</p>
+                        <span class="tool tool--v"><img src="images/dragon-island/cs/logo-vuforia.webp" width="456" height="327" alt="Vuforia"></span>
+                    </div>
+                </li>
+                <li class="reveal">
+                    <figure><img src="images/dragon-island/cs/build-3.webp" width="849" height="464" loading="lazy" alt="The island environment built on top of the scan in Unity"></figure>
+                    <div class="txt">
+                        <span class="step-no">step 3</span>
+                        <h3>Environment building</h3>
+                        <p>Built the island, mountain and dragon in Unity, right on top of the scan.</p>
+                        <span class="tool"><img src="images/dragon-island/cs/logo-unity.webp" width="518" height="189" alt="Unity"></span>
+                    </div>
+                </li>
+                <li class="reveal">
+                    <figure><img src="images/dragon-island/cs/build-4.webp" width="850" height="504" loading="lazy" alt="The finished AR scene with effects and interactions"></figure>
+                    <div class="txt">
+                        <span class="step-no">step 4</span>
+                        <h3>AR development &amp; interactions</h3>
+                        <p>Added position-based triggers and sound, so the scene comes alive once you walk to the marked spot.</p>
+                        <span class="tool tool--v"><img src="images/dragon-island/cs/logo-vuforia.webp" width="456" height="327" alt="Vuforia"></span>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ============ 04 EXPERIENCE VIDEO + TOOLS ============ -->
+        <section class="video-band">
+            <div class="inner">
+                <div class="label"><b style="--c: var(--orange)">04</b><span>Experience video</span></div>
+                <h2 class="di-h2">Walk in and see it come alive.</h2>
+                <iframe class="film-slot film-slot--video reveal" src="https://www.youtube.com/embed/WLldmz1CA_E?modestbranding=1&amp;disablekb=1&amp;cc_load_policy=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=WLldmz1CA_E&amp;playsinline=1&amp;rel=0&amp;start=2" title="Dragon Island AR walkthrough" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+                <div class="tools">
+                    <span>Tools used</span>
+                    <div class="logo"><img src="images/dragon-island/cs/logo-vuforia.webp" width="456" height="327" loading="lazy" alt="Vuforia"></div>
+                    <div class="logo"><img src="images/dragon-island/cs/logo-unity.webp" width="518" height="189" loading="lazy" alt="Unity"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="di-foot">
+        <div class="di-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'dragon-island');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'dragon-island') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach(el => el.classList.add('is-in')); return;
+            }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

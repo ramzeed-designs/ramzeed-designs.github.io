@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Case Study</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Full-length image canvas wrapper */
+    .case-study-page {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .case-study-img {
+      width: 100%;
+      max-width: 1440px; /* Matches your header wrap layout */
+      height: auto;
+      display: block;
+    }
+
+    /* Fixed navigation button to return home */
+    .floating-back {
+      position: fixed;
+      top: 32px;
+      left: 32px;
+      z-index: 1000;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background-color: var(--fg);
+      color: var(--bg);
+      border: 2px solid var(--fg);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      background-color: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fixed Back Button -->
+  <div class="floating-back">
+    <a href="index.html#work" class="back-btn">&larr; Back to Work</a>
+  </div>
+
+  <!-- Continuous Figma Export View -->
+  <main class="case-study-page">
+    <img src="images\wrist-shooter\wrist shooter.png" alt="Wrist Shooter Case Study" class="case-study-img" />
+  </main>
+
+</body>
+</html>

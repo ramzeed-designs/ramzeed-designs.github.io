@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Legacy of Beypore Uru – Ramzi</title>
+    <meta name="description" content="The Legacy of Beypore Uru: a craft documentation book on how the Uru, the wooden dhow of Beypore, Kerala, is still built entirely by hand. Researched, written, photographed and designed by Ramzi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Malayalam:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="beypore-uru.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="bu" id="top">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="bu-wrap">
+            <section class="bu-hero">
+                <div class="bu-hero-copy">
+                    <span class="chip">Craft documentation · NID</span>
+                    <h1>The Legacy of <span>Beypore Uru</span></h1>
+                    <p class="ml" lang="ml">ബേപ്പൂർ ഉരുവിന്റെ പൈതൃകം</p>
+                    <p class="hand tagline">ships built without a single drawing</p>
+                    <p class="intro">A book on how the Uru, the great wooden dhow of Beypore in Kerala, is still built entirely by hand. I researched, wrote, photographed and designed it.</p>
+                </div>
+                <figure class="bu-hero-pic">
+                    <img src="images/beypore-uru/cs/cover.webp" width="1600" height="1399"
+                         alt="Black and white photo of an elderly shipwright sitting under the timber frame of an Uru, holding a wooden pole">
+                </figure>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Research, writing, photography &amp; book design</strong></div>
+                <div class="ov-item"><small>Course</small><strong>Craft Documentation</strong><em>Toy &amp; Game Design, NID · 2025</em></div>
+                <div class="ov-item"><small>Guided by</small><strong>Sonal Chawala, Amisha Bajpai</strong><em>Anshul Juneja, Kapil Sharma</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Printed book</strong><em>77 pages</em></div>
+            </div>
+        </div>
+
+        <!-- ============ THE BOOK ============ -->
+        <section class="sec bu-wrap" id="book-sec">
+            <div class="bu-inner">
+                <div class="label"><b>01</b><span>The book</span></div>
+                <h2 class="bu-h2">Read the book.</h2>
+                <p class="lead">Click the page edges, swipe, or use the arrow keys. Open it full screen to read comfortably.</p>
+            </div>
+
+            <div class="book" id="book" tabindex="0" aria-roledescription="book" aria-label="The Legacy of Beypore Uru, page viewer">
+                <div class="book-stage" id="book-stage">
+                    <div class="pg pg-l"><img alt=""></div>
+                    <div class="pg pg-r"><img alt=""></div>
+                    <div class="leaf" aria-hidden="true"><div class="leaf-f"><img alt=""></div><div class="leaf-b"><img alt=""></div></div>
+                    <button class="edge edge-l" type="button" aria-label="Previous pages"></button>
+                    <button class="edge edge-r" type="button" aria-label="Next pages"></button>
+                </div>
+                <div class="book-bar">
+                    <button type="button" class="bk-btn" id="bk-prev" aria-label="Previous pages">←</button>
+                    <input type="range" id="bk-range" min="0" value="0" aria-label="Go to page">
+                    <span class="bk-count" id="bk-count">Cover</span>
+                    <button type="button" class="bk-btn" id="bk-next" aria-label="Next pages">→</button>
+                    <button type="button" class="bk-full" id="bk-full" aria-pressed="false">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="i-open" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/><path class="i-close" d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+                        <span>Full screen</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 01 WHY ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner why">
+                <div>
+                    <div class="label"><b>02</b><span>Why the Uru</span></div>
+                    <h2 class="bu-h2">It started with a dhow in Qatar.</h2>
+                </div>
+                <div class="why-copy reveal">
+                    <p class="lead">On a visit to Qatar I saw dhows displayed proudly as part of the country's maritime heritage. Only later did I learn that many of them are built back home, in the small coastal town of <b>Beypore, Kerala</b>. That mix of curiosity and pride is where this book began.</p>
+                    <p class="lead">Beypore's Urus still sail for Gulf royal families. One, stitched together with coir rope and no nails, was built for the <b>FIFA World Cup 2022</b> in Qatar.</p>
+                    <p class="hand note">"Uru" means "fat" in Malayalam, for its wide, deep hull</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ============ WHY BEYPORE ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner place">
+                <div class="place-copy">
+                    <div class="label"><b>03</b><span>Why Beypore</span></div>
+                    <h2 class="bu-h2">Where the river meets the sea.</h2>
+                    <p class="lead">Beypore sits where the <b>Chaliyar river</b> meets the Arabian Sea. The calm estuary was ideal for building and launching big ships.</p>
+                    <ul class="whys">
+                        <li><strong>Timber by river</strong>Teak from the Nilambur forests was tied into bamboo rafts, called <i>therappam</i>, and floated 68 km downstream.</li>
+                        <li><strong>The monsoon</strong>Regular winds carried Arab traders to the Malabar coast and back, and they brought dhow-building ideas with them.</li>
+                        <li><strong>Royal patronage</strong>The Zamorins of Calicut gave timber rights and ordered ships, turning a local skill into a whole economy.</li>
+                    </ul>
+                </div>
+
+                <figure class="river reveal">
+                    <svg viewBox="0 0 420 460" role="img" aria-label="Simple map: the Chaliyar river winds 68 kilometres from the Nilambur teak forests down to Beypore on the Arabian Sea, with a log raft floating downstream">
+                        <path class="sea" d="M0 0H120C150 120 120 230 160 330C185 395 175 430 190 460H0Z"/>
+                        <path class="coast" d="M120 0C150 120 120 230 160 330C185 395 175 430 190 460"/>
+                        <path id="chaliyar" class="riv" d="M372 70C330 92 352 140 310 160C262 182 300 232 252 252C214 268 238 312 200 326C184 332 176 340 166 350"/>
+                        <g class="trees">
+                            <path d="M358 34l14-24 14 24z"/><path d="M380 46l12-20 12 20z"/><path d="M336 50l11-19 11 19z"/><path d="M398 70l10-17 10 17z"/>
+                        </g>
+                        <circle class="dot" cx="166" cy="350" r="7"/>
+                        <g class="raft">
+                            <rect x="-15" y="-7" width="30" height="14" rx="3"/>
+                            <path d="M-15 -2.3h30M-15 2.3h30"/>
+                            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto"><mpath href="#chaliyar"/></animateMotion>
+                        </g>
+                        <text class="t-strong" x="334" y="80" text-anchor="end">Nilambur</text>
+                        <text class="t-soft" x="334" y="98" text-anchor="end">teak forests</text>
+                        <text class="t-soft" x="302" y="214">Chaliyar river</text>
+                        <text class="t-hand" x="302" y="238">68 km</text>
+                        <text class="t-strong" x="186" y="382">Beypore</text>
+                        <text class="t-sea" x="26" y="200">Arabian</text>
+                        <text class="t-sea" x="26" y="220">Sea</text>
+                    </svg>
+                    <figcaption>Redrawn and simplified from the map in the book.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Full-width: the yard -->
+        <figure class="sec bleed reveal">
+            <img src="images/beypore-uru/cs/makers.webp" width="2400" height="977" loading="lazy"
+                 alt="Shipwrights at work under a half-built Uru: one ties a rope, one walks past in a vest, another carries a long plank on his head across scattered timber">
+            <figcaption class="bu-wrap">The yard on a working morning. Every plank is carried, cut and fitted by hand.</figcaption>
+        </figure>
+
+        <!-- ============ THE YARD ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner yard">
+                <div class="yard-copy">
+                    <div class="label"><b>04</b><span>The place</span></div>
+                    <h2 class="bu-h2">A shipyard you can only reach by boat.</h2>
+                    <p class="lead">Today the Urus are built on a small island in the estuary, hidden by coconut palms. Nothing of the work can be seen from the mainland. A boatman ferries the workers over at 5 a.m. and brings them back at 5:30 p.m.</p>
+                    <p class="lead">Getting there was the hardest part. The fishermen's boats couldn't make the trip. Then someone pointed out the workers' ferry, already leaving, while I was still on my scooter on a swaying barge. I chased it down and talked the boatman into taking me across.</p>
+                    <p class="hand note">caught it just in time</p>
+                </div>
+                <div class="yard-pics reveal">
+                    <img class="p-big" src="images/beypore-uru/cs/boat-ride.webp" width="1245" height="959" loading="lazy" alt="View from the bow of a blue wooden boat crossing the estuary towards a palm-covered island">
+                    <img class="p-small" src="images/beypore-uru/cs/ferry.webp" width="1600" height="689" loading="lazy" alt="A small yellow and blue boat crossing wide grey water">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ THE PEOPLE ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner">
+                <div class="label"><b>05</b><span>The people</span></div>
+                <h2 class="bu-h2">The plans live in people, not on paper.</h2>
+                <p class="lead people-lead">No drawings, no blueprints. Shipbuilding knowledge in Beypore has always been passed on by watching and doing, usually from father to son. Two groups share the work.</p>
+            </div>
+
+            <div class="crews">
+                <div class="crew reveal">
+                    <h3>Odayis <span>· Mesthiris</span></h3>
+                    <p>The master carpenters. They read the buyer's model, work out the timber and the proportions in their heads, and guide every cut.</p>
+                    <div class="faces">
+                        <figure><img src="images/beypore-uru/cs/sathyan.webp" width="724" height="896" loading="lazy" alt="Portrait of Sathyan Edathody in a checked shirt and cap, in front of an Uru's timber frame"><figcaption>Sathyan Edathody</figcaption></figure>
+                        <figure><img src="images/beypore-uru/cs/surendran.webp" width="723" height="883" loading="lazy" alt="Portrait of Surendran in a white shirt, standing under a ship's hull"><figcaption>Surendran</figcaption></figure>
+                    </div>
+                </div>
+                <div class="crew reveal">
+                    <h3>Khalasis</h3>
+                    <p>The movers and finishers. They bring timber to the hull, seal it with fish oil and cotton, and launch the ship with pulleys, rollers and songs.</p>
+                    <div class="faces">
+                        <figure><img src="images/beypore-uru/cs/soman.webp" width="723" height="896" loading="lazy" alt="Portrait of Soman P with a towel over his shoulder, in front of a dark hull"><figcaption>Soman P</figcaption></figure>
+                        <figure><img src="images/beypore-uru/cs/shashi.webp" width="668" height="890" loading="lazy" alt="Portrait of K. Shashi in a white shirt, standing beside the nailed planks of a hull"><figcaption>K. Shashi</figcaption></figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ MATERIALS + TOOLS ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner">
+                <div class="label"><b>06</b><span>Materials &amp; tools</span></div>
+                <h2 class="bu-h2">Teak, coir, fish oil and a chisel.</h2>
+            </div>
+            <ul class="kit">
+                <li class="reveal"><img src="images/beypore-uru/cs/teak.webp" width="1049" height="592" loading="lazy" alt="Teak logs lying in shallow river water"><strong>Teak</strong><span>From Nilambur. Keel, hull and deck, because it shrugs off seawater.</span></li>
+                <li class="reveal"><img src="images/beypore-uru/cs/coir.webp" width="1254" height="728" loading="lazy" alt="Close-up of brown coconut-fibre coir"><strong>Coir rope</strong><span>Coconut fibre that binds planks and packs the seams.</span></li>
+                <li class="reveal"><img src="images/beypore-uru/cs/fish-oil.webp" width="1054" height="571" loading="lazy" alt="A dented metal pot of dark fish oil in the yard"><strong>Fish oil &amp; resin</strong><span>Brushed between planks to keep the water out.</span></li>
+                <li class="reveal"><img src="images/beypore-uru/cs/uli.webp" width="954" height="733" loading="lazy" alt="Two worn chisels with wooden handles on a plank"><strong><i>Uli</i></strong><span>Chisels of every size, for cutting and carving joints.</span></li>
+                <li class="reveal"><img src="images/beypore-uru/cs/mallet.webp" width="697" height="416" loading="lazy" alt="A wooden mallet resting on a pile of wood shavings"><strong><i>Kundakolli</i></strong><span>The wooden mallet that drives the chisel.</span></li>
+                <li class="reveal"><img src="images/beypore-uru/cs/sawing.webp" width="848" height="1155" loading="lazy" alt="Two men sawing a huge log by hand, one standing on top of it"><strong>Hand saw</strong><span>Big logs are still cut to size by hand, two men to a saw.</span></li>
+            </ul>
+        </section>
+
+        <!-- ============ BUILDING PROCESS (dark band) ============ -->
+        <section class="sec build-band" id="build">
+            <div class="bu-wrap">
+                <div class="label label--light"><b>07</b><span>Building process</span></div>
+                <h2 class="bu-h2">From keel to launch.</h2>
+                <p class="lead">Sixteen stages, almost four years. Step through them, or use the arrow keys.</p>
+
+                <div class="slip" id="slip">
+                    <!-- slipway: the boat moves along as you go -->
+                    <div class="slip-track" aria-hidden="true"><span class="slip-fill"></span><span class="slip-boat"><svg viewBox="0 0 40 24" width="40" height="24"><path d="M2 12h36l-6 9H8z" fill="currentColor"/><path d="M20 12V1M20 2l10 8H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span></div>
+                    <ol class="slip-steps" id="slip-steps" role="tablist" aria-label="Building stages"></ol>
+
+                    <div class="slip-stage" aria-live="polite">
+                        <div class="slip-pic"><img id="slip-img" src="images/beypore-uru/cs/model.webp" alt=""></div>
+                        <div class="slip-copy">
+                            <span class="slip-no" id="slip-no">00</span>
+                            <h3 id="slip-title">Model</h3>
+                            <p id="slip-text"></p>
+                            <div class="slip-nav">
+                                <button type="button" id="slip-prev" aria-label="Previous stage">←</button>
+                                <button type="button" id="slip-next" aria-label="Next stage">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <figure class="done reveal">
+                    <img src="images/beypore-uru/cs/complete.webp" width="1600" height="711" loading="lazy" alt="A finished wooden Uru, Sambuk model, floating on the estuary in front of coconut palms">
+                    <figcaption>Done: a Sambuk-model Uru, launched and ready to sail.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ RITUALS ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner">
+                <div class="label"><b>08</b><span>Rituals</span></div>
+                <h2 class="bu-h2">Every Uru starts and ends with a ceremony.</h2>
+            </div>
+            <div class="rites">
+                <figure class="reveal">
+                    <img src="images/beypore-uru/cs/first-cut.webp" width="1024" height="576" loading="lazy" alt="A group of men gathered as the first cut is made on the keel timber">
+                    <figcaption><strong>Keel laying</strong>Prayers and offerings mark the start. The buyer or the contractor makes the first cut on the keel.</figcaption>
+                </figure>
+                <figure class="reveal">
+                    <img src="images/beypore-uru/cs/launch-ceremony.webp" width="1024" height="685" loading="lazy" alt="Khalasis in checked lungis pushing a huge Uru towards the water">
+                    <figcaption><strong>Launch</strong>The ship is garlanded, and the Khalasis sing as they pull it into the water together, followed by a feast.</figcaption>
+                </figure>
+            </div>
+            <blockquote class="song reveal">
+                <p lang="ml-Latn">Hele maali … yaa Allah<br>O balamaale … aisaa<br>amaram thattikkodu … aisaa</p>
+                <cite>A Khalasi launch song, sung to keep everyone pulling in rhythm</cite>
+            </blockquote>
+        </section>
+
+        <!-- ============ THE FUTURE ============ -->
+        <section class="sec bu-wrap">
+            <div class="bu-inner future">
+                <div>
+                    <div class="label"><b>09</b><span>What's at stake</span></div>
+                    <h2 class="bu-h2">A rare craft, without a pension.</h2>
+                    <p class="lead">The skill is world-famous, but the people who hold it are not well looked after.</p>
+                    <ul class="risks">
+                        <li>Teak keeps getting more expensive, so fewer ships are ordered.</li>
+                        <li>Young people are choosing lighter, steadier work.</li>
+                        <li>Wages aren't standardised, and middlemen take an unseen share.</li>
+                        <li>Senior craftsmen worked as daily-wage labour, so they retire with no pension.</li>
+                        <li>Machine-built ships keep shrinking the market.</li>
+                    </ul>
+                    <p class="lead">Some craftsmen now make miniature Urus for visitors. Through this book I wanted more people to see the hidden world of the Uru-makers, while it's still here.</p>
+                </div>
+                <figure class="reveal">
+                    <img src="images/beypore-uru/cs/miniature.webp" width="1300" height="854" loading="lazy" alt="A craftsman sitting on the ground, carving a miniature wooden Uru">
+                    <figcaption>A miniature Uru taking shape, made for visitors.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bu-foot">
+        <div class="bu-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'beypore-uru');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'beypore-uru') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Fade-up on scroll (content stays visible if this never runs)
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || still) return;
+            document.body.classList.add('js-reveal');
+            const io = new IntersectionObserver(es => es.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach(el => io.observe(el));
+        })();
+
+        // 06: building stages, from the book. The boat on the slipway moves along with you.
+        (function () {
+            const P = 'images/beypore-uru/cs/';
+            const steps = [
+                ['Model', 'model', 'A rough wooden model is made to the buyer\'s brief. Once it\'s approved, the Mesthiri plans the whole ship from it, in his head: timber, sizes, proportions.', 'A wooden model of an Uru with masts and rigging'],
+                ['Timber', 'timber', 'Nilambur teak comes down the Chaliyar and is seasoned for months. Only flawless pieces go into the keel and hull.', 'Teak logs tied together with rope'],
+                ['Keel laying', 'keel', 'One massive teak beam, the backbone of the ship, is aligned, levelled and braced on the building bed.', 'Men working on a long keel beam in the yard'],
+                ['Stem & sternpost', 'stem', 'Hand-carved posts lock onto both ends of the keel and set the shape of the bow and stern. Iron spikes are hammered through and bent to hold.', 'A carpenter chiselling the stem post'],
+                ['Rib patterns', 'rib-pattern', 'Templates called <i>mula</i>: the curve of every rib is drawn in chalk on a plywood floor, from experience alone.', 'Chalk lines and cut templates on a plywood floor'],
+                ['Ribs', 'ribs', 'Ribs are chiselled from teak or jackfruit wood and fixed to the keel one by one. The hull\'s 3D shape appears.', 'Rows of curved ribs standing on the keel under a blue tarp'],
+                ['Hull planking', 'planking', 'Long teak planks, bent with heat to follow the ribs, are fixed from the bottom up.', 'A fully planked Uru hull under scaffolding'],
+                ['Fairing', 'fairing', 'Chisels, planes and files even out every joint and curve, so the hull moves cleanly through water.', 'Workers smoothing the planks inside the hull'],
+                ['Caulking', 'caulking', 'Oil-soaked cotton or coir is packed into every seam with a flat chisel and mallet, then sealed with paste.', 'A man on scaffolding hammering caulking into the hull seams'],
+                ['Deck', 'deck', 'Beams go across the top and planks over them. Cabins and stores follow, for cargo or for luxury.', 'The deck being planked, seen from above'],
+                ['Steering', 'steering', 'A hand-made wooden wheel at the stern, linked to the rudder by ropes, chains or rods.', 'A large wooden ship\'s wheel against a blue sky'],
+                ['Engine', 'engine', 'A basic engine, only for the delivery voyage. Buyers in the Gulf usually scrap it and fit their own.', 'A propeller and guide under the stern'],
+                ['Sealing', 'sealing', 'Nail holes and seams get a paste of lime, fish oil and peanut oil. It hardens and keeps the iron nails from rusting.', 'An old man sealing nail holes on the hull'],
+                ['Waterline', 'waterline', 'The expected waterline is marked along the hull to guide loading and balance.', 'Draft numbers painted up the side of the hull'],
+                ['Launch', 'launch', 'Khalasis haul the ship over wooden rollers, moving each roller to the front as it inches forward, until it floats.', 'The finished hull standing at the water\'s edge, ready to launch'],
+                ['Finishing', 'carving', 'Afloat, the Uru gets its carvings, polish, paint and cabin fittings, ready for long voyages.', 'A craftsman carving decorative wood panels']
+            ];
+            const list = document.getElementById('slip-steps');
+            const img = document.getElementById('slip-img'), no = document.getElementById('slip-no');
+            const title = document.getElementById('slip-title'), text = document.getElementById('slip-text');
+            const slip = document.getElementById('slip');
+            list.innerHTML = steps.map((s, i) => `<li><button type="button" role="tab" aria-selected="false" data-i="${i}"><b>${String(i).padStart(2, '0')}</b><span>${s[0]}</span></button></li>`).join('');
+            const btns = [...list.querySelectorAll('button')];
+            steps.forEach(s => { const im = new Image(); im.src = P + s[1] + '.webp'; });   // preload so switching is instant
+            let cur = -1;
+            function go(i, focus) {
+                i = Math.max(0, Math.min(steps.length - 1, i));
+                if (i === cur) return;
+                cur = i;
+                const s = steps[i];
+                img.classList.remove('in'); void img.offsetWidth;
+                img.src = P + s[1] + '.webp'; img.alt = s[3];
+                img.classList.add('in');
+                no.textContent = String(i).padStart(2, '0');
+                title.textContent = s[0];
+                text.innerHTML = s[2];
+                btns.forEach((b, k) => { b.setAttribute('aria-selected', k === i); b.classList.toggle('done', k < i); b.tabIndex = k === i ? 0 : -1; });
+                slip.style.setProperty('--p', i / (steps.length - 1));
+                if (focus) btns[i].focus();
+                btns[i].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: still ? 'auto' : 'smooth' });
+            }
+            list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) go(+b.dataset.i); });
+            list.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); go(cur + 1, true); }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(cur - 1, true); }
+            });
+            document.getElementById('slip-prev').addEventListener('click', () => go(cur - 1));
+            document.getElementById('slip-next').addEventListener('click', () => go(cur + 1));
+            go(0);
+        })();
+
+        // 09: the book. Spreads like the printed book (cover alone, then pairs); one page at a time on phones.
+        (function () {
+            const N = 77, src = n => `images/beypore-uru/book/p${String(n).padStart(2, '0')}.webp`;
+            const book = document.getElementById('book'), stage = document.getElementById('book-stage');
+            const L = stage.querySelector('.pg-l img'), R = stage.querySelector('.pg-r img');
+            const leaf = stage.querySelector('.leaf'), LF = leaf.querySelector('.leaf-f img'), LB = leaf.querySelector('.leaf-b img');
+            const range = document.getElementById('bk-range'), count = document.getElementById('bk-count');
+            const narrow = matchMedia('(max-width: 720px)');
+            let s = 0, busy = false;
+
+            const single = () => narrow.matches;
+            const total = () => single() ? N : Math.floor(N / 2) + 1;              // spreads: [–,1] [2,3] … [76,77]
+            const pages = k => single() ? [null, k + 1] : (k === 0 ? [null, 1] : [2 * k, 2 * k + 1 <= N ? 2 * k + 1 : null]);
+            const set = (el, n) => { el.parentElement.classList.toggle('empty', !n); if (n) { el.src = src(n); el.alt = `Page ${n}`; } else { el.removeAttribute('src'); el.alt = ''; } };
+            const preload = k => [k - 1, k + 1].forEach(j => { if (j >= 0 && j < total()) pages(j).forEach(n => { if (n) new Image().src = src(n); }); });
+
+            function show(k) {
+                s = k;
+                const [a, b] = pages(k);
+                set(L, a); set(R, b);
+                stage.classList.toggle('closed', !single() && k === 0);
+                range.max = total() - 1; range.value = k;
+                count.textContent = k === 0 ? 'Cover' : (single() ? `Page ${b} of ${N}` : `Pages ${a}${b ? '–' + b : ''} of ${N}`);
+                preload(k);
+            }
+
+            function turn(dir) {
+                const k = s + dir;
+                if (busy || k < 0 || k >= total()) return;
+                if (still || single()) { stage.classList.add('fade'); show(k); setTimeout(() => stage.classList.remove('fade'), 200); return; }
+                busy = true;
+                const [a0, b0] = pages(s), [a1, b1] = pages(k);
+                leaf.className = 'leaf ' + (dir > 0 ? 'fwd' : 'back');
+                if (dir > 0) { set(LF, b0); set(LB, a1); set(R, b1); }          // lift the right page; the next right shows beneath
+                else { set(LF, a0); set(LB, b1); set(L, a1); }                  // lift the left page back
+                if (dir > 0 && s === 0) stage.classList.remove('closed');
+                requestAnimationFrame(() => requestAnimationFrame(() => leaf.classList.add('go')));
+                setTimeout(() => { leaf.className = 'leaf'; show(k); busy = false; }, 620);
+            }
+
+            stage.querySelector('.edge-l').addEventListener('click', () => turn(-1));
+            stage.querySelector('.edge-r').addEventListener('click', () => turn(1));
+            document.getElementById('bk-prev').addEventListener('click', () => turn(-1));
+            document.getElementById('bk-next').addEventListener('click', () => turn(1));
+            range.addEventListener('input', () => show(+range.value));
+            book.addEventListener('keydown', e => {
+                if (e.target === range) return;
+                if (e.key === 'ArrowRight') { e.preventDefault(); turn(1); }
+                if (e.key === 'ArrowLeft') { e.preventDefault(); turn(-1); }
+            });
+            let x0 = null;
+            stage.addEventListener('pointerdown', e => { x0 = e.clientX; });
+            stage.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) turn(e.clientX < x0 ? 1 : -1); x0 = null; });
+            // Full screen to read comfortably. Uses the browser's full screen where it's allowed,
+            // otherwise (e.g. iPhone) the book fills the window instead. Esc closes either.
+            const fullBtn = document.getElementById('bk-full'), fullLabel = fullBtn.querySelector('span');
+            const canFS = !!(book.requestFullscreen && document.fullscreenEnabled);
+            const isOpen = () => book.classList.contains('is-full');
+            function setOpen(on) {
+                book.classList.toggle('is-full', on);
+                document.documentElement.classList.toggle('book-open', on);
+                fullBtn.setAttribute('aria-pressed', on);
+                fullLabel.textContent = on ? 'Close' : 'Full screen';
+                if (on) book.focus({ preventScroll: true });
+            }
+            fullBtn.addEventListener('click', () => {
+                if (isOpen()) { if (document.fullscreenElement) document.exitFullscreen(); else setOpen(false); return; }
+                if (canFS) book.requestFullscreen().then(() => setOpen(true)).catch(() => setOpen(true));
+                else setOpen(true);
+            });
+            document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && isOpen()) setOpen(false); });
+            book.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen() && !document.fullscreenElement) setOpen(false); });
+
+            narrow.addEventListener('change', () => {                            // keep roughly the same page when switching layouts
+                const p = pages(s)[1] || pages(s)[0] || 1;
+                show(single() ? p - 1 : Math.floor(p / 2));
+            });
+            show(0);
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Fidget Puzzle – Ramzi</title>
+    <meta name="description" content="DIY Fidget Puzzle: a build-it-yourself rotating ball puzzle designed around Smartivity's existing PP ball inventory, from brief to approved prototype in 3 weeks.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fidget-puzzle.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="fp">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="fp-wrap">
+            <section class="fp-hero">
+                <div class="fp-hero-copy">
+                    <img class="logo-badge" src="images/sketch-toy/cs/logo.webp" width="158" height="53" alt="Smartivity">
+                    <h1>DIY Fidget<br>Puzzle</h1>
+                    <p>A build-it-yourself rotating fidget puzzle designed around Smartivity's existing PP ball inventory, made with MDF. It went from brief to approved prototype in <b>3 weeks</b>.</p>
+                </div>
+                <div class="hero-pic">
+                    <img src="images/fidget-puzzle/cs/hero.webp" width="479" height="305"
+                         alt="Illustration: two hands turning the wooden fidget puzzle, coloured balls in its slots">
+                    <i class="ball ball--b" style="--s:36px; left:-2%; top:9%"></i>
+                    <i class="ball ball--y" style="--s:48px; right:4%; top:6%; animation-delay:-1.5s"></i>
+                    <i class="ball ball--r" style="--s:74px; left:-4%; bottom:9%; animation-delay:-3s"></i>
+                    <i class="ball ball--g" style="--s:58px; right:5%; bottom:5%; animation-delay:-2s"></i>
+                </div>
+                <div class="track" aria-hidden="true">
+                    <i class="ball ball--r" style="left:24px"></i>
+                    <i class="ball ball--y" style="left:58px"></i>
+                    <i class="ball ball--g" style="left:92px"></i>
+                    <i class="ball ball--b" style="left:126px"></i>
+                    <i class="ball ball--r" style="left:310px; animation-delay:-3s"></i>
+                    <i class="ball ball--y" style="left:344px; animation-delay:-3s"></i>
+                </div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Product Design Intern</strong></div>
+                <div class="ov-item"><small>Duration</small><strong>3 Weeks</strong><em>Oct 2026</em></div>
+                <div class="ov-item"><small>Company</small><strong>Smartivity Labs</strong><em>Delhi, India</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Design Approved</strong><em>by lead designer</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE BRIEF ============ -->
+        <section class="brief-band">
+            <div class="confetti" id="confetti" aria-hidden="true"></div>
+            <div class="brief reveal">
+                <div class="brief-top">
+                    <div>
+                        <div class="label"><b style="--c: var(--red)">01</b><span>The brief</span></div>
+                        <h2 class="fp-h2">Built around 14mm balls.</h2>
+                    </div>
+                    <span class="mrp">Target MRP <span>₹399</span></span>
+                </div>
+                <p class="big">Design and develop a toy using Smartivity materials, incorporating <b>14mm PP (polypropylene) balls</b> from the existing product portfolio, while retaining the original form and user experience.</p>
+                <p class="small">The toy's housing should be designed around the balls, ensuring the assembly is safe, intuitive, and feasible for children aged 6 and above.</p>
+                <ul class="chips">
+                    <li class="chips-head">Constraints</li>
+                    <li>14mm PP balls</li>
+                    <li>Smartivity MDF</li>
+                    <li>Ages 6+</li>
+                    <li>Safe, intuitive assembly</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ============ 02 RESEARCH ============ -->
+        <section class="sec fp-wrap">
+            <div class="fp-inner">
+                <div class="label"><b class="on-yellow" style="--c: var(--yellow)">02</b><span>Research</span></div>
+                <h2 class="fp-h2">Reference products</h2>
+                <div class="research-grid">
+                    <p class="lead p1">To understand how ball-based mechanisms are typically used in toys, I studied a range of reference products from classic rotating puzzles to sensory and fidget toys.</p>
+                    <div class="insight reveal">
+                        <p class="hand">The insight ↓</p>
+                        <p>Research and observation pointed to one clear pattern: kids are drawn to rotating and turning motions. <b>The tactile, repeatable action is satisfying on its own, no theme required.</b> This became the anchor for the concept.</p>
+                    </div>
+                    <div class="refs">
+                        <img class="reveal" src="images/fidget-puzzle/cs/ref-atomix.webp" width="133" height="219" loading="lazy" alt="Atomix rotating ball puzzle">
+                        <img class="reveal" src="images/fidget-puzzle/cs/ref-tubes.webp" width="204" height="198" loading="lazy" alt="Bead-sorting tube game">
+                        <img class="reveal" src="images/fidget-puzzle/cs/ref-pyramid.webp" width="174" height="151" loading="lazy" alt="Puzzle balls stacked in a pyramid">
+                        <img class="reveal" src="images/fidget-puzzle/cs/ref-rainbow.webp" width="189" height="190" loading="lazy" alt="Rainbow puzzle ball fidget toy">
+                        <img class="reveal" src="images/fidget-puzzle/cs/ref-spinner.webp" width="157" height="172" loading="lazy" alt="Spinning bead puzzle tops">
+                        <img class="reveal" src="images/fidget-puzzle/cs/ref-oval.webp" width="178" height="167" loading="lazy" alt="Oval bead-rotating fidget toy">
+                    </div>
+                    <p class="lead p2">I looked specifically at how balls were housed and constrained, what mechanisms drove interaction, and how existing products balanced play value with safety for younger age groups.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 IDEATION (navy band) ============ -->
+        <section class="band">
+            <div class="fp-wrap">
+                <div class="fp-inner">
+                    <div>
+                        <div class="label"><b style="--c: var(--green)">03</b><span>Ideation</span></div>
+                        <h2>A Rubik's Cube,<br>rebuilt with balls.</h2>
+                        <p>Building on this insight, I explored concepts that combined rotational play with the existing ball inventory. The direction that stood out was <b>a cylindrical form</b> inspired by the mechanics of a Rubik's Cube but reimagined with balls integrated into the rotating structure instead of cube faces.</p>
+                    </div>
+                    <figure class="disc-wrap reveal">
+                        <div class="disc"><img src="images/fidget-puzzle/cs/p2-top.webp" width="162" height="161" loading="lazy" alt="Top-view sketch of the rotating disc"></div>
+                        <i class="ball ball--r" style="--s:40px; left:0; top:20px"></i>
+                        <i class="ball ball--b" style="--s:28px; left:316px; top:40px"></i>
+                        <i class="ball ball--g" style="--s:34px; left:320px; top:270px"></i>
+                        <i class="ball ball--y" style="--s:24px; left:6px; top:270px"></i>
+                        <figcaption class="hand">rotate → align → solve</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 04 PROTOTYPING ============ -->
+        <section class="sec fp-wrap">
+            <div class="label"><b style="--c: var(--blue)">04</b><span>Prototyping</span></div>
+            <h2 class="fp-h2">Three rounds to the right click.</h2>
+            <ol class="protos">
+                <li class="proto reveal">
+                    <div class="proto-head">
+                        <span class="numeral">I</span>
+                        <div><h3>Prototype I</h3><p class="proto-tag"><i class="ball ball--r" style="--s:10px"></i>Clearance test</p></div>
+                    </div>
+                    <div class="sketch">
+                        <img src="images/fidget-puzzle/cs/p1-sketch.webp" width="214" height="182" loading="lazy" alt="Sketch of the first stacked-layer prototype" style="width:76%; left:12%; top:28px">
+                    </div>
+                    <div class="proto-photos">
+                        <img src="images/fidget-puzzle/cs/p1-photo.webp" style="--r:1.096" width="240" height="219" loading="lazy" alt="Prototype I cut in MDF">
+                    </div>
+                    <p>A sample prototype was made to test the ball clearance and mechanism.</p>
+                    <div class="meter"><small>Ball sets</small>— testing fit</div>
+                </li>
+                <li class="proto reveal">
+                    <div class="proto-head">
+                        <span class="numeral">II</span>
+                        <div><h3>Prototype II</h3><p class="proto-tag"><i class="ball ball--y" style="--s:10px"></i>Form test</p></div>
+                    </div>
+                    <div class="sketch">
+                        <img src="images/fidget-puzzle/cs/p2-iso.webp" width="174" height="219" loading="lazy" alt="Sketch of Prototype II, side view" style="width:42%; left:5%; top:34px">
+                        <img src="images/fidget-puzzle/cs/p2-top.webp" width="162" height="161" loading="lazy" alt="Sketch of Prototype II, top view" style="width:44%; right:5%; top:76px">
+                        <span class="hand" style="right:8%; top:10px; rotate:3deg">fidgety form ↓</span>
+                    </div>
+                    <div class="proto-photos">
+                        <img src="images/fidget-puzzle/cs/p2-photo-a.webp" style="--r:.991" width="223" height="225" loading="lazy" alt="Prototype II with three sets of balls">
+                        <img src="images/fidget-puzzle/cs/p2-photo-b.webp" style="--r:.991" width="223" height="225" loading="lazy" alt="Prototype II held in a hand">
+                    </div>
+                    <p>Shape was refined to be more fidgety and comfy. Built it with just three sets of PP balls to test the form. Too easy to solve, but confirmed the core rotation felt right.</p>
+                    <div class="meter"><small>Ball sets</small><i class="ball ball--r"></i><i class="ball ball--y"></i><i class="ball ball--g"></i></div>
+                </li>
+                <li class="proto reveal">
+                    <div class="proto-head">
+                        <span class="numeral">III</span>
+                        <div><h3>Prototype III</h3><p class="proto-tag"><i class="ball ball--g" style="--s:10px"></i>Final mechanism</p></div>
+                    </div>
+                    <div class="sketch">
+                        <img src="images/fidget-puzzle/cs/p3-side.webp" width="162" height="186" loading="lazy" alt="Sketch of Prototype III, side view with balls" style="width:28%; left:5%; top:18px">
+                        <img src="images/fidget-puzzle/cs/p3-top.webp" width="166" height="178" loading="lazy" alt="Sketch of Prototype III, top view" style="width:28%; left:5%; top:142px">
+                        <img src="images/fidget-puzzle/cs/p3-iso.webp" width="216" height="206" loading="lazy" alt="Sketch of the circular Prototype III" style="width:52%; right:7%; top:40px">
+                        <span class="hand" style="right:6%; top:12px; rotate:2deg">refined to circular ↓</span>
+                        <span class="hand" style="right:5%; bottom:12px; rotate:-2deg">more slots, more challenge ↑</span>
+                    </div>
+                    <div class="proto-photos">
+                        <img src="images/fidget-puzzle/cs/p3-photo-a.webp" style="--r:1.131" width="303" height="268" loading="lazy" alt="Prototype III, circular MDF layers">
+                        <img src="images/fidget-puzzle/cs/p3-photo-b.webp" style="--r:1.048" width="304" height="290" loading="lazy" alt="Prototype III held in a hand, six sets of coloured balls">
+                    </div>
+                    <p>The number of ball slits was increased from three to six sets, adding complexity to make the puzzle more challenging and engaging. A detent mechanism was also introduced at the ball contact points, adding tactile and audible click feedback with every rotation.</p>
+                    <div class="meter"><small>Ball sets</small><i class="ball ball--r"></i><i class="ball ball--y"></i><i class="ball ball--g"></i><i class="ball ball--b"></i><i class="ball ball--r"></i><i class="ball ball--y"></i></div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ============ 05 FINAL PROTOTYPE ============ -->
+        <section class="sec fp-wrap">
+            <div class="label"><b style="--c: var(--red)">05</b><span>Final prototype</span></div>
+            <h2 class="fp-h2">Turn it. Hear it click.</h2>
+            <div class="gallery">
+                <div class="g-main reveal">
+                    <img src="images/fidget-puzzle/cs/final-render.webp" width="436" height="390" loading="lazy" alt="Render of the final fidget puzzle with a green top and coloured balls">
+                    <span class="sticker hand">6 ball sets · click detent</span>
+                </div>
+                <div class="g-mid">
+                    <div class="peach reveal"><img src="images/fidget-puzzle/cs/final-side.webp" width="257" height="196" loading="lazy" alt="The puzzle on its side, showing the ball slots"></div>
+                    <div class="peach reveal"><img src="images/fidget-puzzle/cs/final-top.webp" width="257" height="190" loading="lazy" alt="Top view with the gear and slots"></div>
+                </div>
+                <img class="reveal" src="images/fidget-puzzle/cs/final-hand.webp" width="422" height="401" loading="lazy" alt="The final prototype being turned in two hands">
+            </div>
+
+            <!-- Product video: swap this block for
+                 <video class="film-slot" src="videos/fidget-puzzle.mp4" poster="images/fidget-puzzle/cs/final-render.webp" autoplay muted loop playsinline></video> -->
+            <div class="film-slot reveal">
+                <span class="play"><svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#16143a"/></svg></span>
+                <p class="hand">product video goes here</p>
+                <small>Short clip of the puzzle turning and clicking (MP4, up to 10 sec)</small>
+                <i class="ball ball--r" style="--s:60px; left:7%; top:12%"></i>
+                <i class="ball ball--b" style="--s:34px; right:8%; top:20%"></i>
+                <i class="ball ball--g" style="--s:46px; right:10%; bottom:14%"></i>
+                <i class="ball ball--y" style="--s:28px; left:12%; bottom:12%"></i>
+            </div>
+        </section>
+
+        <!-- ============ 06 OUTCOME ============ -->
+        <section class="outcome fp-wrap">
+            <div class="wrapper reveal">
+                <div class="label"><b style="--c: var(--green)">06</b><span>Outcome</span></div>
+                <div class="ok-card">
+                    <h2>Design approved.</h2>
+                    <p>Signed off by the lead designer, from brief to a working, clicking prototype in 3 weeks.</p>
+                </div>
+                <span class="ok-badge" aria-hidden="true"><svg viewBox="0 0 36 28" width="32" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14l10 10L33 4"/></svg></span>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="fp-foot">
+        <div class="fp-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'fidget-puzzle');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'fidget-puzzle') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Ball confetti behind the brief card (same scatter every time)
+        (function () {
+            const box = document.getElementById('confetti');
+            const cols = ['--red', '--yellow', '--green', '--blue'];
+            let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+            let html = '';
+            for (let i = 0; i < 52; i++) {
+                const d = 10 + Math.round(rnd() * 22), x = (rnd() * 98.6).toFixed(2), y = (rnd() * 96).toFixed(2);
+                const c = 'var(' + cols[i % 4] + ')';
+                const mv = `--dx:${Math.round(rnd() * 110 - 55)}px;--dy:${Math.round(rnd() * 80 - 40)}px;--t:${(5 + rnd() * 6).toFixed(1)}s;--dl:-${(rnd() * 8).toFixed(1)}s`;
+                html += i % 3 === 0
+                    ? `<i class="ring" style="--c:${c};width:${d}px;height:${d}px;left:${x}%;top:${y}%;${mv}"></i>`
+                    : `<i class="ball" style="--c:${c};--s:${d}px;left:${x}%;top:${y}%;opacity:.9;${mv}"></i>`;
+            }
+            box.innerHTML = html;
+        })();
+
+        // Fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach(el => el.classList.add('is-in')); return;
+            }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

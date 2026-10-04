@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground – Ramzi</title>
+    <meta name="description" content="Side projects, hobbies and experiments by Ramzi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html" aria-current="page">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="playground">
+        <div class="wrap">
+            <div class="play-intro">
+                <h1>Playground</h1>
+                <p>Side projects, hobbies and experiments. The things I make when nobody's asking.</p>
+            </div>
+            <!-- Tiles are built from the `playground` list in projects.js -->
+            <div class="play-wall" id="play-wall"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">© Ramzi</div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        document.getElementById('play-wall').innerHTML = playground.map(playCardHTML).join('');
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trove – Ramzi</title>
+    <meta name="description" content="Trove, a library app for NID's Knowledge Management Centre: a one-week UX/UI project by a team of 4 in the Cognitive Ergonomics module.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="trove.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="tv">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="tv-wrap">
+            <section class="tv-hero">
+                <svg class="gem" viewBox="0 0 200 200" aria-hidden="true"><path d="M60 30h80l40 45-80 100L20 75z"/><path d="M20 75h160M60 30l40 145M140 30l-40 145M60 30l-12 45M140 30l12 45" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+                <div class="tv-hero-copy">
+                    <span class="chip">UX/UI design · Cognitive Ergonomics</span>
+                    <h1>Trove<span>.</span></h1>
+                    <p class="tagline hand">a treasure trove of knowledge!</p>
+                    <p class="intro">A library app for NID's Knowledge Management Centre (KMC): find a book from anywhere, reserve it, and pick it up when your classes allow.</p>
+                </div>
+                <figure class="hero-pic">
+                    <img src="images/trove/cs/hero.webp" width="732" height="797"
+                         alt="A hand holding a phone showing the Trove home screen: search bar, a featured book and a Book Festival banner">
+                </figure>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>UX/UI Designer</strong><em>team of 4</em></div>
+                <div class="ov-item"><small>Duration</small><strong>1 Week</strong><em>2023</em></div>
+                <div class="ov-item"><small>Course</small><strong>Cognitive Ergonomics</strong><em>Figma · Balsamiq</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Clickable prototype</strong><em>25 screens in Figma</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE CONTEXT ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b>01</b><span>The context</span></div>
+            <h2 class="tv-h2">A good library, a lot of walking.</h2>
+            <div class="context">
+                <p class="lead reveal">The KMC already has an RFID kiosk, email reminders and an online catalogue. Yet students still walk in to check if a book is there, note down call numbers to hunt for on the shelves, and forget the titles faculty recommend. We asked how the library's existing automation could <b>lower the cognitive load</b> on readers and librarians alike.</p>
+                <div class="goals reveal">
+                    <p class="hand">our objectives</p>
+                    <ul>
+                        <li>User research and primary research</li>
+                        <li>Apply UX principles and theories</li>
+                        <li>Find and solve real pain points</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 02 RESEARCH ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b style="--c: var(--berry)">02</b><span>Research</span></div>
+            <h2 class="tv-h2">A day inside the library.</h2>
+            <p class="credit">Research was done together as a team of 4.</p>
+
+            <ul class="methods">
+                <li class="reveal">
+                    <span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+                    <small>Observation</small><h3>We sat in the KMC</h3>
+                    <p>Watched how people search, browse, borrow and return, and how the staff run the day from opening to lock-up.</p>
+                </li>
+                <li class="reveal">
+                    <span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <small>Interviews</small><h3>Students &amp; librarians</h3>
+                    <p>Talked to readers about how they find books, and to the library staff about issuing, shelving and fines.</p>
+                </li>
+                <li class="reveal">
+                    <span class="m-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span>
+                    <small>Survey</small><h3>14 responses</h3>
+                    <p>Visits, how people pick a book, what they search with, and where the hunt breaks down.</p>
+                </li>
+            </ul>
+
+            <div class="day reveal">
+                <div class="day-head">
+                    <h3>A typical day in the KMC</h3>
+                    <p class="hand">as we watched it, door to door</p>
+                </div>
+                <ol class="day-strip">
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M8 80h104"/><rect x="38" y="16" width="40" height="64" rx="2"/><circle cx="70" cy="50" r="2.5"/><circle cx="101" cy="50" r="6"/><path d="M95 50H76m5 0v5m5-5v4"/><circle cx="20" cy="24" r="6"/><path d="M20 10v4m0 20v4M6 24h4m20 0h4M10 14l3 3m14 14l3 3M30 14l-3 3M13 31l-3 3"/></svg>
+                        <span class="t">9 AM</span><p>The guard unlocks the door.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M18 40h84M18 74h84M20 30v50M100 30v50"/><path d="M28 40v-7c0-3 3-4 6-3l6 3c3 1 8 1 12 3 2 1 3 3 3 4z"/><path d="M62 40v-7c0-3 3-4 6-3l6 3c3 1 8 1 12 3 2 1 3 3 3 4z"/><path d="M40 74v-7c0-3 3-4 6-3l6 3c3 1 8 1 12 3 2 1 3 3 3 4z"/></svg>
+                        <span class="t">on entry</span><p>Everyone leaves their footwear outside.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M8 80h104"/><rect x="16" y="40" width="8" height="40"/><rect x="26" y="34" width="10" height="46"/><rect x="38" y="44" width="7" height="36"/><rect x="47" y="36" width="9" height="44"/><rect x="78" y="40" width="9" height="40"/><rect x="89" y="34" width="8" height="46"/><rect x="99" y="44" width="7" height="36"/><rect x="62" y="24" width="10" height="40" transform="rotate(12 67 44)"/><path d="M67 4v12m-4-4l4 4 4-4"/></svg>
+                        <span class="t">morning</span><p>Returned and new books go back on the shelves.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M8 80h104"/><rect x="35" y="8" width="50" height="40" rx="4"/><path d="M60 48v26M44 80h32"/><path d="M54 22a9 9 0 1 0 12 0M60 16v10"/></svg>
+                        <span class="t">morning</span><p>Computers and the RFID kiosk are switched on.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M8 70h104M20 70v12M100 70v12"/><path d="M26 62c8-6 16-6 22 0 6-6 14-6 22 0V40c-8-6-16-6-22 0-6-6-14-6-22 0z"/><path d="M48 40v22"/><rect x="80" y="58" width="24" height="12" rx="2"/><rect x="83" y="46" width="20" height="12" rx="2"/><rect x="81" y="34" width="22" height="12" rx="2" transform="rotate(-6 92 40)"/><path d="M40 20c0-6 6-6 6-12M50 22c0-6 6-6 6-12"/></svg>
+                        <span class="t">all day</span><p>Reading, studying, issuing and returning.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><rect x="30" y="14" width="46" height="64" rx="5"/><rect x="44" y="9" width="18" height="9" rx="2"/><path d="M40 34l3 3 5-6M52 34h16M40 48l3 3 5-6M52 48h16M40 62l3 3 5-6M52 62h12"/><path d="M96 30v14M89 37h14"/><rect x="84" y="52" width="20" height="26" rx="2"/><path d="M89 52v26"/></svg>
+                        <span class="t">all day</span><p>Staff log new entries, invoices and purchase orders.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M32 8h36l14 14v60H32z"/><path d="M68 8v14h14"/><path d="M42 32h28M42 41h28M42 50h18"/><circle cx="66" cy="66" r="10"/><path d="M61 66l4 4 6-8"/><path d="M90 54l16-30 5 3-16 30-6 3z"/></svg>
+                        <span class="t">closing</span><p>Check-outs and a fine report for the books.</p>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 120 90" aria-hidden="true"><path d="M8 80h104"/><rect x="42" y="16" width="40" height="64" rx="2"/><rect x="55" y="46" width="14" height="12" rx="2"/><path d="M57 46v-4a5 5 0 0 1 10 0v4"/><path d="M20 12a10 10 0 1 0 12 14 8 8 0 0 1-12-14z"/><path d="M100 18v6m-3-3h6M92 36v4m-2-2h4"/></svg>
+                        <span class="t">12 AM <small>6 PM Sat</small></span><p>The guard locks up for the night.</p>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="map-row">
+                <figure class="venn reveal">
+                    <svg viewBox="0 0 640 610" role="img" aria-label="Venn diagram of the KMC: People, Objects and Activities overlap at the KMC">
+                        <circle class="c-p" cx="230" cy="215" r="185"/>
+                        <circle class="c-o" cx="410" cy="215" r="185"/>
+                        <circle class="c-a" cx="320" cy="375" r="185"/>
+                        <text class="vt vt-p" x="175" y="76">PEOPLE</text>
+                        <text class="vt vt-o" x="465" y="76">OBJECTS</text>
+                        <text class="vt vt-a" x="320" y="596">ACTIVITIES</text>
+                        <text class="vk" x="320" y="276">KMC</text>
+                        <g class="vi">
+                            <text x="150" y="118">Head librarian</text><text x="150" y="148">Sr. librarian</text><text x="150" y="178">Asst. librarian</text><text x="150" y="208">Trainees</text>
+                            <text class="rd" x="138" y="252">Readers</text><text class="rd sm" x="138" y="270">students &amp; faculty</text>
+                            <text x="458" y="120">Journals</text><text x="538" y="120">Books</text>
+                            <text x="458" y="155">Magazines</text><text x="538" y="155">GP docs</text>
+                            <text x="458" y="190">Games</text><text x="538" y="190">Prototypes</text>
+                            <text x="458" y="225">E-books</text><text x="538" y="225">Rare books</text>
+                            <text x="242" y="428">Shelving</text><text x="400" y="428">Issue books</text>
+                            <text x="238" y="458">Log new entries</text><text x="405" y="458">Fines</text>
+                            <text x="245" y="488">Return / renew</text><text class="rd" x="398" y="488">Request renewal</text>
+                            <text class="rd" x="248" y="518">Browse</text><text class="rd" x="392" y="518">Borrow</text>
+                            <text class="rd" x="320" y="546">Read or study</text>
+                        </g>
+                    </svg>
+                    <figcaption class="v-key"><span><i class="k-staff"></i>library staff</span><span><i class="k-read"></i>readers</span></figcaption>
+                    <div class="venn-lists">
+                        <p><b class="vt-p">People</b> Head, senior and assistant librarians, trainees · <em>readers (students &amp; faculty)</em></p>
+                        <p><b class="vt-o">Objects</b> Books, journals, magazines, GP documents, games, prototypes, rare books, e-books</p>
+                        <p><b class="vt-a">Activities</b> Shelving, issuing, logging entries, fines, return/renew · <em>browsing, borrowing, reading, requesting renewal</em></p>
+                    </div>
+                </figure>
+                <div class="map-copy reveal">
+                    <h3>People, objects, activities.</h3>
+                    <p>We mapped everything that happens in the KMC. Readers and staff touch the same books, but through very different tasks: one side browses, borrows and renews, the other issues, shelves and chases fines.</p>
+                    <p class="hand">the overlap is where the friction lives.</p>
+                    <div class="edges">
+                        <small>Around the edges</small>
+                        <ul>
+                            <li>Cleaning staff</li><li>Security guards</li><li>Maintenance</li><li>Non-NIDians</li><li>Alumni</li>
+                            <li>RFID kiosk</li><li>Vaults</li><li>KIBO</li><li>Cupboards</li>
+                            <li>Accession numbering</li><li>Email reminders</li><li>Inter-library loans</li><li>RFID tagging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 INSIGHTS (dark band) ============ -->
+        <section class="band">
+            <div class="tv-wrap">
+                <div class="label"><b>03</b><span>Insights</span></div>
+                <h2 class="tv-h2">The hunt is the hard part.</h2>
+
+                <div class="stats">
+                    <div class="stat reveal"><strong>86%</strong><p>visit the KMC once a week or more</p></div>
+                    <div class="stat reveal"><strong>79%</strong><p>say the email reminders help them return on time</p></div>
+                    <div class="stat reveal"><strong>50%</strong><p>search by call number, a string most people have to write down</p></div>
+                </div>
+
+                <div class="hunt reveal">
+                    <h3>What makes finding a book hard?</h3>
+                    <p class="sub">14 responses, more than one answer allowed</p>
+                    <ul class="bars">
+                        <li style="--v:.714"><span>Knowing if the book is missing from the shelf</span><i></i><b>71%</b></li>
+                        <li style="--v:.643"><span>Finding the section (Art, Psychology…)</span><i></i><b>64%</b></li>
+                        <li style="--v:.5"><span>Noting the book number and searching for it</span><i></i><b>50%</b></li>
+                        <li style="--v:.357"><span>Locating the book on the shelf</span><i></i><b>36%</b></li>
+                        <li style="--v:.357"><span>Finding the right book in the online catalogue</span><i></i><b>36%</b></li>
+                    </ul>
+                </div>
+
+                <figure class="charts reveal">
+                    <img src="images/trove/cs/survey-charts.webp" width="1305" height="360" loading="lazy"
+                         alt="The original survey charts: visit frequency, how people choose a book, how helpful the weekly display is, whether email reminders help, what people search with, and difficulties finding a book">
+                    <figcaption class="hand">the raw survey charts</figcaption>
+                </figure>
+
+                <h3 class="band-h3">What students told us</h3>
+                <ol class="insights">
+                    <li class="reveal">They want to <b>browse the catalogue remotely</b>, without walking to the library.</li>
+                    <li class="reveal">Classes run at odd hours, so they want to <b>reserve a book and collect it</b> when it suits them.</li>
+                    <li class="reveal">They want to read what <b>faculty suggest</b>, but forget to note the names down.</li>
+                    <li class="reveal">Finding <b>department-wise books</b> is a task in itself.</li>
+                    <li class="reveal"><b>Locating a book on the shelf</b> is hard.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ 04 PERSONAS ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b>04</b><span>Personas</span></div>
+            <h2 class="tv-h2">Two readers, one frustration.</h2>
+            <p class="lead" style="margin-top:20px; max-width:760px">Both are design masters students. One wants books before anyone else gets them; the other wants to never walk to the library just to check. Both miss return deadlines.</p>
+
+            <div class="personas reveal">
+                <div class="p-tabs" role="tablist" aria-label="Personas">
+                    <button type="button" role="tab" id="tab-arjun" aria-controls="p-arjun" aria-selected="true">Arjun <small>extrovert · works smart</small></button>
+                    <button type="button" role="tab" id="tab-jamalu" aria-controls="p-jamalu" aria-selected="false" tabindex="-1">Jamalu <small>introvert · bookworm</small></button>
+                </div>
+
+                <article class="persona" id="p-arjun" role="tabpanel" aria-labelledby="tab-arjun">
+                    <div class="rcard">
+                        <div class="rc-head">
+                            <p class="rc-deg">Master of Design</p>
+                            <p class="rc-course">New Media Design</p>
+                        </div>
+                        <small class="rc-lab">Name of the Student</small>
+                        <h3>Arjun Menon</h3>
+                        <div class="rc-row">
+                            <svg class="rc-ava" viewBox="0 0 120 120" role="img" aria-label="Illustrated avatar of Arjun">
+                                <rect width="120" height="120" fill="#e6e9ec"/>
+                                <path d="M18 120c4-26 20-38 42-38s38 12 42 38z" fill="#8a5cc4"/>
+                                <path d="M40 88c8 8 32 8 40 0l4 10c-12 10-36 10-48 0z" fill="#f2784b"/>
+                                <rect x="52" y="66" width="16" height="18" rx="6" fill="#b9805a"/>
+                                <ellipse cx="60" cy="52" rx="21" ry="24" fill="#c98f66"/>
+                                <path d="M38 50c-2-20 12-30 24-29 14 1 23 10 20 29-4-10-10-14-22-14s-18 4-22 14z" fill="#2b2230"/>
+                                <circle cx="52" cy="54" r="2.4" fill="#2b2230"/><circle cx="68" cy="54" r="2.4" fill="#2b2230"/>
+                                <path d="M53 64c4 4 10 4 14 0" fill="none" stroke="#2b2230" stroke-width="2.4" stroke-linecap="round"/>
+                            </svg>
+                            <dl>
+                                <dt>Age</dt><dd>27</dd>
+                                <dt>Tech literate</dt><dd>Moderate</dd>
+                                <dt>Campus</dt><dd>Gandhinagar</dd>
+                            </dl>
+                        </div>
+                        <div class="rc-foot">
+                            <div class="rc-bar"><span class="rc-code" aria-hidden="true"></span><span class="rc-num">S2400271</span></div>
+                            <p class="rc-org">KMC Reader<br><span>Gandhinagar Campus</span></p>
+                        </div>
+                    </div>
+                    <div class="p-main">
+                        <p class="p-quote hand">“I want to read more books that help me build skills for my design portfolio.”</p>
+                        <p class="p-bio">A masters student in New Media Design at NID Gandhinagar. His course is all about keeping up with the latest trends in technology.</p>
+                        <div class="p-cols">
+                            <div class="p-need"><h4>Needs</h4><ul><li>Books and literature relevant to his course</li><li>Finding and issuing a book before someone else does</li><li>Being told when a book is available</li></ul></div>
+                            <div class="p-frus"><h4>Frustrations</h4><ul><li>Can't issue certain books when he isn't on campus</li><li>Missing deadlines to return or reissue</li><li>Not knowing who has the book, so he can ask to share it</li></ul></div>
+                        </div>
+                        <ul class="p-tags"><li>Extrovert</li><li>Tech savvy</li><li>Works smart, not hard</li></ul>
+                    </div>
+                </article>
+
+                <article class="persona is-off" id="p-jamalu" role="tabpanel" aria-labelledby="tab-jamalu" inert>
+                    <div class="rcard">
+                        <div class="rc-head">
+                            <p class="rc-deg">Master of Design</p>
+                            <p class="rc-course">Automobile Design</p>
+                        </div>
+                        <small class="rc-lab">Name of the Student</small>
+                        <h3>Jamalu Alok</h3>
+                        <div class="rc-row">
+                            <svg class="rc-ava" viewBox="0 0 120 120" role="img" aria-label="Illustrated avatar of Jamalu">
+                                <rect width="120" height="120" fill="#e6e9ec"/>
+                                <path d="M18 120c4-26 20-38 42-38s38 12 42 38z" fill="#b8404f"/>
+                                <path d="M50 84l10 12 10-12" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
+                                <rect x="52" y="66" width="16" height="18" rx="6" fill="#8d5a3b"/>
+                                <ellipse cx="60" cy="52" rx="21" ry="24" fill="#a26a45"/>
+                                <path d="M40 66c4 14 36 14 40 0-2 8-10 12-20 12s-18-4-20-12z" fill="#2b2230"/>
+                                <path d="M36 48c-4-18 6-30 18-30 2-4 14-4 18 0 12 2 16 16 12 30-2-8-6-12-12-14-6 4-20 4-26 0-6 2-9 6-10 14z" fill="#2b2230"/>
+                                <circle cx="51" cy="53" r="7" fill="none" stroke="#2b2230" stroke-width="2.2"/><circle cx="69" cy="53" r="7" fill="none" stroke="#2b2230" stroke-width="2.2"/><path d="M58 53h4" stroke="#2b2230" stroke-width="2.2"/>
+                                <circle cx="51" cy="53" r="2" fill="#2b2230"/><circle cx="69" cy="53" r="2" fill="#2b2230"/>
+                                <path d="M54 68c4 3 8 3 12 0" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+                            </svg>
+                            <dl>
+                                <dt>Age</dt><dd>23</dd>
+                                <dt>Tech literate</dt><dd>High</dd>
+                                <dt>Campus</dt><dd>Gandhinagar</dd>
+                            </dl>
+                        </div>
+                        <div class="rc-foot">
+                            <div class="rc-bar"><span class="rc-code" aria-hidden="true"></span><span class="rc-num">S2400384</span></div>
+                            <p class="rc-org">KMC Reader<br><span>Gandhinagar Campus</span></p>
+                        </div>
+                    </div>
+                    <div class="p-main">
+                        <p class="p-quote hand">“I want to read, but I don't feel like walking to the library, browsing and then issuing a book.”</p>
+                        <p class="p-bio">A masters student in Automobile Design at NID Gandhinagar, reading a lot on vehicle form, ergonomics and the history of car design.</p>
+                        <div class="p-cols">
+                            <div class="p-need"><h4>Needs</h4><ul><li>Books and literature relevant to his course</li><li>Finding and issuing books remotely</li><li>Being told about new books and arrivals</li></ul></div>
+                            <div class="p-frus"><h4>Frustrations</h4><ul><li>Can't issue, or even reserve, a book remotely</li><li>Missing deadlines to return or reissue</li><li>Not knowing how to find his way to a book in the library</li></ul></div>
+                        </div>
+                        <ul class="p-tags"><li>Introvert</li><li>Thinker</li><li>Bookworm</li><li>Tech savvy</li></ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ============ 05 USER FLOW ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b style="--c: var(--berry)">05</b><span>User flow</span></div>
+            <h2 class="tv-h2">One sign-in, four journeys.</h2>
+            <p class="lead" style="margin-top:20px; max-width:780px">Readers sign in with email, Facebook or Google. From there the app branches four ways, each built for a different need: discovering what's trending, keeping up with issues and due dates, searching for a specific title, and sharing what you thought of a book.</p>
+            <figure class="flowmap reveal">
+                <img src="images/trove/cs/user-flow.webp" width="1240" height="450" loading="lazy"
+                     alt="User flow: log in or sign up (email, Facebook or Google, with password reset), then four branches: home to trending book to reserve, notifications to reserved, search to trending books to reserve, and reviews to rating and comments">
+            </figure>
+            <ul class="paths">
+                <li class="reveal"><b>Home</b>trending book → reserve</li>
+                <li class="reveal"><b>Notifications</b>issued, due, renewed</li>
+                <li class="reveal"><b>Search</b>find → reserve</li>
+                <li class="reveal"><b>Reviews</b>rate → read others</li>
+            </ul>
+        </section>
+
+        <!-- ============ 06 WIREFRAMES ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b>06</b><span>Wireframes</span></div>
+            <h2 class="tv-h2">Rough first, in Balsamiq.</h2>
+            <div class="lofi">
+                <p class="lead reveal">Quick low-fidelity screens let us argue about structure before colour: a home carousel, an account menu, My Books with due dates and a "pay fine" shortcut, a wishlist with reminders, semester- and module-wise book lists, and a readers' forum.</p>
+                <figure class="paper reveal">
+                    <img src="images/trove/cs/lofi-1.webp" width="685" height="260" loading="lazy"
+                         alt="Five Balsamiq wireframes: home with new arrivals, the account menu, My Books, a book's issue and return dates, and the wishlist">
+                </figure>
+            </div>
+            <figure class="paper reveal" style="margin-top:22px">
+                <img src="images/trove/cs/lofi-2.webp" width="1185" height="345" loading="lazy"
+                     alt="Seven more wireframes: department book list, semester-related books, module-related books, a semester's module list, the readers' forum, weekly book reviews, and a single review">
+                <figcaption class="hand">department lists, semester and module lists, the readers' forum and reviews</figcaption>
+            </figure>
+        </section>
+
+        <!-- ============ 07 THE UI ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b style="--c: var(--berry)">07</b><span>The UI</span></div>
+            <h2 class="tv-h2">Every screen answers an insight.</h2>
+
+            <div class="feat reveal">
+                <img src="images/trove/cs/hifi-departments.webp" width="1417" height="797" loading="lazy"
+                     alt="Three screens: Departments of NID as a grid of tiles, Toy and Game Design books listed with covers and wishlist hearts, and a Specific tab with module books">
+                <div>
+                    <small>Insights 1 &amp; 4</small>
+                    <h3>The catalogue, sorted the way NID thinks.</h3>
+                    <p>Browse by department, then switch between all books and the ones specific to your modules. Search works by voice too, so nobody needs to copy a call number.</p>
+                </div>
+            </div>
+
+            <div class="feat flip reveal">
+                <img src="images/trove/cs/hifi-reserve-review.webp" width="1417" height="791" loading="lazy"
+                     alt="Three pop-ups: 'Oops! Book is issued by your friend' with an add-to-wishlist option, 'Woohoo! Reserved successfully' with a 24-hour collection note, and a review form with star ratings">
+                <div>
+                    <small>Insight 2 · persona frustrations</small>
+                    <h3>Reserve now, collect within 24 hours.</h3>
+                    <p>If someone already has it, Trove says who, so you can ask to share, and offers to wishlist it and ping you when it's back. After reading, a quick review helps the next person decide.</p>
+                </div>
+            </div>
+
+            <div class="feat reveal">
+                <img src="images/trove/cs/hifi-home-account.webp" width="1417" height="797" loading="lazy"
+                     alt="Three screens: home with search, a featured book and a festival banner, My Account with My Books, Pay Fines and Help, and My Books with issue dates">
+                <div>
+                    <small>79% like reminders</small>
+                    <h3>Deadlines you can't miss.</h3>
+                    <p>My Books shows what you have and since when, fines are one tap from your account, and notifications cover issued, last-day, renewed and new arrivals.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 08 PROTOTYPE ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b>08</b><span>Prototype</span></div>
+            <h2 class="tv-h2">25 screens, all clickable.</h2>
+            <figure class="wire reveal">
+                <img src="images/trove/cs/prototype-wiring.webp" width="1309" height="550" loading="lazy"
+                     alt="The Figma canvas with all screens connected by prototype links: home, account, my books, activities, notifications, book details, wishlist, departments, reserve, reviews and search">
+                <figcaption class="hand">wired up in Figma</figcaption>
+            </figure>
+
+            <div class="proto reveal">
+                <div class="proto-copy">
+                    <h3>Try it yourself.</h3>
+                    <p>Tap through reserving a book, the wishlist, notifications and reviews. It's a Figma prototype, so it loads a little slowly.</p>
+                    <div class="proto-btns">
+                        <button type="button" class="btn-play" id="load-proto">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+                            Load the prototype
+                        </button>
+                        <a class="btn-line" href="https://www.figma.com/proto/CwMKjn1RfBIhL550uHDVcM/UI-Mockup_KMC?node-id=0-1&amp;t=eWYQklVTkOCqHmaP-1" target="_blank" rel="noopener">Open in Figma ↗</a>
+                    </div>
+                </div>
+                <div class="proto-frame" id="proto-frame">
+                    <img src="images/trove/cs/screens-collage.webp" width="1417" height="785" loading="lazy" alt="A wall of Trove screens: notifications, wishlist, reserve confirmation and home">
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 09 TAKEAWAYS ============ -->
+        <section class="sec tv-wrap">
+            <div class="label"><b style="--c: var(--berry)">09</b><span>Takeaways</span></div>
+            <h2 class="tv-h2">What one week taught us.</h2>
+            <ul class="learn">
+                <li class="reveal"><span class="hand">look</span>Watching people in the library showed us steps they would never think to mention in a survey.</li>
+                <li class="reveal"><span class="hand">less</span>Cognitive ergonomics is mostly about what people no longer have to remember: titles, numbers, dates.</li>
+                <li class="reveal"><span class="hand">rough</span>Wireframing in Balsamiq first kept us arguing about flows, not colours.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="tv-foot">
+        <div class="tv-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'trove');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'trove') { a.href = projectLink(next); a.innerHTML = escapeHTML(next.title) + ' <span>→</span>'; }
+        })();
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Persona tabs
+        (function () {
+            const tabs = [...document.querySelectorAll('.p-tabs [role="tab"]')];
+            function pick(t) {
+                tabs.forEach(x => {
+                    const on = x === t;
+                    x.setAttribute('aria-selected', on);
+                    x.tabIndex = on ? 0 : -1;
+                    const panel = document.getElementById(x.getAttribute('aria-controls'));
+                    panel.classList.toggle('is-off', !on);
+                    panel.inert = !on;
+                });
+            }
+            tabs.forEach((t, n) => {
+                t.addEventListener('click', () => pick(t));
+                t.addEventListener('keydown', e => {
+                    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                    const nx = tabs[(n + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+                    pick(nx); nx.focus();
+                });
+            });
+        })();
+
+        // Figma prototype: only loads when asked for
+        document.getElementById('load-proto').addEventListener('click', function () {
+            const proto = 'https://www.figma.com/proto/CwMKjn1RfBIhL550uHDVcM/UI-Mockup_KMC?node-id=0-1&scaling=scale-down&hide-ui=1';
+            const f = document.getElementById('proto-frame');
+            f.classList.add('is-live');
+            f.innerHTML = '<iframe title="Trove clickable prototype" allowfullscreen src="https://www.figma.com/embed?embed_host=share&url=' + encodeURIComponent(proto) + '"></iframe>';
+            this.disabled = true; this.lastChild.textContent = ' Prototype loaded';
+        });
+
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(el => el.classList.add('is-in')); return; }
+            const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

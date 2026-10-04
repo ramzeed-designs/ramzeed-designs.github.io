@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydraulic Crusher / Lifter – Ramzi</title>
+    <meta name="description" content="Hydraulic Crusher / Lifter: a DIY concept toy for Smartivity. Kids build a syringe-powered MDF press, crush and mould things, then rebuild it as a lifter.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hydraulic-press.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="hp">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="hp-wrap">
+            <section class="hp-hero">
+                <div class="hp-hero-copy">
+                    <span class="chip">Toy concept · Smartivity</span>
+                    <h1>Hydraulic Crusher <span>/</span> Lifter</h1>
+                    <p class="hand tagline">push one syringe, squash anything soft</p>
+                    <p class="intro">A DIY press kids build from laser-cut MDF and syringes. Crush clay, mould puzzle shapes, flatten "recycling", then rebuild the same parts into a lifter.</p>
+                </div>
+                <div class="hp-hero-pic">
+                    <span class="sun" aria-hidden="true"></span>
+                    <img src="images/hydraulic-press/cs/hero.webp" width="1000" height="1059"
+                         alt="3D render of the MDF hydraulic press: two syringes above a red press plate, connected by a tube to a hand syringe">
+                </div>
+                <div class="hazard" aria-hidden="true"></div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Product Design Intern</strong></div>
+                <div class="ov-item"><small>Type</small><strong>Internship task</strong><em>Sep 2025</em></div>
+                <div class="ov-item"><small>Company</small><strong>Smartivity Labs</strong><em>Delhi, India</em></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Concept</strong><em>3D renders</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 THE IDEA ============ -->
+        <section class="sec hp-wrap">
+            <div class="hp-inner idea">
+                <div>
+                    <div class="label"><b style="--c: var(--blue)">01</b><span>The idea</span></div>
+                    <h2 class="hp-h2">Oddly satisfying, made safe.</h2>
+                </div>
+                <div class="idea-copy reveal">
+                    <p class="lead">Kids watch hours of "oddly satisfying" videos of a hydraulic press flattening things. Six-year-olds are also at the <b>"what happens if…?"</b> age. This kit puts that press in their hands: small, safe and powered only by water and their own push.</p>
+                    <p class="lead">It's pitched as an add-on to Smartivity's existing hydraulic kits, so it adds play without starting a new line.</p>
+                </div>
+            </div>
+
+            <ul class="modes">
+                <li class="mode reveal">
+                    <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="10" y="10" width="44" height="10" rx="3" fill="var(--red)"/><rect x="29" y="2" width="6" height="10" fill="var(--ink)"/><ellipse class="squish" cx="32" cy="48" rx="16" ry="9" fill="var(--yellow)"/><rect x="6" y="56" width="52" height="5" rx="2" fill="var(--ink)"/></svg>
+                    <h3>Press play</h3>
+                    <p>Squash clay, foam and paper shapes, and watch them flatten. The YouTube fun, screen-free.</p>
+                </li>
+                <li class="mode reveal">
+                    <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><rect x="8" y="14" width="48" height="40" rx="6" fill="var(--mdf)"/><path d="M18 26h10v6a4 4 0 1 1 0 8v4H18zM36 26h10v18H36v-5a4 4 0 1 0 0-8z" fill="var(--paper)"/></svg>
+                    <h3>Puzzle press</h3>
+                    <p>Pattern moulds under the plate turn clay into puzzle pieces kids press, match and solve.</p>
+                </li>
+                <li class="mode reveal">
+                    <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true"><path d="M22 10h20l-3 44H25z" fill="var(--green)"/><path d="M18 10h28" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><path d="M26 32l5 5 8-10" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <h3>Recycle &amp; build</h3>
+                    <p>Role-play as a recycler: crush paper cups, flatten cartons and talk about waste and reuse.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ============ 02 HOW IT WORKS (blue band) ============ -->
+        <section class="band">
+            <div class="hp-wrap">
+                <div class="hp-inner band-grid">
+                    <div>
+                        <div class="label"><b style="--c: var(--yellow)" class="on-yellow">02</b><span>How it works</span></div>
+                        <h2>No motor.<br>Just water.</h2>
+                        <p>Push the hand syringe and the water inside travels up the tube into the two syringes on the press. Their pistons drive the plate down onto whatever sits on the tray. Pull it back and the plate rises again.</p>
+                        <p>It's a hands-on first look at <b>hydraulics, pressure and force transfer</b>, the same idea as a car jack.</p>
+                    </div>
+                    <figure class="rig reveal">
+                        <svg viewBox="0 0 520 360" role="img" aria-label="Diagram: the hand syringe pushes water through a tube into two syringes that press a plate down onto a lump of clay">
+                            <!-- tube -->
+                            <path d="M310 70 V40 H390 V70 M350 40 V24 H232 V230 H210" fill="none" stroke="var(--tube)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+                            <path id="flow" d="M210 230 H232 V24 H350 V40" fill="none" stroke="var(--water)" stroke-width="3" stroke-dasharray="6 10" stroke-linecap="round" opacity="0"/>
+                            <!-- frame -->
+                            <rect x="252" y="56" width="16" height="276" rx="6" fill="var(--mdf)"/>
+                            <rect x="432" y="56" width="16" height="276" rx="6" fill="var(--mdf)"/>
+                            <rect x="246" y="66" width="208" height="10" rx="3" fill="var(--green)"/>
+                            <rect x="246" y="150" width="208" height="10" rx="3" fill="var(--green)"/>
+                            <!-- press syringes (barrels) -->
+                            <g fill="var(--glass)" stroke="var(--glass-line)" stroke-width="2">
+                                <rect x="296" y="76" width="28" height="110" rx="4"/>
+                                <rect x="376" y="76" width="28" height="110" rx="4"/>
+                            </g>
+                            <!-- water in the press syringes: grows as you push -->
+                            <g id="pwater" fill="var(--water)">
+                                <rect x="299" y="79" width="22" height="10" rx="2"/>
+                                <rect x="379" y="79" width="22" height="10" rx="2"/>
+                            </g>
+                            <!-- pistons + plate move together -->
+                            <g id="pistons">
+                                <rect x="298" y="89" width="24" height="8" rx="2" fill="var(--ink-fix)"/>
+                                <rect x="378" y="89" width="24" height="8" rx="2" fill="var(--ink-fix)"/>
+                                <rect x="306" y="97" width="8" height="99" fill="var(--rod)"/>
+                                <rect x="386" y="97" width="8" height="99" fill="var(--rod)"/>
+                                <rect x="276" y="196" width="148" height="16" rx="5" fill="var(--red)"/>
+                            </g>
+                            <!-- tray, mould, clay -->
+                            <rect x="246" y="320" width="208" height="12" rx="3" fill="url(#stripes)"/>
+                            <rect x="290" y="306" width="120" height="14" rx="3" fill="var(--mold)"/>
+                            <ellipse id="clay" cx="350" cy="292" rx="34" ry="16" fill="var(--yellow)"/>
+                            <!-- hand syringe -->
+                            <rect x="70" y="214" width="120" height="32" rx="5" fill="var(--glass)" stroke="var(--glass-line)" stroke-width="2"/>
+                            <rect id="hwater" x="80" y="217" width="107" height="26" rx="3" fill="var(--water)"/>
+                            <path d="M190 222 h20 v16 h-20z" fill="var(--glass-line)"/>
+                            <g id="hand">
+                                <rect x="72" y="216" width="8" height="28" rx="2" fill="var(--ink-fix)"/>
+                                <rect x="14" y="226" width="60" height="8" fill="var(--rod)"/>
+                                <rect x="4" y="210" width="12" height="40" rx="4" fill="var(--ink-fix)"/>
+                            </g>
+                            <defs>
+                                <pattern id="stripes" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                                    <rect width="16" height="16" fill="#1d1d1f"/><rect width="8" height="16" fill="#ffd95a"/>
+                                </pattern>
+                            </defs>
+                        </svg>
+                        <button class="press-btn" id="press-btn" type="button">Hold to press</button>
+                        <figcaption class="hand" id="press-note">push → water → plate down</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 THE BUILD ============ -->
+        <section class="sec hp-wrap">
+            <div class="label"><b style="--c: var(--red)">03</b><span>The build</span></div>
+            <h2 class="hp-h2">MDF, syringes, one tube.</h2>
+            <div class="build">
+                <figure class="build-main reveal">
+                    <img src="images/hydraulic-press/cs/crusher.webp" width="826" height="1000" loading="lazy"
+                         alt="Render of the press frame with green shelves, two syringes, a red plate and a hazard-striped base">
+                </figure>
+                <figure class="build-card reveal">
+                    <img src="images/hydraulic-press/cs/connector.webp" width="1100" height="850" loading="lazy"
+                         alt="Close-up render of the blue clip connector holding the plate to the frame">
+                    <figcaption><h3>Easy, strong connectors</h3><p>Clip joints that kids can rebuild again and again without parts loosening.</p></figcaption>
+                </figure>
+                <figure class="build-card reveal">
+                    <img src="images/hydraulic-press/cs/molds.webp" width="1100" height="850" loading="lazy"
+                         alt="Close-up render of a pattern mould tray with puzzle-shaped cavities under the press plate">
+                    <figcaption><h3>Pattern moulds</h3><p>Swap-in trays turn the press into a puzzle maker.</p></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 04 REBUILD IT ============ -->
+        <section class="sec hp-wrap">
+            <div class="label"><b class="on-yellow" style="--c: var(--yellow)">04</b><span>Two machines, one kit</span></div>
+            <h2 class="hp-h2">Flip the blocks. Now it lifts.</h2>
+            <div class="swap">
+                <div class="swap-stage reveal">
+                    <div class="toggle" role="group" aria-label="Show the kit as">
+                        <button type="button" class="is-on" data-mode="crusher" aria-pressed="true">Crusher</button>
+                        <button type="button" data-mode="lifter" aria-pressed="false">Lifter</button>
+                    </div>
+                    <div class="swap-pics">
+                        <img class="is-on" data-mode="crusher" src="images/hydraulic-press/cs/hero.webp" width="1000" height="1059" loading="lazy"
+                             alt="The kit built as a crusher: the plate hangs under the syringes and presses down">
+                        <img data-mode="lifter" src="images/hydraulic-press/cs/lifter.webp" width="900" height="631" loading="lazy"
+                             alt="The same parts rebuilt as a lifter: the syringes now point up and raise the red plate on top">
+                    </div>
+                    <p class="hand swap-note" id="swap-note">plate pushes down ↓</p>
+                </div>
+                <aside class="spec reveal">
+                    <div class="dims">
+                        <img src="images/hydraulic-press/cs/front.webp" width="700" height="831" loading="lazy" alt="Front view of the press">
+                        <span class="dim dim--h"><i></i>20 cm</span>
+                        <span class="dim dim--w"><i></i>15 cm</span>
+                    </div>
+                    <dl>
+                        <div><dt>Size</dt><dd>20 × 15 × 12 cm</dd></div>
+                        <div><dt>Material</dt><dd>5.5 mm laser-cut MDF</dd></div>
+                        <div><dt>Power</dt><dd>20 ml syringes + water</dd></div>
+                        <div><dt>Age</dt><dd>6+</dd></div>
+                        <div><dt>First build</dt><dd>about 30–40 min</dd></div>
+                    </dl>
+                    <p class="spec-note">All parts pack back into the box, with few small pieces to lose.</p>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="hp-foot">
+        <div class="hp-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-dragon-island.html">Dragon Island <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'hydraulic-press');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'hydraulic-press') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // 02: hold the button to push the hand syringe; the plate comes down and squashes the clay
+        (function () {
+            const btn = document.getElementById('press-btn');
+            const hand = document.getElementById('hand'), pistons = document.getElementById('pistons');
+            const clay = document.getElementById('clay'), hwater = document.getElementById('hwater');
+            const pw = document.querySelectorAll('#pwater rect'), flow = document.getElementById('flow');
+            const note = document.getElementById('press-note');
+            const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let p = 0, target = 0, raf = 0;
+
+            function draw() {
+                hand.setAttribute('transform', `translate(${p * 100} 0)`);
+                hwater.setAttribute('x', 80 + p * 100);
+                hwater.setAttribute('width', Math.max(0, 107 - p * 100));
+                pw.forEach(r => r.setAttribute('height', 10 + p * 84));
+                pistons.setAttribute('transform', `translate(0 ${p * 84})`);
+                // the plate meets the clay at p ≈ .76; after that the clay flattens
+                const squash = Math.max(0, (p - .76) / .24);
+                clay.setAttribute('ry', 16 - squash * 10);
+                clay.setAttribute('rx', 34 + squash * 30);
+                clay.setAttribute('cy', 292 + squash * 10);
+                flow.setAttribute('opacity', target === 1 && p < 1 ? .9 : 0);
+                note.textContent = p > .95 ? 'squashed!' : 'push → water → plate down';
+            }
+            function tick() {
+                const step = still ? 1 : .025;
+                p = target > p ? Math.min(target, p + step) : Math.max(target, p - step * 1.4);
+                draw();
+                if (p !== target) raf = requestAnimationFrame(tick); else raf = 0;
+            }
+            function go(t) { target = t; btn.classList.toggle('is-down', t === 1); if (!raf) raf = requestAnimationFrame(tick); }
+
+            btn.addEventListener('pointerdown', e => { e.preventDefault(); btn.setPointerCapture(e.pointerId); go(1); });
+            ['pointerup', 'pointercancel'].forEach(ev => btn.addEventListener(ev, () => go(0)));
+            btn.addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); go(1); } });
+            btn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter') go(0); });
+            btn.addEventListener('contextmenu', e => e.preventDefault());
+            draw();
+        })();
+
+        // 04: crusher / lifter toggle
+        (function () {
+            const btns = document.querySelectorAll('.toggle button'), pics = document.querySelectorAll('.swap-pics img');
+            const note = document.getElementById('swap-note');
+            btns.forEach(b => b.addEventListener('click', () => {
+                const m = b.dataset.mode;
+                btns.forEach(x => { const on = x === b; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on); });
+                pics.forEach(img => img.classList.toggle('is-on', img.dataset.mode === m));
+                note.textContent = m === 'lifter' ? 'plate pushes up ↑' : 'plate pushes down ↓';
+            }));
+        })();
+
+        // Fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach(el => el.classList.add('is-in')); return;
+            }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

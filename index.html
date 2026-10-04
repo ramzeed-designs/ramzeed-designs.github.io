@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramzi – Interdisciplinary Designer</title>
+    <meta name="description" content="Portfolio of Ramzi, an interdisciplinary designer working in toy, play experience and game design.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Arabic, Hindi and Malayalam letters for the rotating greeting (only the letters used, so it's tiny) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+Malayalam:wght@700&text=%D8%A7%D8%A8%D8%AD%D8%B1%D9%85%E0%A4%A4%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%87%E0%A5%8D%E0%B4%82%E0%B4%95%E0%B4%A8%E0%B4%AE%E0%B4%B0%E0%B4%B8%E0%B4%BE%E0%B5%8D&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Applies the saved background colour before the page paints, so it doesn't flash -->
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <!-- Text logo for now. When you have a logo: replace "Ramzi<span>.</span>" with <img src="images/logo.svg" alt="Ramzi"> -->
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="wrap">
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <!-- The big greeting cycles through languages (list is in script.js) -->
+                        <h1 class="hero-title">
+                            <span class="hello" id="hello" aria-hidden="true"><span class="hello-word c-purple" lang="en">Hello</span></span>
+                            <span class="sr-only">Hello, </span>I'm Ramzi
+                        </h1>
+                        <p>Interdisciplinary designer specializing in user-centered design and innovative solutions.</p>
+                        <p class="muted">Play experience design and game design.</p>
+                    </div>
+                    <img class="portrait" src="images/portrait.webp" alt="Portrait of Ramzi" width="900" height="1350">
+                </div>
+            </div>
+        </section>
+
+        <section class="work" id="work">
+            <div class="wrap">
+                <h2>Work</h2>
+                <!-- Cards are built from projects.js. Edit projects there, not here. -->
+                <div class="grid" id="project-grid"></div>
+                <div class="more">
+                    <a class="btn" href="playground.html">Explore the Playground</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="wrap about-inner">
+                <h2>About</h2>
+                <div>
+                    <p>A short paragraph about you: what you design, what you care about, and what you're looking for next.</p>
+                    <!-- Put your real email in both places below -->
+                    <a class="btn" href="mailto:you@example.com">you@example.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="wrap">© Ramzi</div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        document.getElementById('project-grid').innerHTML = projects.map(cardHTML).join('');
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

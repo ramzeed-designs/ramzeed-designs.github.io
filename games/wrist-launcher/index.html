@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wrist Launcher 3D</title>
+<style>
+  :root { --ink:#1d232b; --muted:#6b7480; --accent:#ff7a1a; --blue:#1f5fd8; --yellow:#f4b41a; --panel:rgba(255,255,255,.84); }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color:var(--ink); }
+  #app { position:fixed; inset:0; overflow:hidden;
+         background: radial-gradient(ellipse at 50% 38%, #ffffff 0%, #eef1f5 55%, #dce2ea 100%); }
+  canvas { display:block; width:100%; height:100%; touch-action:none; cursor:grab; }
+  canvas:active { cursor:grabbing; }
+  .title { position:absolute; top:18px; left:20px; max-width:min(360px, calc(100% - 180px)); pointer-events:none; }
+  .title h1 { margin:0; font-size:20px; letter-spacing:.02em; }
+  .title p { margin:4px 0 0; font-size:13px; line-height:1.45; color:var(--muted); }
+  /* bottom bar: Dart/Glider · PLAY GAME · Hide arm */
+  .bar { position:absolute; left:12px; right:12px; bottom:20px; margin:0 auto; width:fit-content; max-width:calc(100% - 24px);
+         display:flex; justify-content:center; gap:10px; align-items:center; padding:8px; border-radius:30px;
+         background:var(--panel); backdrop-filter:blur(8px); box-shadow:0 6px 24px rgba(0,0,0,.08); }
+  button { font:inherit; font-size:14px; border:0; border-radius:999px; padding:10px 16px; white-space:nowrap;
+           background:#fff; color:var(--ink); cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+  button:hover { background:#f5f6f8; }
+  .seg { display:flex; background:#e9edf2; border-radius:999px; padding:3px; }
+  .seg button { box-shadow:none; background:transparent; padding:7px 14px; }
+  .seg button.on { background:var(--yellow); color:var(--ink); font-weight:600; }
+  .seg button { display:inline-flex; align-items:center; gap:6px; }
+  .seg svg { width:18px; height:18px; flex:none; }
+  button.fire { background:var(--accent); color:#fff; font-weight:700; padding:10px 22px; letter-spacing:.04em; }
+  button.fire:hover { background:#ff6a00; }
+  button.fire:active { transform:scale(.96); }
+  /* Flex & Fire: top centre */
+  #fireBtn { position:absolute; top:18px; left:50%; transform:translateX(-50%); font-size:16px; padding:12px 28px;
+             box-shadow:0 8px 22px rgba(255,122,26,.35); }
+  #fireBtn:active { transform:translateX(-50%) scale(.96); }
+  /* Play game: the big one in the middle of the bottom bar */
+  #playBtn { background:var(--blue); color:#fff; font-weight:800; font-size:15px; letter-spacing:.06em; text-transform:uppercase;
+             padding:14px 28px; box-shadow:0 6px 16px rgba(31,95,216,.3); }
+  #playBtn:hover { background:#1a52bd; }
+  /* Side icon buttons: Hide arm on the left edge, Spin on the right edge */
+  .side-btn { position:absolute; top:50%; transform:translateY(-50%);
+              display:flex; flex-direction:column; align-items:center; gap:4px; min-width:64px;
+              padding:10px 8px 8px; border-radius:22px; background:var(--panel); backdrop-filter:blur(8px);
+              box-shadow:0 6px 24px rgba(0,0,0,.08); font-size:12px; font-weight:600; color:var(--ink); }
+  .side-btn:hover { background:#fff; }
+  .side-btn svg { width:30px; height:30px; }
+  #armBtn { left:18px; }
+  #rotateBtn { right:18px; }
+  #rotateBtn.spinning { color:var(--blue); }
+  #exportBtn { position:absolute; top:16px; right:16px; font-size:13px; padding:8px 14px; }
+  .hint { position:absolute; bottom:94px; left:0; right:0; text-align:center; font-size:12px; color:var(--muted); pointer-events:none; padding:0 16px; }
+  #hud { position:absolute; top:14px; left:50%; transform:translateX(-50%); display:flex; gap:18px; align-items:center;
+         padding:8px 10px 8px 20px; border-radius:999px; background:var(--panel); backdrop-filter:blur(8px);
+         box-shadow:0 6px 24px rgba(0,0,0,.08); font-size:14px; white-space:nowrap; }
+  #hud b { font-size:18px; margin-left:4px; font-variant-numeric:tabular-nums; }
+  #hud button { padding:7px 14px; font-size:13px; }
+  #overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(20,26,40,.28); padding:16px; }
+  #overlay .card { background:#fff; border-radius:20px; padding:24px 26px; max-width:360px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+  #overlay h2 { margin:0 0 8px; font-size:22px; }
+  #overlay p { margin:0 0 18px; color:var(--muted); font-size:14px; line-height:1.5; }
+  #overlay .row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  [hidden] { display:none !important; }
+  body.embedded #exportBtn { display:none; }   /* hidden when shown inside the portfolio page */
+  .pop { position:absolute; transform:translate(-50%,-50%); font-weight:800; font-size:22px; color:#fff; pointer-events:none;
+         text-shadow:0 2px 0 rgba(0,0,0,.25), 0 0 12px rgba(0,0,0,.2); animation:pop .9s ease-out forwards; }
+  @keyframes pop { from { opacity:1; margin-top:0; transform:translate(-50%,-50%) scale(.6); }
+                   20% { transform:translate(-50%,-50%) scale(1.15); }
+                   to { opacity:0; margin-top:-46px; transform:translate(-50%,-50%) scale(1); } }
+  body.game .bar, body.game .title, body.game #exportBtn, body.game #showHint,
+  body.game #fireBtn, body.game .side-btn { display:none; }
+  body.embedded .title { display:none; }   /* the portfolio page already has the title */
+  body.game canvas { cursor:crosshair; }
+  /* Back button: only shown in game mode, top-left */
+  #backBtn { display:none; position:absolute; top:16px; left:16px; z-index:2;
+             align-items:center; gap:6px; font-weight:600; padding:10px 18px 10px 14px;
+             background:#d8262c; color:#fff; box-shadow:0 6px 18px rgba(216,38,44,.35); }
+  #backBtn:hover { background:#b81c22; }
+  #backBtn svg { width:18px; height:18px; }
+  body.game #backBtn { display:inline-flex; }
+  #exitBtn { display:none; }   /* replaced by the Back button */
+  #gameHint { display:none; }
+  body.game #gameHint { display:block; bottom:24px; }
+  @media (max-width:560px){
+    .title { display:none; }
+    .bar { gap:6px; padding:6px; }
+    .bar button, .seg button { padding:9px 11px; font-size:13px; }
+    .seg span { display:none; }          /* icons only on small screens */
+    .seg svg { width:20px; height:20px; }
+    #playBtn { padding:12px 16px; font-size:13px; }
+    #fireBtn { font-size:15px; padding:11px 22px; }
+    #armBtn { left:10px; } #rotateBtn { right:10px; }
+    .side-btn { min-width:56px; }
+    .side-btn svg { width:26px; height:26px; }
+    .hint { bottom:82px; }
+    #backBtn { top:12px; left:10px; padding:8px 14px 8px 10px; }
+    #hud { top:60px; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="app">
+  <canvas id="c"></canvas>
+  <div class="title">
+    <h1>Wrist Launcher</h1>
+    <p>Flex your wrist: the finger strap pulls the trigger and launches a foam dart or a paper glider.</p>
+  </div>
+  <button id="exportBtn">Download .glb</button>
+  <div class="hint" id="showHint">Drag to rotate · Scroll / pinch to zoom · Tap the model or press Space to flex &amp; fire</div>
+  <button id="fireBtn" class="fire">FLEX &amp; FIRE</button>
+  <button id="armBtn" class="side-btn" aria-label="Hide arm">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <g class="eye-closed"><path d="M3 10c2.5 3 5.5 4.5 9 4.5s6.5-1.5 9-4.5"/><path d="M5.6 12.8 4 15.2"/><path d="M9.6 14.2 9 17"/><path d="M14.4 14.2l.6 2.8"/><path d="M18.4 12.8l1.6 2.4"/></g>
+      <g class="eye-open" style="display:none"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.8"/></g>
+    </svg>
+    <span class="lbl">Hide arm</span>
+  </button>
+  <button id="rotateBtn" class="side-btn spinning" aria-label="Pause spin">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2.5v19" stroke-dasharray="2 2.6"/>
+      <path d="M17.5 8.7C19.9 9.5 21.5 10.7 21.5 12c0 2.5-4.3 4.5-9.5 4.5S2.5 14.5 2.5 12 6.8 7.5 12 7.5"/>
+      <path d="M9.8 5.4 12 7.5l-2.2 2.1"/>
+    </svg>
+    <span class="lbl">Pause</span>
+  </button>
+  <div class="bar">
+    <div class="seg">
+      <button data-mode="dart" class="on" aria-label="Dart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 20 13 11"/><path d="M4 16v4h4"/><path d="M11.5 9.5l3 3"/><path d="M13 8a6 6 0 0 1 3-2.5 4 4 0 0 1 2.5 2.5 6 6 0 0 1-2.5 3"/>
+        </svg><span>Dart</span></button>
+      <button data-mode="glider" aria-label="Glider">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 4 3 11l7 2.5L21 4z"/><path d="M10 13.5 12.5 20 21 4"/>
+        </svg><span>Glider</span></button>
+    </div>
+    <button id="playBtn">Play game</button>
+  </div>
+  <div class="hint" id="gameHint">Move to aim · click (or release your finger) to flex &amp; fire · Space also fires</div>
+  <div id="hud" hidden>
+    <span>Score<b id="score">0</b></span><span>Darts<b id="darts">10</b></span><span>Best<b id="best">0</b></span>
+    <button id="exitBtn">Exit</button>
+  </div>
+  <div id="pops"></div>
+  <button id="backBtn" aria-label="Back to model">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    Back
+  </button>
+  <div id="overlay" hidden>
+    <div class="card">
+      <h2 id="ovTitle">Target practice</h2>
+      <p id="ovText">You have 10 suction-cup darts. Aim with your mouse or finger and fire to stick them on the targets.
+        Bullseye scores 50 and moving targets count double.</p>
+      <div class="row"><button id="ovGo" class="fire">Start</button><button id="ovExit">Back to model</button></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+
+const V3 = THREE.Vector3;
+const canvas = document.getElementById('c');
+
+/* ---------------- renderer / scene ---------------- */
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(35, 1, 0.05, 100);
+camera.position.set(4.3, 2.3, 2.0);
+const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 0.85, 0.15);
+controls.enableDamping = true;
+controls.enablePan = false;
+controls.minDistance = 1.6;
+controls.maxDistance = 10;
+controls.maxPolarAngle = Math.PI * 0.49;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.1;
+// Inside the portfolio page: scroll-to-zoom only after the visitor clicks the model,
+// so scrolling past the frame keeps scrolling the page.
+const EMBEDDED = window.self !== window.top;
+if (EMBEDDED) {
+  document.body.classList.add('embedded');
+  controls.enableZoom = false;
+  canvas.addEventListener('pointerdown', () => { controls.enableZoom = true; });
+  canvas.addEventListener('pointerleave', () => { controls.enableZoom = false; });
+}
+
+const key = new THREE.DirectionalLight(0xffffff, 2.3);
+key.position.set(3, 6, 4);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+Object.assign(key.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 0.5, far: 20 });
+key.shadow.bias = -0.0005;
+scene.add(key);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, 0.45));
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.17 }));
+floor.rotation.x = -Math.PI / 2;
+floor.receiveShadow = true;
+scene.add(floor);
+
+/* ---------------- low-poly helpers ---------------- */
+// Model is built in centimetres; the root group scales it into the scene.
+const COLORS = { blue:0x1f5fd8, red:0xd8262c, navy:0x2b2f78, dark:0x121748, orange:0xff7a1a, yellow:0xf4b41a,
+                 wood:0xa8703f, felt:0x8d9096, black:0x1b1d22, white:0xf3f3f0, green:0x9bd35a, skin:0xd9a07e, dart:0x2448c8 };
+const matCache = {};
+function M(name, extra = {}) {
+  const k = name + JSON.stringify(extra);
+  return matCache[k] ??= new THREE.MeshStandardMaterial({ color: COLORS[name], roughness: 0.7, flatShading: true, ...extra });
+}
+// bake faceted normals so the low-poly look survives GLB export
+function lp(geo) { const g = geo.index ? geo.toNonIndexed() : geo; g.computeVertexNormals(); return g; }
+function mesh(geo, mat, x, y, z, parent) {
+  const m = new THREE.Mesh(lp(geo), mat);
+  m.position.set(x, y, z);
+  m.castShadow = m.receiveShadow = true;
+  parent.add(m);
+  return m;
+}
+const Box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+const Z = new V3(0, 0, 1);
+function rod(a, b, r, mat, parent) {
+  const len = a.distanceTo(b);
+  const m = mesh(new THREE.CylinderGeometry(r, r, len, 5).rotateX(Math.PI / 2), mat, 0, 0, 0, parent);
+  m.position.copy(a).add(b).multiplyScalar(0.5);
+  m.quaternion.setFromUnitVectors(Z, b.clone().sub(a).normalize());
+  return m;
+}
+
+const polyOn = x => (col, pts) => { x.fillStyle = col; x.beginPath(); pts.forEach(([a, b], i) => i ? x.lineTo(a, b) : x.moveTo(a, b)); x.closePath(); x.fill(); };
+function canvasTex(c) { const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t; }
+
+// printed side board: navy with sweeping yellow/orange/red bands + skull badge near the hand end
+function panelTexture(badgeRight) {
+  const W = 760, H = 350;
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'), poly = polyOn(x);
+  const L = p => badgeRight ? p.map(([a, b]) => [W - a, b]) : p;
+  x.fillStyle = '#2a2672'; x.fillRect(0, 0, W, H);
+  poly('#3b2f8f', L([[0, 0], [W, 0], [W, 70], [0, 120]]));
+  poly('#f4b41a', L([[0, 150], [W, 88], [W, 128], [0, 205]]));
+  poly('#ff7a1a', L([[0, 205], [W, 128], [W, 168], [0, 250]]));
+  poly('#e2262e', L([[140, 252], [W, 168], [W, 205], [330, 262]]));
+  poly('#e2262e', L([[330, 118], [W, 52], [W, 70], [420, 122]]));
+  poly('#1d1a55', L([[0, 290], [W, 250], [W, H], [0, H]]));
+  const bx = badgeRight ? W - 150 : 150, by = 185;
+  x.fillStyle = '#ff7a1a'; x.beginPath(); x.arc(bx, by, 74, 0, Math.PI * 2); x.fill();
+  x.strokeStyle = '#ffffff'; x.lineWidth = 9; x.stroke();
+  x.fillStyle = '#ffffff';
+  x.beginPath(); x.arc(bx, by - 10, 36, 0, Math.PI * 2); x.fill();
+  x.fillRect(bx - 20, by + 14, 40, 24);
+  poly('#ffffff', [[bx - 44, by - 34], [bx - 30, by - 20], [bx - 40, by - 12]]);
+  poly('#ffffff', [[bx + 44, by - 34], [bx + 30, by - 20], [bx + 40, by - 12]]);
+  x.fillStyle = '#ff7a1a';
+  for (const dx of [-14, 14]) { x.beginPath(); x.arc(bx + dx, by - 10, 10, 0, Math.PI * 2); x.fill(); }
+  poly('#ff7a1a', [[bx, by + 2], [bx - 5, by + 12], [bx + 5, by + 12]]);
+  for (const dx of [-11, -2, 7]) x.fillRect(bx + dx, by + 22, 4, 16);
+  return canvasTex(c);
+}
+
+// red launcher side: diagonal white stripes, slanted window, yellow icon, layered plywood edge
+function redSideTexture() {
+  const W = 1026, H = 324;                 // 11.4 cm x 3.6 cm at 90 px/cm
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'), poly = polyOn(x);
+  const u = z => (z + 10.2) * 90, v = y => H - (y - 4.8) * 90;
+  x.fillStyle = '#d8262c'; x.fillRect(0, 0, W, H);
+  poly('#b81c22', [[u(-10.2), v(4.8)], [u(1.2), v(4.8)], [u(1.2), v(5.25)], [u(-10.2), v(5.25)]]);
+  x.fillStyle = '#f4b41a'; x.fillRect(0, v(5.02), W, 18);
+  x.fillStyle = '#9bd35a'; x.fillRect(0, v(5.2), W, 8);
+  x.fillStyle = '#c98a4e'; x.fillRect(0, v(4.95), W, 10);
+  const stripe = (z0, w) => poly('#ffffff', [[u(z0), v(5.3)], [u(z0 + w), v(5.3)], [u(z0 + w - 1.4), v(8.4)], [u(z0 - 1.4), v(8.4)]]);
+  stripe(-6.25, 0.38); stripe(-6.95, 0.38);
+  poly('#ffffff', [[u(-9.6), v(8.25)], [u(-7.7), v(8.25)], [u(-7.9), v(7.95)], [u(-9.6), v(7.95)]]);
+  // slanted window showing the yellow inner board
+  poly('#4a2412', [[u(-5.4), v(5.35)], [u(-3.7), v(5.35)], [u(-1.2), v(6.25)], [u(-2.9), v(6.25)]]);
+  poly('#f4b41a', [[u(-5.0), v(5.45)], [u(-3.85), v(5.45)], [u(-1.6), v(6.15)], [u(-2.75), v(6.15)]]);
+  poly('#ffffff', [[u(-4.3), v(5.55)], [u(-3.9), v(5.55)], [u(-2.7), v(5.95)], [u(-3.1), v(5.95)]]);
+  // yellow ring icon
+  const ix = u(-3.4), iy = v(5.75);
+  x.strokeStyle = '#f4b41a'; x.lineWidth = 5;
+  x.beginPath(); x.arc(ix + 190, iy - 5, 30, 0, Math.PI * 2); x.stroke();
+  x.fillStyle = '#f4b41a';
+  x.fillRect(ix + 172, iy - 7, 36, 4);
+  for (const dx of [-12, 12]) { x.beginPath(); x.arc(ix + 190 + dx, iy - 5, 5, 0, Math.PI * 2); x.fill(); }
+  return canvasTex(c);
+}
+
+/* ---------------- projectiles ---------------- */
+function makeDart() {
+  const g = new THREE.Group();
+  mesh(new THREE.CylinderGeometry(0.6, 0.6, 7, 8).rotateX(Math.PI / 2), M('dart', { roughness: 0.95 }), 0, 0, 0, g);
+  // orange suction-cup head: short neck + flared cup
+  mesh(new THREE.CylinderGeometry(0.42, 0.55, 0.45, 8).rotateX(Math.PI / 2), M('orange'), 0, 0, 3.72, g);
+  mesh(new THREE.CylinderGeometry(0.82, 0.4, 0.45, 10).rotateX(Math.PI / 2), M('orange', { roughness: 0.4 }), 0, 0, 4.12, g);
+  mesh(new THREE.CylinderGeometry(0.62, 0.62, 0.04, 10).rotateX(Math.PI / 2), M('orange', { roughness: 0.25, color: 0xe0600a }), 0, 0, 4.34, g);
+  return g;
+}
+function tri(pts) {
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(pts.flat(), 3));
+  return geo;
+}
+function makeGlider() {
+  const g = new THREE.Group();
+  const nose = [0, 0, 4.5], tl = [-4.3, 0.9, -4], tr = [4.3, 0.9, -4], tc = [0, 0.05, -4], keel = [0, -1.3, -3.2];
+  const paper = { side: THREE.DoubleSide, roughness: 0.85 };
+  mesh(tri([nose, tl, tc, nose, tc, tr]), M('navy', paper), 0, 0, 0, g);
+  mesh(tri([nose, keel, tc]), M('white', paper), 0, 0, 0, g);
+  mesh(tri([[-0.5, 0.12, 2.2], [-3.3, 0.8, -3.6], [-1.6, 0.4, -3.6], [0.5, 0.12, 2.2], [1.6, 0.4, -3.6], [3.3, 0.8, -3.6]]),
+       M('white', paper), 0, 0.03, 0, g);
+  mesh(tri([[-4.3, 0.9, -4], [-4.3, 2.0, -3.6], [-3.6, 0.8, -4]]), M('red', paper), 0, 0, 0, g);
+  mesh(tri([[4.3, 0.9, -4], [4.3, 2.0, -3.6], [3.6, 0.8, -4]]), M('red', paper), 0, 0, 0, g);
+  return g;
+}
+
+/* ---------------- model ---------------- */
+const root = new THREE.Group();
+root.name = 'WristLauncher';
+root.scale.setScalar(0.1);
+// aimRig pivots near the elbow so the whole arm can swing to aim in the game
+const aimRig = new THREE.Group();
+aimRig.rotation.order = 'YXZ';
+aimRig.position.set(0, 0.6, -0.9);
+scene.add(aimRig);
+root.position.set(0, 0, 1.2);
+aimRig.add(root);
+
+const toy = new THREE.Group(); toy.name = 'Launcher'; root.add(toy);
+
+// ---- lower cuff: two blue foam arch plates that hook around the wrist ----
+function archShape() {
+  const s = new THREE.Shape();
+  s.moveTo(-3.3, -2.8); s.lineTo(-4.25, -1.5); s.lineTo(-4.25, 3.4); s.lineTo(-3.5, 4.25);
+  s.lineTo(3.5, 4.25); s.lineTo(4.25, 3.4); s.lineTo(4.25, -1.5); s.lineTo(3.3, -2.8); s.lineTo(2.75, -2.55);
+  const rx = 3.6, ry = 2.55, n = 9;
+  for (let i = 0; i <= n; i++) {
+    const t = -0.72 + (Math.PI + 1.44) * (i / n);
+    s.lineTo(rx * Math.cos(t), 0.1 + ry * Math.sin(t));
+  }
+  s.lineTo(-2.75, -2.55);
+  return s;
+}
+for (const pz of [-9.35, -1.75]) {
+  mesh(new THREE.ExtrudeGeometry(archShape(), { depth: 0.7, bevelEnabled: false }), M('blue'), 0, 0, pz, toy);
+}
+// velcro strap underneath
+mesh(new THREE.CylinderGeometry(3.15, 3.15, 4.2, 12, 1, true, -1.35, 2.7)
+      .rotateX(Math.PI / 2).scale(1.22, 0.9, 1), M('felt', { side: THREE.DoubleSide, roughness: 1 }), 0, 0, -5.3, toy);
+
+// blue deck with the tall diamond cut-outs
+mesh(Box(7.9, 1.75, 7.6), M('blue'), 0, 3.37, -5.35, toy);
+for (const s of [1, -1]) {
+  for (let i = 0; i < 8; i++) {
+    const d = new THREE.PlaneGeometry(0.46, 0.46).rotateZ(Math.PI / 4).scale(1, 2.3, 1).rotateY(s * Math.PI / 2);
+    mesh(d, M('dark'), s * 3.96, 3.45, -8.65 + i * 0.95, toy);
+  }
+  // printed side board
+  mesh(Box(0.25, 3.5, 7.6), M('navy'), s * 3.95, 0.75, -5.35, toy);
+  const art = new THREE.Mesh(new THREE.PlaneGeometry(7.6, 3.5).rotateY(s * Math.PI / 2),
+    new THREE.MeshStandardMaterial({ map: panelTexture(s < 0), roughness: 0.55 }));
+  art.position.set(s * 4.09, 0.75, -5.35); art.receiveShadow = true; toy.add(art);
+  // wood edge strips, round foam clips and wood tabs at the four corners
+  for (const cz of [-9.0, -1.4]) {
+    mesh(Box(0.22, 4.9, 0.32), M('wood'), s * 4.18, 1.4, cz, toy);
+    for (const cy of [-0.9, 3.75]) {
+      mesh(new THREE.CylinderGeometry(0.78, 0.78, 0.55, 8).rotateZ(Math.PI / 2), M('blue'), s * 4.45, cy, cz, toy);
+      mesh(Box(0.14, 0.85, 0.26), M('wood'), s * 4.76, cy, cz, toy);
+    }
+  }
+}
+// felt thumb pad with the trigger button (+x side)
+{
+  const pad = new THREE.Shape();
+  [[-7.9, -1.0], [-4.9, -1.0], [-5.1, -0.4], [-5.8, 0.8], [-6.5, 1.0], [-7.2, 0.7], [-7.8, -0.2]].forEach(([a, b], i) => i ? pad.lineTo(a, b) : pad.moveTo(a, b));
+  const g = new THREE.ExtrudeGeometry(pad, { depth: 0.35, bevelEnabled: false }).rotateY(-Math.PI / 2);
+  mesh(g, M('felt', { roughness: 1, side: THREE.DoubleSide }), 4.45, 0, 0, toy);
+  mesh(new THREE.SphereGeometry(0.6, 8, 5).scale(0.65, 1, 1), M('black', { roughness: 0.35 }), 4.5, 0.05, -6.45, toy);
+}
+// felt roll along the bottom of the -x side
+mesh(new THREE.CylinderGeometry(0.62, 0.62, 3.8, 7).rotateX(Math.PI / 2), M('felt', { roughness: 1 }), -4.2, -1.35, -5.3, toy);
+
+// ---- launcher body ----
+mesh(Box(5.0, 0.3, 8.8), M('wood'), 0, 4.35, -5.2, toy);
+mesh(Box(4.2, 0.3, 9.4), M('yellow'), 0, 4.65, -4.3, toy);
+const prof = [[1.2, 4.8], [1.2, 6.4], [-5.6, 6.4], [-6.5, 8.4], [-9.8, 8.4], [-10.2, 7.6], [-7.4, 4.8]];
+const body = new THREE.ExtrudeGeometry(new THREE.Shape(prof.map(([z, y]) => new THREE.Vector2(z, y))), { depth: 3.8, bevelEnabled: false });
+{ // shape coords double as UVs on the side caps: normalise them onto the side texture
+  const uv = body.attributes.uv;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, (uv.getX(i) + 10.2) / 11.4, (uv.getY(i) - 4.8) / 3.6);
+}
+body.translate(0, 0, -1.9).rotateY(-Math.PI / 2);
+mesh(body, [new THREE.MeshStandardMaterial({ map: redSideTexture(), roughness: 0.5 }), M('red', { roughness: 0.5 })], 0, 0, 0, toy);
+for (const s of [1, -1]) {
+  // frosted plastic magazine clips on the rear block
+  const clip = mesh(Box(0.25, 1.4, 1.9), M('white', { transparent: true, opacity: 0.6, roughness: 0.3 }), s * 2.1, 7.35, -8.9, toy);
+  clip.rotation.z = s * -0.12;
+  // wooden lever sticking out of the side window
+  const lev = mesh(Box(0.28, 0.45, 2.4), M('wood'), s * 2.05, 6.0, -3.2, toy);
+  lev.rotation.x = -0.28;
+  // rubber bands: from the star wing tips at the rear block, stretched forward to the front of the body
+  rod(new V3(s * 3.55, 6.95, -6.35), new V3(s * 1.97, 6.25, 1.15), 0.07, M('green'), toy);
+  rod(new V3(s * 3.2, 6.85, -6.0), new V3(s * 1.97, 5.45, 1.15), 0.07, M('green'), toy);
+  rod(new V3(s * 1.97, 6.25, 1.15), new V3(s * 1.97, 5.45, 1.15), 0.07, M('green'), toy);
+}
+mesh(Box(3.4, 0.25, 6.4), M('wood'), 0, 6.52, -2.4, toy);          // layered top plates
+mesh(Box(3.0, 0.2, 4.6), M('yellow'), 0, 6.7, -2.9, toy);
+// white star-shaped wings on the rear block that anchor the rubber bands
+{
+  const star = new THREE.Shape();
+  [[-3.9, 0.15], [-2.7, 0.45], [-2.3, 1.25], [-1.6, 0.6], [1.6, 0.6], [2.3, 1.25], [2.7, 0.45], [3.9, 0.15],
+   [2.7, -0.35], [2.4, -1.2], [1.6, -0.5], [-1.6, -0.5], [-2.4, -1.2], [-2.7, -0.35]].forEach(([a, b], i) => i ? star.lineTo(a, b) : star.moveTo(a, b));
+  mesh(new THREE.ExtrudeGeometry(star, { depth: 0.28, bevelEnabled: false }).rotateX(-Math.PI / 2),
+       [M('white', { roughness: 0.6 }), M('wood')], 0, 6.75, -6.2, toy);
+}
+mesh(Box(4.0, 0.3, 3.8), M('navy'), 0, 8.55, -8.0, toy);           // purple rear deck
+mesh(Box(0.25, 0.35, 3.2), M('wood'), 1.35, 8.85, -8.0, toy);
+mesh(Box(0.25, 0.35, 3.2), M('wood'), -1.35, 8.85, -8.0, toy);
+mesh(Box(1.6, 0.25, 0.45), M('wood'), 0, 8.82, -7.1, toy);
+mesh(Box(1.6, 0.25, 0.45), M('wood'), 0, 8.82, -7.7, toy);
+mesh(Box(1.5, 1.7, 0.3), M('orange'), 0, 6.3, -10.45, toy);        // rear latch
+mesh(Box(0.9, 0.2, 0.05), M('white'), 0, 6.3, -10.62, toy);
+mesh(Box(0.35, 1.2, 0.35), M('orange'), 0.95, 6.9, -10.2, toy);    // latch rubber loops
+mesh(Box(0.35, 1.2, 0.35), M('orange'), -0.95, 6.9, -10.2, toy);
+
+// plunger (yellow rod + ring)
+const plunger = new THREE.Group(); plunger.position.set(0, 7.25, -5.3); toy.add(plunger);
+mesh(new THREE.CylinderGeometry(0.35, 0.35, 1.4, 7).rotateX(Math.PI / 2), M('yellow'), 0, 0, 0, plunger);
+mesh(new THREE.CylinderGeometry(0.78, 0.78, 0.22, 10).rotateX(Math.PI / 2), M('white'), 0, 0, -0.65, plunger);
+mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.26, 8).rotateX(Math.PI / 2), M('navy'), 0, 0, -0.65, plunger);
+
+// loaded ammo
+const loadedDart = makeDart(); loadedDart.position.set(0, 7.25, -2.1); toy.add(loadedDart);   // rear end sits over the yellow plunger
+const loadedGlider = makeGlider(); loadedGlider.position.set(0, 7.95, -1.0); toy.add(loadedGlider);
+
+/* ---------------- low-poly arm + hand ---------------- */
+const skin = M('skin', { roughness: 0.8 });
+const skinMeshes = [];
+const S = (m) => (skinMeshes.push(m), m);
+S(mesh(new THREE.CylinderGeometry(2.55, 2.95, 15, 7).rotateX(Math.PI / 2).translate(0, 0, -7.5).scale(1.28, 0.86, 1), skin, 0, 0, 0, root));
+
+const wrist = new THREE.Group(); wrist.position.set(0, 0.1, 0.2); root.add(wrist);
+S(mesh(new THREE.SphereGeometry(2.5, 7, 5).scale(1.3, 0.82, 0.9), skin, 0, 0, 0, wrist));
+S(mesh(Box(7.0, 2.3, 8.2).translate(0, 0, 4.1), skin, 0, 0, 0, wrist));
+const thumb = new THREE.Group(); thumb.position.set(-3.5, -0.3, 2.2); thumb.rotation.set(0.35, -0.75, 0); wrist.add(thumb);
+S(mesh(Box(1.8, 1.6, 5.2).translate(0, 0, 2.6), skin, 0, 0, 0, thumb));
+
+const fingers = [];
+let clipAnchor;
+for (const f of [{ x: -2.55, len: 6.4 }, { x: -0.85, len: 7.0, clip: true }, { x: 0.85, len: 6.7 }, { x: 2.55, len: 5.4 }]) {
+  const k = new THREE.Group(); k.position.set(f.x, 0.15, 8.0); wrist.add(k);
+  const p = f.len * 0.55, d = f.len * 0.45;
+  S(mesh(Box(1.55, 1.45, p).translate(0, 0, p / 2), skin, 0, 0, 0, k));
+  const k2 = new THREE.Group(); k2.position.z = p; k.add(k2);
+  S(mesh(Box(1.45, 1.35, d).translate(0, 0, d / 2), skin, 0, 0, 0, k2));
+  fingers.push([k, k2]);
+  if (f.clip) {
+    // blue foam finger clip with white inlay + slot
+    mesh(new THREE.CapsuleGeometry(0.6, 3.0, 2, 6).rotateX(Math.PI / 2).scale(1.35, 0.9, 1), M('blue'), 0, 1.15, 2.1, k);
+    mesh(Box(0.7, 0.08, 3.2), M('white'), 0, 1.7, 2.0, k);
+    mesh(Box(0.34, 0.1, 0.9), M('black'), 0, 1.76, 3.2, k);
+    mesh(new THREE.TorusGeometry(0.55, 0.11, 5, 10).scale(1.4, 1, 1), M('orange'), 0, 1.45, 0.25, k);
+    clipAnchor = new THREE.Object3D(); clipAnchor.position.set(0, 1.6, 0.3); k.add(clipAnchor);
+  }
+}
+
+// white pull strap: launcher front -> finger clip (updated every frame)
+const strap = new THREE.Mesh(lp(Box(0.9, 0.06, 1)), M('white'));
+strap.castShadow = true; root.add(strap);
+const strapA = new V3(0, 4.3, -1.0), strapB = new V3();
+function updateStrap() {
+  root.updateMatrixWorld(true);
+  root.worldToLocal(clipAnchor.getWorldPosition(strapB));
+  const len = strapA.distanceTo(strapB);
+  strap.position.copy(strapA).add(strapB).multiplyScalar(0.5);
+  strap.scale.set(1, 1, len);
+  strap.quaternion.setFromUnitVectors(Z, strapB.clone().sub(strapA).normalize());
+}
+
+/* ---------------- state / firing ---------------- */
+let mode = 'dart';
+const REST = -0.05, FLEX = 0.6, CURL1 = 0.3, CURL2 = 0.45;
+let flexT = -1, fired = false, reloadT = -1, plungerKick = 0, recoil = 0;
+const shots = [];
+const TIP = 0.435;                              // dart centre -> suction cup face (world units)
+
+function current() { return mode === 'dart' ? loadedDart : loadedGlider; }
+function showLoaded() {
+  loadedDart.visible = mode === 'dart';
+  loadedGlider.visible = mode === 'glider';
+  current().scale.setScalar(1);
+}
+showLoaded();
+
+function trigger() {
+  if (GAME.on && (!GAME.playing || GAME.darts <= 0)) return;
+  if (flexT < 0 && reloadT < 0) { flexT = 0; fired = false; }
+}
+
+function fire() {
+  if (GAME.on) {                                  // lock onto the reticle exactly at release
+    for (let i = 0; i < 4; i++) { aimRig.rotation.set(-tPitch, tYaw, 0); aimRig.updateMatrixWorld(true); solveAim(); }
+    // a little natural wobble so bullseyes take some skill
+    aimRig.rotation.set(-tPitch + (Math.random() - 0.5) * 0.02, tYaw + (Math.random() - 0.5) * 0.02, 0);
+    aimRig.updateMatrixWorld(true);
+  }
+  const src = current();
+  const pos = src.getWorldPosition(new V3());
+  const lift = GAME.on ? 0 : (mode === 'dart' ? 0.05 : 0.14);
+  const dir = new V3(0, lift, 1).normalize().applyQuaternion(aimRig.quaternion);
+  const holder = new THREE.Group();
+  holder.scale.setScalar(0.1);
+  holder.add(mode === 'dart' ? makeDart() : makeGlider());
+  holder.position.copy(pos);
+  holder.lookAt(pos.clone().add(dir));
+  scene.add(holder);
+  const speed = GAME.on ? GAME_SPEED : (mode === 'dart' ? 8.5 : 4.2);
+  shots.push({ obj: holder, kind: mode, vel: dir.multiplyScalar(speed), g: GAME.on ? GAME_G : 9.8,
+               age: 0, landed: false, game: GAME.on, seed: Math.random() * 6 });
+  if (!GAME.on) {
+    let extra = shots.filter(x => !x.game).length - 25;
+    for (let i = 0; extra > 0 && i < shots.length; i++) if (!shots[i].game) { shots[i].obj.removeFromParent(); shots.splice(i--, 1); extra--; }
+  }
+  src.visible = false;
+  reloadT = 0; plungerKick = 1; recoil = 1;
+  sound(mode);
+  if (GAME.on) { GAME.darts--; updateHud(); }
+}
+
+let actx;
+function tone(type, f0, f1, dur, vol) {
+  try {
+    actx ??= new (window.AudioContext || window.webkitAudioContext)();
+    const t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(f0, t);
+    o.frequency.exponentialRampToValueAtTime(f1, t + dur * 0.8);
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    o.connect(g).connect(actx.destination);
+    o.start(t); o.stop(t + dur + 0.02);
+  } catch (_) {}
+}
+function sound(kind) {
+  if (kind === 'glider') tone('triangle', 520, 240, 0.3, 0.15);
+  else tone('triangle', 900, 180, 0.15, 0.25);
+}
+
+/* ---------------- target game ---------------- */
+const WALL_Z = 8, FACE_Z = WALL_Z - 0.09, GAME_SPEED = 15, GAME_G = 6, ROUND_DARTS = 10;
+const GAME = { on: false, playing: false, darts: ROUND_DARTS, score: 0, best: 0, endT: -1 };
+try { GAME.best = +localStorage.getItem('wristLauncherBest') || 0; } catch (_) {}
+
+const range = new THREE.Group(); range.visible = false; scene.add(range);
+const wall = new THREE.Mesh(new THREE.PlaneGeometry(16, 7).rotateY(Math.PI),
+  new THREE.MeshStandardMaterial({ color: 0xefe8de, roughness: 1 }));
+wall.position.set(0, 3.5, WALL_Z); wall.receiveShadow = true; range.add(wall);
+// the range needs light from the shooter's side (the main light hits the wall from behind)
+const rangeLight = new THREE.DirectionalLight(0xffffff, 1.8);
+rangeLight.position.set(-3, 7, -4);
+rangeLight.target.position.set(0, 1.5, WALL_Z);
+rangeLight.castShadow = true;
+rangeLight.shadow.mapSize.set(1024, 1024);
+Object.assign(rangeLight.shadow.camera, { left: -8, right: 8, top: 6, bottom: -6, near: 1, far: 30 });
+rangeLight.shadow.bias = -0.001;
+range.add(rangeLight, rangeLight.target);
+
+const RINGS = [[1, 0x1f5fd8, 10], [0.75, 0xf3f3f0, 15], [0.5, 0xd8262c, 25], [0.25, 0xf4b41a, 50]];
+const targets = [];
+for (const d of [
+  { x: -2.4, y: 1.7, r: 0.6 }, { x: 0.1, y: 2.5, r: 0.48 }, { x: 2.5, y: 1.4, r: 0.62 },
+  { x: -0.8, y: 0.85, r: 0.42, amp: 1.7, spd: 0.9 }, { x: 1.4, y: 3.5, r: 0.4, amp: 2.0, spd: 1.35 },
+]) {
+  const g = new THREE.Group();
+  g.position.set(d.x, d.y, WALL_Z - 0.02);
+  const face = new THREE.Group(); g.add(face);
+  mesh(new THREE.CylinderGeometry(d.r * 1.08, d.r * 1.08, 0.06, 16).rotateX(Math.PI / 2), M('wood'), 0, 0, 0, face);
+  RINGS.forEach(([k, col], i) => mesh(new THREE.CylinderGeometry(d.r * k, d.r * k, 0.02, 16).rotateX(Math.PI / 2),
+    new THREE.MeshStandardMaterial({ color: col, roughness: 0.6, flatShading: true }), 0, 0, -0.04 - i * 0.012, face));
+  if (d.amp) mesh(Box(d.amp * 2 + d.r * 2, 0.08, 0.03), M('dark'), 0, 0, 0.005, range).position.set(d.x, d.y, WALL_Z - 0.01);
+  range.add(g);
+  targets.push({ g, face, ...d, hit: 0 });
+}
+const reticle = new THREE.Group();
+reticle.add(new THREE.Mesh(new THREE.RingGeometry(0.13, 0.17, 24), new THREE.MeshBasicMaterial({ color: 0xff7a1a, side: THREE.DoubleSide })));
+reticle.add(new THREE.Mesh(new THREE.CircleGeometry(0.035, 12), new THREE.MeshBasicMaterial({ color: 0xff7a1a, side: THREE.DoubleSide })));
+reticle.position.set(0, 1.8, WALL_Z - 0.15);
+range.add(reticle);
+
+const aimPoint = new V3(0, 1.8, WALL_Z);
+let tYaw = 0, tPitch = 0;
+const raycaster = new THREE.Raycaster();
+const wallPlane = new THREE.Plane(new V3(0, 0, 1), -WALL_Z);
+function setAim(e) {
+  const r = canvas.getBoundingClientRect();
+  raycaster.setFromCamera(new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1), camera);
+  const pt = raycaster.ray.intersectPlane(wallPlane, new V3());
+  if (!pt) return;
+  aimAt(pt.x, pt.y);
+}
+function aimAt(x, y) {
+  aimPoint.set(THREE.MathUtils.clamp(x, -6, 6), THREE.MathUtils.clamp(y, 0.25, 5.5), WALL_Z);
+  reticle.position.set(aimPoint.x, aimPoint.y, WALL_Z - 0.15);
+  solveAim();
+}
+const muzzleW = new V3();
+function solveAim() {
+  // aim from where the dart actually leaves, lifted to cancel the drop
+  const m = loadedDart.getWorldPosition(muzzleW);
+  const dx = aimPoint.x - m.x, dz = FACE_Z - m.z, flat = Math.hypot(dx, dz);
+  const t = flat / GAME_SPEED;
+  const dy = aimPoint.y - m.y + 0.5 * GAME_G * t * t;
+  tYaw = Math.atan2(dx, dz);
+  tPitch = Math.atan2(dy, flat);
+}
+
+const popsEl = document.getElementById('pops');
+function pop(text, world, color) {
+  const v = world.clone().project(camera), r = canvas.getBoundingClientRect();
+  const el = document.createElement('div');
+  el.className = 'pop'; el.textContent = text; el.style.color = color;
+  el.style.left = ((v.x + 1) / 2 * r.width) + 'px';
+  el.style.top = ((1 - v.y) / 2 * r.height) + 'px';
+  popsEl.appendChild(el);
+  setTimeout(() => el.remove(), 950);
+}
+
+function stick(s, hit, parent) {
+  const d = s.vel.clone().normalize().lerp(new V3(0, 0, 1), 0.6).normalize();
+  s.obj.position.copy(hit).addScaledVector(d, -TIP);
+  s.obj.lookAt(hit.clone().add(d));
+  s.landed = s.stuck = true; s.wob = 1;
+  if (parent) parent.attach(s.obj);
+  s.baseQ = s.obj.quaternion.clone();
+}
+
+function checkHit(s, tip0, tip1) {
+  if (tip1.z < FACE_Z || tip0.z >= FACE_Z) return false;
+  const hit = tip0.clone().lerp(tip1, (FACE_Z - tip0.z) / (tip1.z - tip0.z));
+  for (const tg of targets) {
+    const d = Math.hypot(hit.x - tg.g.position.x, hit.y - tg.g.position.y) / tg.r;
+    if (d <= 1) {
+      let pts = RINGS.filter(([k]) => d <= k).at(-1)[2];
+      if (tg.amp) pts *= 2;
+      GAME.score += pts; updateHud();
+      stick(s, hit, tg.face);
+      tg.hit = 1;
+      pop('+' + pts, hit, pts >= 50 ? '#f4b41a' : '#ffffff');
+      tone('sine', pts >= 50 ? 880 : 520, pts >= 50 ? 1320 : 700, 0.18, 0.2);
+      tone('square', 160, 90, 0.08, 0.08);
+      return true;
+    }
+  }
+  if (Math.abs(hit.x) < 8 && hit.y < 7) {       // suction cup sticks to the wall
+    hit.z = WALL_Z - 0.005;
+    stick(s, hit, null);
+    tone('square', 150, 90, 0.08, 0.08);
+    return true;
+  }
+  return false;
+}
+
+const hud = document.getElementById('hud'), overlay = document.getElementById('overlay');
+function updateHud() {
+  document.getElementById('score').textContent = GAME.score;
+  document.getElementById('darts').textContent = GAME.darts;
+  document.getElementById('best').textContent = GAME.best;
+}
+function clearGameDarts() {
+  for (let i = shots.length - 1; i >= 0; i--) if (shots[i].game) { shots[i].obj.removeFromParent(); shots.splice(i, 1); }
+}
+const SHOW_VIEW = { pos: new V3(4.3, 2.3, 2.0), target: new V3(0, 0.85, 0.15), fov: 35 };
+const GAME_VIEW = { pos: new V3(1.05, 2.55, -4.4), target: new V3(0, 1.7, WALL_Z), fov: 40 };
+let camAnim = null;
+function flyTo(v, done) {
+  camAnim = { t: 0, p0: camera.position.clone(), t0: controls.target.clone(), f0: camera.fov, v, done };
+}
+function gameFov() { return camera.aspect < 0.9 ? 62 : GAME_VIEW.fov; }
+
+function enterGame() {
+  if (GAME.on) return;
+  GAME.on = true; GAME.playing = false;
+  document.querySelector('.seg [data-mode=dart]').click();
+  document.body.classList.add('game');
+  controls.enabled = false; controls.autoRotate = false; syncRotate();
+  range.visible = true;
+  clearGameDarts();
+  flyTo({ ...GAME_VIEW, fov: gameFov() }, () => { overlayShow('Target practice', null, 'Start'); });
+  updateHud();
+}
+function overlayShow(title, text, btn) {
+  document.getElementById('ovTitle').textContent = title;
+  if (text) document.getElementById('ovText').textContent = text;
+  document.getElementById('ovGo').textContent = btn;
+  overlay.hidden = false; hud.hidden = true;
+}
+function startRound() {
+  clearGameDarts();
+  GAME.darts = ROUND_DARTS; GAME.score = 0; GAME.endT = -1; GAME.playing = true;
+  overlay.hidden = true; hud.hidden = false;
+  updateHud();
+}
+function endRound() {
+  GAME.playing = false;
+  const best = GAME.score > GAME.best;
+  if (best) { GAME.best = GAME.score; try { localStorage.setItem('wristLauncherBest', GAME.best); } catch (_) {} }
+  updateHud();
+  overlayShow(best ? 'New best score!' : 'Round over',
+    `You scored ${GAME.score} with ${ROUND_DARTS} darts.` + (best ? '' : ` Best so far: ${GAME.best}.`), 'Play again');
+}
+function exitGame() {
+  GAME.on = GAME.playing = false;
+  overlay.hidden = hud.hidden = true;
+  document.body.classList.remove('game');
+  clearGameDarts();
+  tYaw = tPitch = 0;
+  flyTo(SHOW_VIEW, () => { range.visible = false; controls.enabled = true; });
+}
+document.getElementById('playBtn').onclick = e => { e.currentTarget.blur(); enterGame(); };
+document.getElementById('ovGo').onclick = e => { e.currentTarget.blur(); startRound(); };
+document.getElementById('ovExit').onclick = e => { e.currentTarget.blur(); exitGame(); };
+document.getElementById('exitBtn').onclick = e => { e.currentTarget.blur(); exitGame(); };
+document.getElementById('backBtn').onclick = e => { e.currentTarget.blur(); exitGame(); };
+
+/* ---------------- UI ---------------- */
+let down = null;
+canvas.addEventListener('pointermove', e => { if (GAME.playing) setAim(e); });
+canvas.addEventListener('pointerdown', e => {
+  down = { x: e.clientX, y: e.clientY, t: performance.now() };
+  if (GAME.playing) setAim(e);
+});
+canvas.addEventListener('pointerup', e => {
+  if (!down) return;
+  const moved = Math.hypot(e.clientX - down.x, e.clientY - down.y), quick = performance.now() - down.t < 300;
+  down = null;
+  if (GAME.on) { if (GAME.playing) { setAim(e); trigger(); } return; }
+  if (moved < 6 && quick) trigger();
+});
+addEventListener('keydown', e => { if (e.code === 'Space') { e.preventDefault(); trigger(); } });
+
+document.getElementById('fireBtn').onclick = e => { trigger(); e.currentTarget.blur(); };
+document.querySelectorAll('.seg button').forEach(b => b.onclick = () => {
+  mode = b.dataset.mode;
+  document.querySelectorAll('.seg button').forEach(x => x.classList.toggle('on', x === b));
+  if (reloadT < 0) showLoaded();
+  b.blur();
+});
+const armBtn = document.getElementById('armBtn');
+armBtn.onclick = () => {
+  const show = !skinMeshes[0].visible;
+  skinMeshes.forEach(m => m.visible = show);
+  armBtn.querySelector('.lbl').textContent = show ? 'Hide arm' : 'Show arm';
+  armBtn.setAttribute('aria-label', show ? 'Hide arm' : 'Show arm');
+  armBtn.querySelector('.eye-closed').style.display = show ? '' : 'none';
+  armBtn.querySelector('.eye-open').style.display = show ? 'none' : '';
+  armBtn.blur();
+};
+const rotateBtn = document.getElementById('rotateBtn');
+function syncRotate() {
+  const on = controls.autoRotate;
+  rotateBtn.querySelector('.lbl').textContent = on ? 'Pause' : 'Spin';
+  rotateBtn.setAttribute('aria-label', on ? 'Pause spin' : 'Spin');
+  rotateBtn.classList.toggle('spinning', on);
+}
+controls.addEventListener('start', () => { controls.autoRotate = false; syncRotate(); });
+rotateBtn.onclick = () => { controls.autoRotate = !controls.autoRotate; syncRotate(); rotateBtn.blur(); };
+
+document.getElementById('exportBtn').onclick = () => {
+  new GLTFExporter().parse(root, glb => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([glb], { type: 'model/gltf-binary' }));
+    a.download = 'wrist-launcher-lowpoly.glb';
+    a.click();
+  }, () => alert('Export failed'), { binary: true });
+};
+
+/* ---------------- loop ---------------- */
+new ResizeObserver(() => {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  if (GAME.on && !camAnim) camera.fov = gameFov();
+  camera.updateProjectionMatrix();
+}).observe(canvas);
+
+const ease = t => 1 - Math.pow(1 - t, 3);
+const IN = 0.22, HOLD = 0.08, OUT = 0.45;
+const clock = new THREE.Clock();
+const tmp = new V3(), tip0 = new V3(), tip1 = new V3(), qW = new THREE.Quaternion(), XA = new V3(1, 0, 0);
+
+renderer.setAnimationLoop(() => {
+  const dt = Math.min(clock.getDelta(), window.__dtCap || 0.05);
+  const time = clock.elapsedTime;
+
+  // wrist flex -> strap pull -> fire
+  let a = 0;
+  if (flexT >= 0) {
+    flexT += dt;
+    if (!fired && flexT >= IN) { fired = true; fire(); }
+    if (flexT < IN) a = ease(flexT / IN);
+    else if (flexT < IN + HOLD) a = 1;
+    else if (flexT < IN + HOLD + OUT) a = 1 - ease((flexT - IN - HOLD) / OUT);
+    else flexT = -1;
+  }
+  wrist.rotation.x = REST + a * (FLEX - REST);
+  for (const [k, k2] of fingers) { k.rotation.x = CURL1 + a * 0.25; k2.rotation.x = CURL2 + a * 0.3; }
+
+  // aiming (arm swings from the elbow)
+  const ak = Math.min(1, 12 * dt);
+  aimRig.rotation.y += (tYaw - aimRig.rotation.y) * ak;
+  aimRig.rotation.x += (-tPitch - aimRig.rotation.x) * ak;
+  if (GAME.playing) solveAim();
+
+  // reload
+  if (reloadT >= 0) {
+    reloadT += dt;
+    if (reloadT > 0.8 && !(GAME.on && GAME.darts <= 0)) {
+      const src = current();
+      loadedDart.visible = mode === 'dart';
+      loadedGlider.visible = mode === 'glider';
+      const k = Math.min((reloadT - 0.8) / 0.25, 1);
+      src.scale.setScalar(0.3 + 0.7 * ease(k));
+      if (k >= 1) reloadT = -1;
+    } else if (reloadT > 0.8) reloadT = -1;
+  }
+
+  plungerKick *= Math.exp(-7 * dt);
+  plunger.position.z = -5.3 + 0.9 * plungerKick;
+  recoil *= Math.exp(-14 * dt);
+  toy.position.z = -0.35 * recoil;
+
+  updateStrap();
+
+  // targets
+  for (const tg of targets) {
+    if (tg.amp) tg.g.position.x = tg.x + Math.sin(time * tg.spd + tg.x) * tg.amp;
+    tg.hit *= Math.exp(-6 * dt);
+    tg.face.scale.setScalar(1 + 0.18 * tg.hit);
+  }
+
+  // projectiles
+  for (let i = shots.length - 1; i >= 0; i--) {
+    const s = shots[i], p = s.obj.position;
+    s.age += dt;
+    if (s.stuck) {
+      if (s.wob > 0.01) {
+        s.wob *= Math.exp(-5 * dt);
+        s.obj.quaternion.copy(s.baseQ).multiply(qW.setFromAxisAngle(XA, Math.sin(s.age * 38) * 0.22 * s.wob));
+      }
+    } else if (!s.landed) {
+      if (s.kind === 'dart') {
+        tip0.copy(s.vel).normalize().multiplyScalar(TIP).add(p);
+        p.addScaledVector(s.vel, dt);
+        p.y -= 0.5 * s.g * dt * dt;            // exact under constant gravity, even on slow frames
+        s.vel.y -= s.g * dt;
+        tip1.copy(s.vel).normalize().multiplyScalar(TIP).add(p);
+        if (range.visible && checkHit(s, tip0, tip1)) continue;
+        s.obj.lookAt(tmp.copy(p).add(s.vel));
+        if (p.y <= 0.06) { p.y = 0.06; s.landed = true; s.obj.rotation.set(0, Math.atan2(s.vel.x, s.vel.z), 0); }
+      } else {
+        const w = Math.sin(s.age * 1.6 + s.seed);
+        s.vel.y = Math.max(s.vel.y - 1.1 * dt, -0.55);
+        s.vel.x = w * 0.6;
+        p.addScaledVector(s.vel, dt);
+        s.obj.lookAt(tmp.copy(p).add(s.vel));
+        s.obj.rotateZ(-w * 0.35);
+        if (p.y <= 0.13) { p.y = 0.13; s.landed = true; s.obj.rotation.set(0, Math.atan2(s.vel.x, s.vel.z), 0); }
+      }
+    }
+    if (s.game) continue;                       // game darts stay stuck until the round resets
+    const life = s.kind === 'dart' ? 3.5 : 6;
+    if (s.age > life) {
+      const k = 1 - (s.age - life) / 0.5;
+      if (k <= 0) { s.obj.removeFromParent(); shots.splice(i, 1); continue; }
+      s.obj.scale.setScalar(0.1 * k);
+    }
+  }
+
+  // round end: out of darts and nothing still flying
+  if (GAME.playing && GAME.darts <= 0 && flexT < 0 && !shots.some(s => s.game && !s.landed)) {
+    if (GAME.endT < 0) GAME.endT = 0;
+    GAME.endT += dt;
+    if (GAME.endT > 1) endRound();
+  }
+
+  // camera
+  if (camAnim) {
+    camAnim.t += dt / 0.9;
+    const k = ease(Math.min(camAnim.t, 1));
+    camera.position.lerpVectors(camAnim.p0, camAnim.v.pos, k);
+    controls.target.lerpVectors(camAnim.t0, camAnim.v.target, k);
+    camera.fov = camAnim.f0 + (camAnim.v.fov - camAnim.f0) * k;
+    camera.updateProjectionMatrix();
+    camera.lookAt(controls.target);
+    if (camAnim.t >= 1) { const d = camAnim.done; camAnim = null; d && d(); }
+  } else if (GAME.on) {
+    camera.lookAt(controls.target);
+  } else {
+    controls.update();
+  }
+  renderer.render(scene, camera);
+});
+window.__launcher = { trigger, camera, controls, enterGame, startRound, aimAt, GAME,
+  setMode: m => document.querySelector(`.seg [data-mode=${m}]`).click() };
+</script>
+</body>
+</html>

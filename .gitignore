@@ -1,0 +1,30 @@
+# ---- Not uploaded to GitHub (source files, too big or unused) ----
+# Raw source folders
+images/Smartivity/
+images/craft doc/
+images/naveena-sombu/new-image/
+images/sketch-toy/new-image-2/
+
+# Loose source images (the site only uses the cs/ subfolders here)
+images/binome/*
+!images/binome/cs/
+images/wrist-shooter/*
+!images/wrist-shooter/cs/
+!images/wrist-shooter/wrist shooter.png
+images/portrait.png
+
+# Old / test pages
+project-wrist-shooter copy.html
+
+# Raw camera, video and design files, if any get added later
+*.ARW
+*.avi
+*.psd
+*.ai
+*.fig
+*.blend
+
+# System files
+desktop.ini
+Thumbs.db
+.DS_Store

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prison Break – Ramzi</title>
+    <meta name="description" content="Prison Break: a VR escape room built around Guddu bhai, a key maker who only opened up once you earned his trust. Clay character, 3D scan and a ShapesXR prototype played on Meta Quest 3.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prison-break.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body class="km">
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="index.html#about">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============ HERO + OVERVIEW ============ -->
+        <div class="km-wrap">
+            <section class="km-hero">
+                <div class="km-hero-copy">
+                    <span class="chip">VR Escape Room</span>
+                    <h1>Prison<br>Break</h1>
+                    <p class="tagline hand">Unlock. Escape. Discover.</p>
+                    <p class="intro">A VR escape room built around a real person: the only way out is getting a guarded key maker to open up.</p>
+                </div>
+                <div class="cellmate">
+                    <img src="images/key-maker/cs/clay.webp" width="333" height="491"
+                         alt="The clay character of Guddu bhai: a man whose head is a padlock">
+                    <span class="bars" aria-hidden="true"></span>
+                </div>
+            </section>
+
+            <div class="ov">
+                <div class="ov-item"><small>Role</small><strong>Character &amp; VR Designer</strong><em>Solo project</em></div>
+                <div class="ov-item"><small>Duration</small><strong>1 Week</strong><em>VR module</em></div>
+                <div class="ov-item"><small>Course</small><strong>Technology III &amp; Character Design</strong></div>
+                <div class="ov-item ov-item--status"><small>Status</small><strong><span class="ov-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Exhibited in VR</strong><em>on Meta Quest 3</em></div>
+            </div>
+        </div>
+
+        <!-- ============ 01 MEETING GUDDU BHAI ============ -->
+        <section class="sec km-wrap">
+            <div class="km-inner">
+                <div class="label"><b>01</b><span>Meeting Guddu bhai</span></div>
+                <h2 class="km-h2">He didn't want to talk.</h2>
+                <p class="lead" style="margin-top:20px; max-width:760px">For the Character Design module we had to turn a real person into a clay character, after meeting them and learning their traits. I chose a key maker, Guddu bhai. At first he was mysterious, rude and wouldn't talk. As I kept talking to him, he slowly opened up.</p>
+                <ol class="trust">
+                    <li class="reveal">
+                        <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></span>
+                        <span class="stage">At first</span>
+                        <h3>Guarded</h3>
+                        <p>Mysterious, rude and quiet. He kept to himself and wouldn't answer.</p>
+                    </li>
+                    <li class="reveal">
+                        <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 7.6-1.7"/></svg></span>
+                        <span class="stage">Then</span>
+                        <h3>Opening up</h3>
+                        <p>As I kept the conversation going, short answers slowly turned into real talk.</p>
+                    </li>
+                    <li class="reveal">
+                        <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 7.9-.9M16 3.5l1.5-1.5"/></svg></span>
+                        <span class="stage">In the end</span>
+                        <h3>Open</h3>
+                        <p>Warm and kind. He shared his life with me, and showed he can make a key of any kind.</p>
+                    </li>
+                </ol>
+                <div class="bio">
+                    <div>
+                        <p class="hand">Guddu bhai, the amazing key maker</p>
+                        <p class="lead">Born in 1978 in a large family in Uttar Pradesh. He carries a quiet strength and a sense of mystery. His eyes hold stories untold, and his reserved demeanor hints at depth. He balances a quiet, introspective life with daily work and family responsibilities.</p>
+                    </div>
+                    <img class="reveal" src="images/key-maker/cs/guddu-photos.webp" width="985" height="409" loading="lazy" alt="Three photos of Guddu bhai at his key stall">
+                </div>
+                <figure class="wall reveal">
+                    <img src="images/key-maker/cs/research-wall.webp" width="1280" height="762" loading="lazy" alt="My research wall: photos from the conversations with Guddu bhai and sticky notes on his traits">
+                    <figcaption class="hand">my research wall: photos and notes from our conversations</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 02 THE CHARACTER (dark band) ============ -->
+        <section class="dark">
+            <div class="km-wrap" style="padding-inline:0">
+                <div class="label"><b class="on-brass" style="--c: var(--brass)">02</b><span>The character</span></div>
+                <h2 class="km-h2">A man shaped like a lock.</h2>
+                <p class="lead" style="margin-top:20px; max-width:720px">Guddu bhai is a personification of the object he knows best, the lock, because he is reserved by nature. I drew him first, then sculpted him in clay.</p>
+                <div class="char-grid">
+                    <figure class="reveal">
+                        <img src="images/key-maker/cs/sketch.webp" width="326" height="491" loading="lazy" alt="Pencil sketch of the lock-headed character">
+                        <figcaption class="hand">the sketch</figcaption>
+                    </figure>
+                    <ul class="keywords">
+                        <li class="kw-title">KEYWORDS</li>
+                        <li>Mysterious</li>
+                        <li>Philosophical</li>
+                        <li>Skilled</li>
+                        <li>Intimidating</li>
+                        <li>Humble</li>
+                    </ul>
+                    <figure class="reveal">
+                        <img src="images/key-maker/cs/clay.webp" width="333" height="491" loading="lazy" alt="The finished clay model">
+                        <figcaption class="hand">the clay model</figcaption>
+                    </figure>
+                </div>
+                <ul class="details">
+                    <li class="reveal"><img src="images/key-maker/cs/detail-lock.webp" width="225" height="270" loading="lazy" alt="Close-up of the padlock shackle on his head"><p><b>A padlock for a head.</b> He's a personification of the lock because he is reserved by nature.</p></li>
+                    <li class="reveal"><img src="images/key-maker/cs/detail-keys.webp" width="225" height="269" loading="lazy" alt="Close-up of the keys without teeth"><p><b>Keys without teeth.</b> Answers can only be unlocked by him, revealing information only when he chooses to share it.</p></li>
+                    <li class="reveal"><img src="images/key-maker/cs/detail-eyes.webp" width="226" height="270" loading="lazy" alt="Close-up of the eyes, nose and eyebrows"><p><b>Intimidating eyes,</b> an exaggerated nose and bold eyebrows reflect his strong, imposing personality.</p></li>
+                    <li class="reveal"><img src="images/key-maker/cs/detail-lips.webp" width="225" height="269" loading="lazy" alt="Close-up of the keyhole-shaped lips"><p><b>Keyhole-shaped lips,</b> for his reserved nature and the idea that he "holds the keys" to his thoughts and emotions.</p></li>
+                </ul>
+                <h3 class="make-title">Making him</h3>
+                <ol class="making">
+                    <li class="reveal"><img src="images/key-maker/cs/make-1-foam.webp" width="900" height="1200" loading="lazy" alt="Carving the foam core"><span class="hand">01</span><p>Carving the foam core</p></li>
+                    <li class="reveal"><img src="images/key-maker/cs/make-2-core.webp" width="900" height="1200" loading="lazy" alt="The foam core with wire arms and legs"><span class="hand">02</span><p>Foam core with wire arms and legs</p></li>
+                    <li class="reveal"><img src="images/key-maker/cs/make-3-clay.webp" width="900" height="1200" loading="lazy" alt="The first layer of clay, the face taking shape"><span class="hand">03</span><p>First layer of clay, the face takes shape</p></li>
+                    <li class="reveal"><img src="images/key-maker/cs/make-4-painted.webp" width="900" height="1200" loading="lazy" alt="The painted clay character from the front"><span class="hand">04</span><p>Painted, with the padlock shackle on top</p></li>
+                </ol>
+                <div class="turn">
+                    <img class="reveal" src="images/key-maker/cs/turn-side.webp" width="900" height="1200" loading="lazy" alt="The finished model from the side">
+                    <img class="reveal" src="images/key-maker/cs/turn-back.webp" width="900" height="1200" loading="lazy" alt="The finished model from the back">
+                    <img class="reveal" src="images/key-maker/cs/turn-side-2.webp" width="900" height="1200" loading="lazy" alt="The finished model from the other side">
+                    <p class="hand">all the way round</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 03 THE IDEA ============ -->
+        <section class="sec km-wrap">
+            <div class="km-inner">
+                <div class="label"><b style="--c: var(--slate)">03</b><span>The idea</span></div>
+                <h2 class="km-h2">The prison is him.</h2>
+                <p class="lead" style="margin-top:20px; max-width:760px">For the Technology III VR exhibition, I could have simply put the model on display. But the way our conversation unfolded, and how game-like Guddu bhai already felt, made me turn it into something you play.</p>
+                <div class="mirror">
+                    <span class="head">In real life</span><span class="head"></span><span class="head">In the game</span>
+                    <p class="real reveal">He kept to himself, closed like a lock.</p>
+                    <span class="mirror-arrow" aria-hidden="true">→</span>
+                    <p class="game reveal">You start locked in a prison cell, one he built.</p>
+                    <p class="real reveal">He opened up a little with every conversation.</p>
+                    <span class="mirror-arrow" aria-hidden="true">→</span>
+                    <p class="game reveal">He asks you for materials one at a time, and the key takes shape as you bring them.</p>
+                    <p class="real reveal">In the end, he told me his whole story.</p>
+                    <span class="mirror-arrow" aria-hidden="true">→</span>
+                    <p class="game reveal">The finished key opens the door to a room about his life.</p>
+                </div>
+                <p class="idea-note hand">earning the key = earning his trust</p>
+            </div>
+        </section>
+
+        <!-- ============ 04 HOW TO PLAY ============ -->
+        <section class="sec km-wrap">
+            <div class="label"><b>04</b><span>How to play</span></div>
+            <h2 class="km-h2">Craft the key. Unlock the gate. Escape.</h2>
+            <p class="lead" style="margin-top:20px; max-width:820px">Prison Break is a first-person VR escape room. Trapped in a jail cell, you interact with objects and follow Guddu bhai's instructions to find clues and craft a key to escape. It's designed around ingenuity, observation and finishing tasks.</p>
+            <div class="play-shot reveal"><img src="images/key-maker/cs/gameplay.webp" width="1152" height="702" loading="lazy" alt="Inside the prison cell in VR, with numbered points where materials are hidden"></div>
+            <ol class="loop">
+                <li class="reveal"><img src="images/key-maker/cs/icon-listen.webp" width="47" height="47" alt=""><h3>Listen</h3><p>Guddu bhai gives hints, backstory and guidance.</p></li>
+                <li class="reveal"><img src="images/key-maker/cs/icon-observe.webp" width="47" height="47" alt=""><h3>Observe</h3><p>Find the key items scattered across the prison cell.</p></li>
+                <li class="reveal"><img src="images/key-maker/cs/icon-task.webp" width="48" height="47" alt=""><h3>Complete mini tasks</h3><p>Combine items, solve riddles or unlock mechanisms.</p></li>
+                <li class="reveal"><img src="images/key-maker/cs/icon-flag.webp" width="47" height="47" alt=""><h3>Follow checkpoints</h3><p>Each completed task leads to the next clue or area.</p></li>
+            </ol>
+            <div class="mech">
+                <img class="reveal" src="images/key-maker/cs/mechanics-art.webp" width="503" height="564" loading="lazy" alt="Illustration of figures climbing and searching across blocks">
+                <ol>
+                    <li class="reveal"><b>01</b><strong>Escape room</strong><em>"Break free by cracking clues under pressure."</em></li>
+                    <li class="reveal"><b>02</b><strong>Task-based puzzle solving</strong><em>"Complete logical challenges to unlock the next step."</em></li>
+                    <li class="reveal"><b>03</b><strong>Narrative adventure</strong><em>"Unfold a story as you interact and explore."</em></li>
+                    <li class="reveal"><b>04</b><strong>Treasure hunt</strong><em>"Follow hidden clues to uncover the final prize."</em></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ 05 FROM CLAY TO HEADSET ============ -->
+        <section class="sec km-wrap">
+            <div class="label"><b class="on-brass" style="--c: var(--brass)">05</b><span>From clay to headset</span></div>
+            <h2 class="km-h2">Building the cell.</h2>
+            <p class="lead" style="margin-top:20px; max-width:820px">I 3D-scanned the clay model with my phone and turned it into a model I could bring into ShapesXR. The whole game is a working ShapesXR prototype, played on a Meta Quest 3.</p>
+            <ul class="amb">
+                <li class="reveal"><b>01</b><span>Grungy, medieval prison cell</span></li>
+                <li class="reveal"><b>02</b><span>Low lighting</span></li>
+                <li class="reveal"><b>03</b><span>Detailed props with cues</span></li>
+                <li class="reveal"><b>04</b><span>Immersive and confining</span></li>
+            </ul>
+            <div class="amb-shots">
+                <img class="reveal" src="images/key-maker/cs/ambiance-1.webp" width="580" height="378" loading="lazy" alt="The prison cell in ShapesXR, with the door and hidden items">
+                <img class="reveal" src="images/key-maker/cs/ambiance-2.webp" width="563" height="378" loading="lazy" alt="Another view of the cell, with a barred window and a bed">
+            </div>
+        </section>
+
+        <!-- ============ 06 PLAYTEST + VIDEO (dark band) ============ -->
+        <section class="dark">
+            <div class="km-wrap" style="padding-inline:0">
+                <div class="label"><b>06</b><span>Playtest</span></div>
+                <h2 class="km-h2">People tried it, and liked the idea.</h2>
+                <iframe class="film-slot film-slot--video reveal" src="https://www.youtube.com/embed/AKZktYntRfE?modestbranding=1&amp;disablekb=1&amp;cc_load_policy=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=AKZktYntRfE&amp;playsinline=1&amp;rel=0" title="Prison Break VR playthrough" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+                <!-- Playtest: two photos with handwritten notes from the people who played it.
+                     Replace the text inside each <p class="quote"> with what they said. -->
+                <div class="playtest">
+                    <figure class="pt reveal">
+                        <img src="images/key-maker/cs/playtest-1.webp" width="900" height="1600" loading="lazy" alt="Classmates playing Prison Break with Meta Quest headsets">
+                        <blockquote class="note hand">
+                            <p class="quote">"Awesome concept, loved the audio cues!"</p>
+                            <cite>— Bhavna</cite>
+                        </blockquote>
+                    </figure>
+                    <figure class="pt pt--flip reveal">
+                        <img src="images/key-maker/cs/playtest-2.webp" width="740" height="1330" loading="lazy" alt="A playtester searching the cell with the controllers">
+                        <blockquote class="note note--2 hand">
+                            <p class="quote">"It's fun to search for clues. Loved it!"</p>
+                            <cite>— Hrishi</cite>
+                        </blockquote>
+                    </figure>
+                </div>
+                <div class="outcome-row">
+                    <div class="ok-card reveal">
+                        <h3>Exhibited in VR.</h3>
+                        <p>Submitted as the module's VR exhibition. The people who played it liked the concept of escaping by earning a stranger's trust.</p>
+                    </div>
+                    <div class="tools reveal">
+                        <small>TOOLS USED</small>
+                        <img src="images/key-maker/cs/logo-shapesxr.webp" width="381" height="75" style="height:40px" loading="lazy" alt="ShapesXR">
+                        <span>Phone 3D scan · Meta Quest 3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="km-foot">
+        <div class="km-wrap">
+            <div>
+                <small>NEXT PROJECT</small>
+                <!-- Filled in from projects.js; this is the fallback -->
+                <a class="next" id="next-project" href="project-wrist-shooter.html">Wrist Shooter <span>→</span></a>
+            </div>
+            <a class="top-btn" href="#top" id="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+    <script>
+        // Next project, from the order in projects.js
+        (function () {
+            const live = projects.filter(p => !p.soon);
+            const i = live.findIndex(p => p.slug === 'prison-break');
+            const next = live[(i + 1) % live.length];
+            const a = document.getElementById('next-project');
+            if (next && next.slug !== 'prison-break') {
+                a.href = projectLink(next);
+                a.innerHTML = escapeHTML(next.title) + ' <span>→</span>';
+            }
+        })();
+
+        document.getElementById('to-top').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Fade-up as sections scroll into view
+        (function () {
+            const els = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach(el => el.classList.add('is-in')); return;
+            }
+            const io = new IntersectionObserver(entries => entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+            }), { rootMargin: '0px 0px -8% 0px' });
+            els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
