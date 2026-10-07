@@ -7,7 +7,9 @@
     <meta name="description" content="Wrist Shooter: a DIY wrist-worn modular play system for kids 6+, designed during my internship at Smartivity Labs. From a self-written brief to a sales-approved toy.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="case-study.css">
     <script>
@@ -22,7 +24,7 @@
             <nav class="nav-pill" aria-label="Main">
                 <a href="index.html#work">Work</a>
                 <a href="playground.html">Playground</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <button class="theme-btn" id="theme-btn" type="button"
                         aria-label="Switch to dark mode" title="Switch to dark mode">
                     <span class="theme-dot"></span>
@@ -373,18 +375,18 @@
                         <div class="sec-tag"><span class="num">08</span><span class="cs-label">FINAL DESIGN</span></div>
                         <h2>Final <span>Prototype.</span></h2>
                     </div>
-                    <div class="final-tags">
-                        <span class="pill">Kid-tested</span>
-                        <span class="pill pill--outline">Sales approved ✓</span>
-                    </div>
                 </div>
 
-                <!-- PRODUCT FILM: drop your video in videos/ and replace the placeholder below with:
-                     <video src="videos/wrist-shooter.mp4" poster="images/wrist-shooter/cs/final-4.webp" autoplay muted loop playsinline></video> -->
-                <div class="film-slot reveal">
-                    <span class="film-play" aria-hidden="true">▶</span>
-                    <span class="hand">final product film</span>
-                    <small>coming soon</small>
+                <!-- PRODUCT FILM: two clips side by side, same height. Files live in images/videos/ -->
+                <div class="film-duo reveal">
+                    <figure class="film-clip film-clip--wide">
+                        <video src="images/videos/wrist-shooter-load.mp4" poster="images/videos/wrist-shooter-load-poster.jpg" width="960" height="794" muted loop playsinline preload="metadata" aria-label="Loading a foam dart into the Wrist Shooter"></video>
+                        <figcaption><span class="step">1</span>Load the dart</figcaption>
+                    </figure>
+                    <figure class="film-clip film-clip--tall">
+                        <video src="images/videos/wrist-shooter-play.mp4" poster="images/videos/wrist-shooter-play-poster.jpg" width="720" height="1280" muted loop playsinline preload="metadata" aria-label="Aiming and firing the Wrist Shooter down a corridor"></video>
+                        <figcaption><span class="step">2</span>Aim &amp; fire</figcaption>
+                    </figure>
                 </div>
 
                 <!-- Up close: the three hand cut-outs on colour tiles -->
@@ -446,7 +448,7 @@
                 </figure>
                 <div class="cta">
                     <p>Want the full story? I'm happy to walk you through it in person.</p>
-                    <a class="cs-btn cs-btn--dark" href="index.html#about">Get in touch</a>
+                    <a class="cs-btn cs-btn--dark" href="about.html">Get in touch</a>
                 </div>
             </div>
         </section>
@@ -522,6 +524,16 @@
                 if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
             }), { rootMargin: '0px 0px -8% 0px' });
             els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script>
+        // Videos play only while on screen (saves data and battery), and stay still if the visitor prefers less motion
+        (function () {
+            const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const io = new IntersectionObserver(es => es.forEach(e => {
+                if (e.isIntersecting && !still) e.target.play().catch(() => {}); else e.target.pause();
+            }), { threshold: 0.35 });
+            document.querySelectorAll('.film-clip video').forEach(v => io.observe(v));
         })();
     </script>
     <script src="script.js"></script>

@@ -21,8 +21,8 @@ body.cs {
     --cs-zumthor: #dce4ff;
 
     /* Fonts */
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     /* The site header follows the page colours; side padding matches the design (80px at 1440) */
@@ -380,6 +380,24 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 .stage-note {
     position: absolute; left: 7%; top: 14%; z-index: 1;
     font-size: clamp(30px, 3.4vw, 52px); line-height: 1.05; transform: rotate(-6deg);
+}
+
+/* Product film: a wide clip and a tall clip side by side at the same height
+   (column widths follow each video's own proportions, so nothing is cropped) */
+.film-duo { display: grid; grid-template-columns: 1.209fr .5625fr; gap: 20px; }
+.film-clip { margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.film-clip video { width: 100%; height: auto; display: block; border-radius: 28px; background: #26241f; }
+.film-clip--wide video { aspect-ratio: 960 / 794; }
+.film-clip--tall video { aspect-ratio: 9 / 16; }
+.film-clip figcaption { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: #fbf6ec; }
+.film-clip .step {
+    width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--cs-orange); color: #1b1a17; font-size: 14px; font-weight: 700;
+}
+@media (max-width: 640px) {
+    .film-duo { grid-template-columns: 1fr; gap: 28px; }
+    .film-clip--tall { width: min(100%, 280px); margin-inline: auto; }
+    .film-clip video { border-radius: 22px; }
 }
 
 /* Small caps label with a thin line running to the edge */

@@ -26,8 +26,8 @@ body.hp {
     --tube: rgba(255, 255, 255, .55);
     --soft: #eef2fa;
 
-    --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --f-body: 'DM Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     --bg: var(--paper);

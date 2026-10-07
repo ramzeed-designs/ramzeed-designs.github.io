@@ -7,7 +7,9 @@
     <meta name="description" content="The Legacy of Beypore Uru: a craft documentation book on how the Uru, the wooden dhow of Beypore, Kerala, is still built entirely by hand. Researched, written, photographed and designed by Ramzi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Malayalam:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&family=Caveat:wght@400;700&family=Noto+Sans+Malayalam:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="beypore-uru.css">
     <script>
@@ -22,7 +24,7 @@
             <nav class="nav-pill" aria-label="Main">
                 <a href="index.html#work">Work</a>
                 <a href="playground.html">Playground</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <button class="theme-btn" id="theme-btn" type="button"
                         aria-label="Switch to dark mode" title="Switch to dark mode">
                     <span class="theme-dot"></span>
@@ -372,8 +374,10 @@
                 text.innerHTML = s[2];
                 btns.forEach((b, k) => { b.setAttribute('aria-selected', k === i); b.classList.toggle('done', k < i); b.tabIndex = k === i ? 0 : -1; });
                 slip.style.setProperty('--p', i / (steps.length - 1));
-                if (focus) btns[i].focus();
-                btns[i].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: still ? 'auto' : 'smooth' });
+                if (focus) btns[i].focus({ preventScroll: true });
+                // keep the active stage visible inside the step list only (scrollIntoView also scrolled the whole page down on load)
+                const lr = list.getBoundingClientRect(), br = btns[i].getBoundingClientRect();
+                list.scrollTo({ left: list.scrollLeft + (br.left - lr.left) - (lr.width - br.width) / 2, behavior: still ? 'auto' : 'smooth' });
             }
             list.addEventListener('click', e => { const b = e.target.closest('button'); if (b) go(+b.dataset.i); });
             list.addEventListener('keydown', e => {

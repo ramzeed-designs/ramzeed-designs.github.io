@@ -28,3 +28,15 @@ project-wrist-shooter copy.html
 desktop.ini
 Thumbs.db
 .DS_Store
+
+# Raw video originals (the site uses the compressed MP4s in images/videos/)
+images/videos-new/
+images/videos/fidget puzzle video.MOV
+images/videos/Wrist shooter video.mp4
+*.MOV
+*.mov
+
+# Unused experiments
+hero-icons.js
+hero-mosaic.js
+hero-scene.js

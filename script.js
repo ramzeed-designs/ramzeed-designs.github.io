@@ -41,33 +41,19 @@ if (header) {
     onScroll();
 }
 
-// Rotating greeting in the hero. Add or reorder greetings here.
-const greetings = [
-    { word: 'Hello',     lang: 'en', note: 'English',                colour: 'purple' },
-    { word: 'Bonjour',   lang: 'fr', note: 'French',                 colour: 'blue' },
-    { word: 'مرحبا',     lang: 'ar', note: 'Marhaba · Arabic',       colour: 'orange', rtl: true },
-    { word: 'Hej',       lang: 'da', note: 'Danish',                 colour: 'green' },
-    { word: 'नमस्ते',     lang: 'hi', note: 'Namaste · Hindi',        colour: 'purple' },
-    { word: 'നമസ്കാരം',  lang: 'ml', note: 'Namaskaram · Malayalam', colour: 'blue' }
-];
-const helloBox = document.getElementById('hello');
-if (helloBox) {
-    let g = 0;
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setInterval(() => {
-        g = (g + 1) % greetings.length;
-        const next = greetings[g];
-        const old = helloBox.querySelector('.hello-word:not(.is-leaving)');
-        const el = document.createElement('span');
-        el.className = 'hello-word c-' + next.colour + (still ? '' : ' is-entering');
-        el.lang = next.lang;
-        if (next.rtl) el.dir = 'rtl';
-        el.textContent = next.word;
-        helloBox.appendChild(el);
-        if (old) {
-            if (still) old.remove();
-            else { old.classList.add('is-leaving'); setTimeout(() => old.remove(), 600); }
-        }
-        if (!still) requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('is-entering')));
-    }, 2400);
+// Hand-drawn underline under the hero title: after drawing in, it trembles a little,
+// redrawn 8 times a second like a hand-animated line.
+const scribble = document.getElementById('scribble');
+if (scribble && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const path = scribble.querySelector('path');
+    path.setAttribute('pathLength', '1');
+    const j = (n) => (Math.random() - 0.5) * n;
+    setTimeout(() => setInterval(() => {
+        if (document.hidden) return;
+        path.setAttribute('d',
+            `M${6 + j(3)} ${26 + j(3)} C ${120 + j(6)} ${14 + j(4)}, ${260 + j(6)} ${30 + j(4)}, ${380 + j(6)} ${20 + j(4)} S ${540 + j(6)} ${14 + j(4)}, ${594 + j(3)} ${22 + j(3)}`);
+    }, 125), 1500);
+} else if (scribble) {
+    scribble.querySelector('path').setAttribute('pathLength', '1');
 }
+

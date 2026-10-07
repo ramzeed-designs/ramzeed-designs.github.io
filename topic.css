@@ -6,8 +6,8 @@
    ===================================================================== */
 
 body.tp {
-    --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --f-body: 'DM Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
     --side: clamp(20px, 5.556vw, 80px);
     --t: var(--k-purple);          /* strong topic colour (text, numbers) */
@@ -89,6 +89,20 @@ body.tp--orange { --t: var(--k-orange); --t-soft: var(--c-orange); --t-ink: #1a1
 .build-row > * { min-width: 0; }
 .build + .build { border-top: 2px dashed color-mix(in srgb, var(--t-soft) 55%, transparent); }
 .build:nth-child(even) .b-media { order: 2; }
+
+/* Collage project (Soft Toys): text on top, photo wall underneath */
+.c-top { display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: end; margin-bottom: 40px; }
+.c-top > * { min-width: 0; }
+.c-side > :first-child { margin-top: 0; }
+.collage { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.collage img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 20px; background: var(--surface); display: block; }
+@media (max-width: 900px) {
+    .c-top { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 640px) {
+    .collage { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .collage img { border-radius: 16px; }
+}
 
 .b-media > img, .b-media > video, .b-media > .slot { border-radius: 28px; }
 .b-media img, .b-media video { background: var(--surface); }
@@ -347,4 +361,207 @@ body.tp--orange { --t: var(--k-orange); --t-soft: var(--c-orange); --t-ink: #1a1
 }
 @media (prefers-reduced-motion: reduce) {
     .js-reveal .reveal { opacity: 1; translate: none; transition: none; }
+}
+
+
+/* =====================================================================
+   MECHATRONICS (added 5 Oct 2026)
+   ===================================================================== */
+
+/* ---------- Portrait clip (The Cockroach): centred, never taller than the screen ---------- */
+.b-media--portrait { display: flex; justify-content: center; }
+.b-media > video.is-portrait {
+    width: auto; max-width: 100%; max-height: min(640px, 78vh); aspect-ratio: 9 / 16;
+    object-fit: cover; border-radius: 28px;
+}
+
+/* ---------- Blink & Break: the playable safe ----------
+   A little scene modelled on the real build: grey LED panel, wooden button box,
+   wooden safe with screen + dial. Fixed colours (like a photo), so it looks the
+   same in both themes. Palette from the Figma frame: dusty rose, sand, orange. */
+.safe-game {
+    --sand: #e3d6bd; --rose: #b5776c; --mdf: #c9a170; --mdf-dk: #a77d4f; --grey: #8d9095;
+    --led-off: #5f6268; --led: #ff4a3d; --ok: #3ddc84;
+    position: relative; border-radius: 28px; padding: clamp(18px, 3vw, 30px);
+    background:
+        radial-gradient(circle, rgba(120, 80, 60, .12) 1.5px, transparent 2px) 0 0 / 16px 16px,
+        var(--sand);
+    color: #2a1c1a;
+}
+.sg-scene { display: grid; grid-template-columns: 1fr 1fr 1.05fr; gap: clamp(10px, 2vw, 22px); align-items: end; }
+
+/* LED panel */
+.sg-leds {
+    display: grid; grid-template-columns: repeat(3, 1fr); align-content: center; gap: clamp(6px, 1.4vw, 14px); padding: 16%;
+    aspect-ratio: 4 / 5; border-radius: 10px; background: var(--grey);
+    box-shadow: inset -6px -6px 0 rgba(0, 0, 0, .14), 0 10px 0 -4px rgba(0, 0, 0, .12);
+}
+.sg-leds i {
+    aspect-ratio: 1; border-radius: 4px; background: var(--led-off);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, .35); transition: background-color .08s, box-shadow .08s;
+}
+.sg-leds i.lit { background: var(--led); box-shadow: 0 0 14px 3px rgba(255, 74, 61, .75); }
+.sg-leds i.green { background: var(--ok); box-shadow: 0 0 14px 3px rgba(61, 220, 132, .7); }
+.sg-leds i.red { background: var(--led); box-shadow: 0 0 18px 5px rgba(255, 40, 30, .9); }
+
+/* Button box */
+.sg-pad {
+    display: grid; grid-template-columns: repeat(3, 1fr); align-content: center; gap: clamp(6px, 1.2vw, 12px); padding: 14%;
+    aspect-ratio: 1; border-radius: 10px;
+    background: linear-gradient(170deg, var(--mdf) 0 70%, var(--mdf-dk) 70%);
+    box-shadow: inset -5px -5px 0 rgba(0, 0, 0, .1), 0 10px 0 -4px rgba(0, 0, 0, .12);
+}
+.sg-pad button {
+    aspect-ratio: 1; min-width: 0; padding: 0; border: 0; border-radius: 6px; cursor: pointer;
+    background: #3a2a1f; box-shadow: 0 4px 0 #1f150e; transition: transform .08s, box-shadow .08s, background-color .2s;
+}
+.sg-pad button:not(:disabled):hover { background: #4d3828; }
+.sg-pad button:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #1f150e; }
+.sg-pad button:disabled { cursor: default; opacity: .78; }
+.sg-pad button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* Safe with a door that swings open */
+.sg-safe { position: relative; aspect-ratio: 4 / 5; perspective: 700px; }
+.sg-inside {
+    position: absolute; inset: 0; border-radius: 14px; display: grid; place-items: center;
+    background: radial-gradient(circle at 50% 55%, #4a2e22, #1c120d 75%);
+}
+.sg-inside span { font-size: clamp(26px, 4vw, 40px); color: #ffd25a; text-shadow: 0 0 18px rgba(255, 210, 90, .8); }
+.sg-door {
+    position: absolute; inset: 0; border-radius: 14px; transform-origin: left center;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;
+    background: var(--mdf); border: 3px solid var(--mdf-dk);
+    box-shadow: inset -6px -6px 0 rgba(0, 0, 0, .1), 0 10px 0 -4px rgba(0, 0, 0, .12);
+    transition: transform .9s cubic-bezier(.3, .8, .3, 1.05);
+}
+.safe-game.is-open .sg-door { transform: rotateY(-78deg); }
+.sg-screen {
+    width: 72%; padding: 5px 0; border-radius: 4px; text-align: center;
+    background: #a8c98f; color: #1e3317; border: 3px solid #3a2a1f;
+    font: 700 clamp(10px, 1.3vw, 14px) / 1 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 1px;
+}
+.sg-dial {
+    --turn: 0deg; position: relative; width: 52%; aspect-ratio: 1; border-radius: 50%;
+    background: repeating-conic-gradient(var(--mdf-dk) 0 4deg, var(--mdf) 4deg 30deg);
+    border: 4px solid #3a2a1f; transform: rotate(var(--turn)); transition: transform .6s var(--bounce);
+}
+.sg-dial i { position: absolute; left: 50%; top: 50%; width: 46%; height: 16%; translate: -8% -50%; border-radius: 99px; background: #3a2a1f; }
+.sg-dial::after { content: ""; position: absolute; left: 50%; top: 50%; width: 22%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: #3a2a1f; }
+
+/* Bar: progress dots, message, start */
+.sg-bar { display: flex; align-items: center; gap: 16px; margin-top: 22px; flex-wrap: wrap; }
+.sg-progress { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
+.sg-progress li { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--rose); transition: background-color .3s; }
+.sg-progress li.on { background: var(--ok); border-color: #1e9a57; }
+.sg-msg { flex: 1 1 180px; font-size: 15px; font-weight: 600; line-height: 1.4; color: #4a302b; min-height: 2.8em; display: flex; align-items: center; }
+.sg-start {
+    border: 0; cursor: pointer; font: 700 15px var(--f-body); padding: 12px 22px; border-radius: 999px;
+    background: #e8794a; color: #fff; box-shadow: 0 4px 0 #b4532a; transition: transform .1s, box-shadow .1s;
+}
+.sg-start:active { transform: translateY(3px); box-shadow: 0 1px 0 #b4532a; }
+.sg-start:focus-visible { outline: 3px solid #2a1c1a; outline-offset: 3px; }
+
+@media (max-width: 520px) {
+    .sg-scene { grid-template-columns: 1fr 1fr; }
+    .sg-safe { grid-column: 1 / -1; aspect-ratio: auto; height: 92px; }
+    .sg-door { flex-direction: row; }
+    .sg-screen { width: 40%; }
+    .sg-dial { width: auto; height: 70%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sg-door, .sg-dial { transition: none; }
+}
+
+/* ---------- Deep panel pieces used by Mechatronics ---------- */
+.d-goal p {
+    max-width: 34ch; font-family: var(--f-display); font-weight: 500;
+    font-size: clamp(22px, 2.6vw, 34px); line-height: 1.3; color: var(--d-muted);
+}
+.d-goal b { font-weight: 800; color: var(--d-ink); }
+
+.d-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.d-steps li {
+    position: relative; padding: 26px 24px 24px; border-radius: 24px;
+    background: linear-gradient(180deg, var(--glow) 0%, color-mix(in srgb, var(--glow) 25%, var(--night-2)) 100%);
+}
+.d-steps svg { width: 56px; height: 56px; fill: none; stroke: var(--d-ink); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.d-steps b { position: absolute; right: 22px; top: 22px; font-size: 13px; letter-spacing: 1px; color: var(--d-ink); opacity: .7; }
+.d-steps strong { display: block; margin-top: 18px; font-family: var(--f-display); font-size: 22px; color: var(--d-ink); }
+.d-steps p { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--d-ink); opacity: .85; }
+
+.d-rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.d-rules li {
+    display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: center;
+    padding: 16px 20px; border-radius: 999px; background: var(--night-2); border: 1px solid var(--d-line);
+}
+.d-rules li > b {
+    width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 17px; background: var(--glow); color: #2a1c1a;
+}
+.d-rules .r--ok b { background: #3ddc84; }
+.d-rules .r--no b { background: #ff4a3d; color: #fff; }
+.d-rules .r--door b { background: #ffd25a; }
+.d-rules p { font-size: 15px; line-height: 1.45; color: var(--d-muted); }
+
+.d-build { display: flex; flex-wrap: wrap; gap: 12px; }
+.d-build img { flex: none; width: auto; max-width: 100%; height: 190px; border-radius: 14px; border: 1px solid var(--d-line); }
+
+.d-compare { display: grid; grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 1fr); gap: clamp(16px, 3vw, 40px); align-items: center; }
+.d-compare figure { margin: 0; }
+.d-compare img { width: 100%; height: auto; border-radius: 22px; }
+.d-compare figcaption { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+.d-compare figcaption strong { font-family: var(--f-display); font-size: 18px; color: var(--d-ink); }
+.d-compare figcaption span { font-size: 14px; color: var(--d-muted); }
+.d-adds { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.d-adds small { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--d-muted); }
+.d-adds ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.d-adds li { padding: 9px 16px; border-radius: 999px; background: var(--chip, #8b4a35); color: #fff; font-weight: 700; font-size: 15px; white-space: nowrap; }
+.d-adds > span { width: 100%; height: 2px; background: var(--glow); position: relative; margin-top: 6px; }
+.d-adds > span::after { content: ""; position: absolute; right: -2px; top: -6px; border: 7px solid transparent; border-left: 10px solid var(--glow); border-right: 0; }
+
+.d-contrib { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: c; }
+.d-contrib li {
+    counter-increment: c; padding: 22px; border-radius: 22px; background: var(--night-2); border: 1px solid var(--d-line);
+    font-size: 16px; line-height: 1.5; color: var(--d-muted);
+}
+.d-contrib li::before { content: "0" counter(c); display: block; margin-bottom: 10px; font-weight: 700; font-size: 13px; letter-spacing: 1px; color: var(--glow-hi); }
+.d-contrib b { color: var(--d-ink); }
+
+/* Blink & Break panel: rosewood, orange, sand (from the Figma frame) */
+.deep--safe {
+    --night: #2a1b19; --night-2: #3a2724; --glow: #e8794a; --glow-hi: #f3b29b;
+    --d-ink: #f6ede1; --d-muted: #cdb5ab; --d-line: rgba(232, 121, 74, .26);
+    --mono: var(--f-body);
+    background:
+        radial-gradient(ellipse 70% 60% at 90% 0%, rgba(232, 121, 74, .16), transparent 70%),
+        var(--night);
+}
+.deep--safe .d-label, .deep--sage .d-label { font-weight: 700; letter-spacing: 1.4px; }
+
+/* The Cockroach panel: deep green, sage, brown chips (from the Figma frame) */
+.deep--sage {
+    --night: #17241e; --night-2: #213229; --glow: #7fb39a; --glow-hi: #b6dcc8;
+    --d-ink: #f3efe2; --d-muted: #a9bfb3; --d-line: rgba(127, 179, 154, .26);
+    --chip: #8b4a35; --mono: var(--f-body);
+    background:
+        radial-gradient(ellipse 70% 60% at 90% 0%, rgba(127, 179, 154, .15), transparent 70%),
+        var(--night);
+}
+.deep--sage .f-node { background: rgba(127, 179, 154, .1); border-color: rgba(182, 220, 200, .35); }
+.deep--sage .f-col:last-child .f-node strong { color: #10241a; }
+.deep--sage .f-col:last-child .f-node span { color: #24453a; }
+
+@media (max-width: 900px) {
+    .d-steps, .d-contrib { grid-template-columns: 1fr; }
+    .d-rules { grid-template-columns: 1fr; }
+    .d-compare { grid-template-columns: 1fr; }
+    .d-adds > span { width: 2px; height: 26px; margin: 4px 0 0 18px; }
+    .d-adds > span::after { right: auto; left: -6px; top: auto; bottom: -2px; border: 7px solid transparent; border-top: 10px solid var(--glow); border-bottom: 0; }
+    .d-adds ul { flex-direction: row; flex-wrap: wrap; }
+    .d-adds li { white-space: normal; }
+}
+@media (max-width: 640px) {
+    .d-rules li { border-radius: 22px; }
+    .d-build { gap: 8px; }
+    .d-build img { height: 120px; }
 }

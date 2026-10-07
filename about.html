@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About – Ramzi</title>
+    <meta name="description" content="About Ramzi, a play experience designer working across toys, games and playful products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        try { var s = localStorage.getItem('theme'); if (s === 'ink') document.documentElement.setAttribute('data-theme', s); } catch (e) {}
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="logo" href="index.html" aria-label="Ramzi, home">Ramzi<span>.</span></a>
+            <nav class="nav-pill" aria-label="Main">
+                <a href="index.html#work">Work</a>
+                <a href="playground.html">Playground</a>
+                <a href="about.html" aria-current="page">About</a>
+                <button class="theme-btn" id="theme-btn" type="button"
+                        aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-dot"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="about-page">
+        <div class="wrap about-grid">
+            <div class="about-copy">
+                <p class="about-eyebrow">About me</p>
+                <h1>Hey, I'm Ramzi.</h1>
+
+                <!-- Rewrite these in your own words -->
+                <p class="about-lead">I'm a play experience designer doing my Master of Design in Toy &amp; Game Design at NID Gandhinagar.</p>
+                <p>I work across user-centered design, play experiences, toys and games. I like making things people can pick up and figure out on their own, and I prototype early: cardboard, code, whatever gets it into someone's hands fastest.</p>
+                <p>Right now I'm looking for [internships / roles / collaborations] in [toy, game or product design].</p>
+
+                <dl class="about-facts">
+                    <div><dt>Studying</dt><dd>M.Des, Toy &amp; Game Design<br>NID Gandhinagar</dd></div>
+                    <div><dt>I design</dt><dd>Toys, play experiences,<br>games, interfaces</dd></div>
+                    <div><dt>Tools</dt><dd>Figma, [your tools here]</dd></div>
+                </dl>
+
+                <div class="about-actions">
+                    <!-- Put your real email in both places below -->
+                    <a class="btn" href="mailto:you@example.com">you@example.com</a>
+                    <!-- Add your CV as a PDF in the folder, then point this at it -->
+                    <a class="btn btn-ghost" href="#">Download CV</a>
+                </div>
+            </div>
+
+            <div class="sketch-me" id="sketch-me" data-src="images/portrait-cutout.webp"
+                 role="button" tabindex="0"
+                 aria-label="Portrait of Ramzi with sketchy lines drawn around him. Hover to say hi, press to knock him out.">
+                <canvas width="853" height="1280"></canvas>
+                <div class="bubble" aria-hidden="true">hi!</div>
+                <p class="sketch-hint" aria-hidden="true">hover to say hi · click to knock me out</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">© Ramzi</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="about-portrait.js"></script>
+</body>
+</html>

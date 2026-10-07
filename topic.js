@@ -27,11 +27,42 @@
             ${v.title ? `<span class="yt-title">${esc(v.title)}</span>` : ''}
         </div>`;
 
+    // Blink & Break: a playable copy of the safe (LED panel, button box, safe with dial)
+    const SAFE = `
+        <div class="safe-game" data-safe>
+            <div class="sg-scene">
+                <div class="sg-leds" aria-hidden="true">${'<i></i>'.repeat(9)}</div>
+                <div class="sg-pad" role="group" aria-label="Button grid">${Array.from({ length: 9 }, (_, i) =>
+                    `<button type="button" aria-label="Button ${i + 1}" disabled></button>`).join('')}</div>
+                <div class="sg-safe" aria-hidden="true">
+                    <div class="sg-inside"><span>★</span></div>
+                    <div class="sg-door">
+                        <span class="sg-screen">READY</span>
+                        <span class="sg-dial"><i></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-bar">
+                <ol class="sg-progress" aria-label="Correct sequences">${'<li></li>'.repeat(6)}</ol>
+                <p class="sg-msg" aria-live="polite">Press start, then watch the lights.</p>
+                <button type="button" class="sg-start">Start</button>
+            </div>
+        </div>`;
+
     function mediaHTML(m, alt) {
+        if (m.safe) return SAFE;
         if (m.youtube) return yt(m);
-        if (m.video) return `<video src="${esc(m.video)}" ${m.poster ? `poster="${esc(m.poster)}"` : ''} autoplay muted loop playsinline></video>`;
+        if (m.video) return `<video class="clip${m.portrait ? ' is-portrait' : ''}" src="${esc(m.video)}" ${m.poster ? `poster="${esc(m.poster)}"` : ''} muted loop playsinline preload="metadata"${reduce ? ' controls' : ' autoplay'} aria-label="${esc(m.alt || alt)}"></video>`;
         return `<img src="${esc(m.src)}" alt="${esc(m.alt || alt)}" loading="lazy">`;
     }
+
+    // Small line icons for "How to play" (drawn for the site, not stock)
+    const STEP_ICONS = {
+        watch:    '<circle cx="26" cy="26" r="14"/><path d="M36 36l14 14"/><path d="M20 22h3M29 22h3M20 30h3M29 30h3" stroke-width="3"/>',
+        remember: '<path d="M18 54V44c-6-4-9-10-9-17C9 15 19 7 31 7s21 8 21 19c0 3-1 5-2 7l4 8h-5v6c0 3-2 5-5 5h-6v4"/><path d="M38 24a7 7 0 1 1-3-6"/><path d="M38 14v6h-6"/>',
+        press:    '<path d="M24 31V13a4 4 0 0 1 8 0v15l12 2c3 1 5 3 4 7l-3 14c-1 3-3 5-6 5H30c-3 0-5-1-6-3l-8-12c-2-3 2-6 5-4z"/><path d="M14 10l-4-4M28 4V0M42 10l4-4"/>'
+    };
+    const RULE_MARKS = { up: '↑', ok: '✓', no: '✕', door: '★' };
 
     /* ---------- Optional dark panel under a project (story, flow, more videos) ---------- */
     function flowHTML(cols) {
@@ -57,6 +88,52 @@
 
     function deepHTML(d, it) {
         let h = '';
+        if (d.goal) h += `
+            <div class="d-goal">
+                <small class="d-label">Experience goal</small>
+                <p>${d.goal}</p>
+            </div>`;
+        if (d.steps) h += `
+            <div class="d-sec">
+                <small class="d-label">How to play</small>
+                <ol class="d-steps">${d.steps.map((s, i) => `
+                    <li>
+                        <svg viewBox="0 0 60 60" aria-hidden="true">${STEP_ICONS[s.icon] || ''}</svg>
+                        <b>0${i + 1}</b>
+                        <strong>${esc(s.title)}</strong>
+                        <p>${esc(s.text)}</p>
+                    </li>`).join('')}
+                </ol>
+            </div>`;
+        if (d.rules) h += `
+            <div class="d-sec">
+                <small class="d-label">${esc(d.rulesLabel || 'As you play')}</small>
+                <ul class="d-rules">${d.rules.map(r => `
+                    <li class="r--${esc(r.mark)}"><b aria-hidden="true">${RULE_MARKS[r.mark] || '•'}</b><p>${esc(r.text)}</p></li>`).join('')}
+                </ul>
+            </div>`;
+        if (d.compare) {
+            const c = d.compare;
+            const side = s => `
+                <figure>
+                    <img src="${esc(s.src)}" alt="${esc(s.alt || s.label)}" loading="lazy">
+                    <figcaption><strong>${esc(s.label)}</strong>${s.note ? `<span>${esc(s.note)}</span>` : ''}</figcaption>
+                </figure>`;
+            h += `
+            <div class="d-sec">
+                <small class="d-label">${esc(c.label || 'From display piece to creature')}</small>
+                <div class="d-compare">
+                    ${side(c.before)}
+                    <div class="d-adds"><small>What I added</small><ul>${c.adds.map(a => `<li>${esc(a)}</li>`).join('')}</ul><span aria-hidden="true"></span></div>
+                    ${side(c.after)}
+                </div>
+            </div>`;
+        }
+        if (d.contrib) h += `
+            <div class="d-sec">
+                <small class="d-label">My part</small>
+                <ul class="d-contrib">${d.contrib.map(c => `<li>${c}</li>`).join('')}</ul>
+            </div>`;
         if (d.intro) h += `
             <div class="d-intro">
                 ${d.intro.img ? `<img src="${esc(d.intro.img)}" alt="${esc(d.intro.alt || '')}" loading="lazy">` : ''}
@@ -92,6 +169,11 @@
             <div class="d-sec">
                 <small class="d-label">How the setup works</small>
                 ${flowHTML(d.flow)}
+            </div>`;
+        if (d.build) h += `
+            <div class="d-sec">
+                <small class="d-label">${esc(d.buildLabel || 'Making it')}</small>
+                <div class="d-build">${d.build.map(b => `<img src="${esc(b.src)}" alt="${esc(b.alt || '')}">`).join('')}</div>
             </div>`;
         if (d.videos) h += `
             <div class="d-sec">
@@ -137,13 +219,33 @@
             const first = media.length ? mediaHTML(media[0], it.title) : slot('photo or short clip', '4 / 3');
             const extra = media.length > 1
                 ? `<div class="b-thumbs">${media.slice(1, 4).map(m => `<div>${mediaHTML(m, it.title)}</div>`).join('')}</div>` : '';
-            const facts = [['Type', it.type], ['Made with', it.madeWith], ['Team', it.team], ['In collaboration with', it.with], ['Course', it.course], ['When', it.when]]
+            const facts = [['Type', it.type], ['Made with', it.madeWith], ['Team', it.team], ['My part', it.role], ['In collaboration with', it.with], ['Course', it.course], ['When', it.when], ['Status', it.status]]
                 .filter(f => f[1]).map(f => `<div><small>${f[0]}</small><strong>${esc(f[1])}</strong></div>`).join('');
             const tools = (it.tools || []).map(t => `<li>${esc(t)}</li>`).join('');
+            // Collage project: text on top, photo wall underneath
+            if (it.collage) return `
+            <article class="build build--collage" id="item-${i + 1}">
+                <div class="c-top reveal">
+                    <div class="b-copy">
+                        <div class="label"><b>${pad(i)}</b><span>${esc(it.kicker || topic.title)}</span></div>
+                        <h2>${esc(it.title)}</h2>
+                        ${it.tagline ? `<p class="b-tag hand">${esc(it.tagline)}</p>` : ''}
+                        <p class="lead">${esc(it.text)}</p>
+                    </div>
+                    <div class="b-copy c-side">
+                        ${facts ? `<div class="b-facts">${facts}</div>` : ''}
+                        ${tools ? `<div class="b-tools"><small>Made with</small><ul>${tools}</ul></div>` : ''}
+                        ${it.link ? `<a class="b-link" href="${esc(it.link.url)}" target="_blank" rel="noopener">${esc(it.link.label)} <span>↗</span></a>` : ''}
+                    </div>
+                </div>
+                <div class="collage reveal">${it.collage.map(c =>
+                    `<img src="${esc(c.src)}" alt="${esc(c.alt || it.title)}" loading="lazy">`).join('')}</div>
+                ${it.deep ? deepHTML(it.deep, it) : ''}
+            </article>`;
             return `
             <article class="build${it.deep ? ' build--deep' : ''}" id="item-${i + 1}">
                 <div class="build-row reveal">
-                    <div class="b-media">${first}${extra}</div>
+                    <div class="b-media${media[0] && media[0].portrait ? ' b-media--portrait' : ''}">${first}${extra}</div>
                     <div class="b-copy">
                         <div class="label"><b>${pad(i)}</b><span>${esc(it.kicker || topic.title)}</span></div>
                         <h2>${esc(it.title)}</h2>
@@ -320,6 +422,117 @@
         if (reduce) { drop(cols / 2, rows / 2, 1.5, 3); for (let s = 0; s < 40; s++) step(); render(); }
         new IntersectionObserver(es => es.forEach(e => (seen = e.isIntersecting))).observe(pool);
         requestAnimationFrame(frame);
+    });
+
+    /* ---------- Short clips: play like GIFs, pause when off-screen ---------- */
+    if (!reduce && 'IntersectionObserver' in window) {
+        const vio = new IntersectionObserver(es => es.forEach(e => {
+            if (e.isIntersecting) { const p = e.target.play(); p && p.catch(() => {}); } else e.target.pause();
+        }), { threshold: 0.2 });
+        main.querySelectorAll('video.clip').forEach(v => vio.observe(v));
+    }
+
+    /* ---------- Blink & Break: the playable safe ----------
+       Same rules as the real build: watch the LEDs, repeat the pattern on the buttons.
+       Right = handle turns forward + green flash; wrong = handle turns back + red flash.
+       Six right and the door swings open, then closes to reset. Each round is longer and faster. */
+    document.querySelectorAll('[data-safe]').forEach(game => {
+        const leds = [...game.querySelectorAll('.sg-leds i')];
+        const btns = [...game.querySelectorAll('.sg-pad button')];
+        const dots = [...game.querySelectorAll('.sg-progress li')];
+        const msg = game.querySelector('.sg-msg');
+        const screen = game.querySelector('.sg-screen');
+        const dial = game.querySelector('.sg-dial');
+        const startBtn = game.querySelector('.sg-start');
+        const GOAL = 6;
+        let progress = 0, seq = [], pos = 0, state = 'idle', run = 0;
+
+        const wait = ms => new Promise(r => setTimeout(r, ms));
+        const say = t => { msg.textContent = t; };
+        const setPads = on => btns.forEach(b => { b.disabled = !on; });
+        const allLeds = cls => leds.forEach(l => { l.className = cls || ''; });
+
+        function draw() {
+            dial.style.setProperty('--turn', (progress * 60) + 'deg');
+            dots.forEach((d, i) => d.classList.toggle('on', i < progress));
+            screen.textContent = state === 'open' ? 'OPEN' : progress ? `${progress} / ${GOAL}` : (state === 'idle' ? 'READY' : `0 / ${GOAL}`);
+        }
+
+        async function flash(cls, times, id) {
+            for (let k = 0; k < times; k++) {
+                allLeds(cls); game.classList.add('is-' + cls);
+                await wait(220); if (id !== run) return;
+                allLeds(); game.classList.remove('is-' + cls);
+                await wait(140); if (id !== run) return;
+            }
+        }
+
+        async function round() {
+            const id = ++run;
+            const len = 3 + progress;                         // 3 lights, then one more each round
+            const on = Math.max(260, 620 - progress * 70);    // and a little faster
+            seq = [];
+            while (seq.length < len) {
+                const n = Math.floor(Math.random() * 9);
+                if (n !== seq[seq.length - 1]) seq.push(n);
+            }
+            pos = 0; state = 'showing'; setPads(false); draw();
+            say(`Round ${progress + 1}: watch the lights…`);
+            await wait(650); if (id !== run) return;
+            for (const n of seq) {
+                leds[n].className = 'lit';
+                await wait(on); if (id !== run) return;
+                leds[n].className = '';
+                await wait(170); if (id !== run) return;
+            }
+            state = 'input'; setPads(true);
+            say('Your turn: repeat it on the buttons.');
+        }
+
+        async function press(n) {
+            if (state !== 'input') return;
+            const id = run;
+            leds[n].className = 'lit';
+            setTimeout(() => { if (leds[n].className === 'lit') leds[n].className = ''; }, 180);
+            if (n !== seq[pos]) {                              // wrong: handle turns back, red flash
+                state = 'busy'; setPads(false);
+                progress = Math.max(0, progress - 1); draw();
+                say('Not quite. The handle turns back. Watch again…');
+                await flash('red', 2, id); if (id !== run) return;
+                await wait(500); if (id !== run) return;
+                return round();
+            }
+            pos++;
+            if (pos < seq.length) return;
+            state = 'busy'; setPads(false);                     // right: handle turns forward, green flash
+            progress++; draw();
+            await flash('green', 2, id); if (id !== run) return;
+            if (progress < GOAL) {
+                say(`Correct! ${GOAL - progress} more to open the safe.`);
+                await wait(700); if (id !== run) return;
+                return round();
+            }
+            state = 'open'; draw(); game.classList.add('is-open');
+            say('Cracked it! The door swings open…');
+            await wait(2600); if (id !== run) return;
+            game.classList.remove('is-open');
+            await wait(700); if (id !== run) return;
+            progress = 0; state = 'idle'; draw();
+            say('The door closes and the safe resets. Play again?');
+            startBtn.textContent = 'Play again';
+        }
+
+        btns.forEach((b, i) => b.addEventListener('click', () => press(i)));
+        game.addEventListener('keydown', e => {                // number keys 1–9 work too
+            const n = parseInt(e.key, 10);
+            if (n >= 1 && n <= 9 && state === 'input') { e.preventDefault(); btns[n - 1].focus(); press(n - 1); }
+        });
+        startBtn.addEventListener('click', () => {
+            run++; progress = 0; allLeds(); game.classList.remove('is-open', 'is-red', 'is-green');
+            startBtn.textContent = 'Restart';
+            round();
+        });
+        draw();
     });
 
     /* ---------- Next topic in the footer ---------- */

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramzi – Interdisciplinary Designer</title>
-    <meta name="description" content="Portfolio of Ramzi, an interdisciplinary designer working in toy, play experience and game design.">
+    <title>Ramzi – Play Experience Designer</title>
+    <meta name="description" content="Portfolio of Ramzi, a play experience designer working across toys, games and playful products.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Arabic, Hindi and Malayalam letters for the rotating greeting (only the letters used, so it's tiny) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@700&family=Noto+Sans+Devanagari:wght@700&family=Noto+Sans+Malayalam:wght@700&text=%D8%A7%D8%A8%D8%AD%D8%B1%D9%85%E0%A4%A4%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%87%E0%A5%8D%E0%B4%82%E0%B4%95%E0%B4%A8%E0%B4%AE%E0%B4%B0%E0%B4%B8%E0%B4%BE%E0%B5%8D&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Just+Me+Again+Down+Here&family=Marhey:wght@400&family=Chilanka&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <!-- Applies the saved background colour before the page paints, so it doesn't flash -->
     <script>
@@ -25,7 +26,7 @@
             <nav class="nav-pill" aria-label="Main">
                 <a href="index.html#work">Work</a>
                 <a href="playground.html">Playground</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <button class="theme-btn" id="theme-btn" type="button"
                         aria-label="Switch to dark mode" title="Switch to dark mode">
                     <span class="theme-dot"></span>
@@ -36,40 +37,51 @@
 
     <main>
         <section class="hero">
-            <div class="wrap">
-                <div class="hero-grid">
-                    <div class="hero-text">
-                        <!-- The big greeting cycles through languages (list is in script.js) -->
-                        <h1 class="hero-title">
-                            <span class="hello" id="hello" aria-hidden="true"><span class="hello-word c-purple" lang="en">Hello</span></span>
-                            <span class="sr-only">Hello, </span>I'm Ramzi
-                        </h1>
-                        <p>Interdisciplinary designer specializing in user-centered design and innovative solutions.</p>
-                        <p class="muted">Play experience design and game design.</p>
-                    </div>
-                    <img class="portrait" src="images/portrait.webp" alt="Portrait of Ramzi" width="900" height="1350">
-                </div>
+            <div class="wrap hero-center">
+                <h1 class="hero-head">
+                    <span class="hero-hello"><span class="hello-word c-purple" id="hello-word">Hello</span>, I’m</span>
+                    <span class="hero-name">Ramzi<i class="h" aria-hidden="true"></i><i class="h" aria-hidden="true"></i><i class="h" aria-hidden="true"></i><i class="h" aria-hidden="true"></i></span>
+                </h1>
+                <p class="hero-roles">
+                    <span class="role-tag role-play">Play Experience Designer</span>
+                    <span class="role-slash" aria-hidden="true">/</span>
+                    <span class="role-tag role-mech">Mechanical Engineer</span>
+                </p>
+                <p class="hero-line">I design toys, games &amp; experiences that bring out the <b>child in us</b>.</p>
+                <a class="hero-scroll" href="#work">Scroll down to see my work <span aria-hidden="true">↓</span></a>
             </div>
         </section>
 
         <section class="work" id="work">
             <div class="wrap">
-                <h2>Work</h2>
-                <!-- Cards are built from projects.js. Edit projects there, not here. -->
-                <div class="grid" id="project-grid"></div>
+                <!-- Title on the left, filter chips on the right (chips and cards are built from projects.js) -->
+                <div class="work-head">
+                    <h2 class="serif-title">Work</h2>
+                    <div class="chips" id="work-chips" role="toolbar" aria-label="Filter projects"></div>
+                </div>
+                <div class="wgrid" id="project-grid"></div>
                 <div class="more">
                     <a class="btn" href="playground.html">Explore the Playground</a>
                 </div>
             </div>
         </section>
 
-        <section class="about" id="about">
-            <div class="wrap about-inner">
-                <h2>About</h2>
-                <div>
-                    <p>A short paragraph about you: what you design, what you care about, and what you're looking for next.</p>
-                    <!-- Put your real email in both places below -->
-                    <a class="btn" href="mailto:you@example.com">you@example.com</a>
+        <section class="contact" id="contact">
+            <div class="wrap contact-inner">
+                <!-- little hand-drawn envelope -->
+                <svg class="contact-doodle" viewBox="0 0 120 96" aria-hidden="true">
+                    <path class="d-ink" d="M18 30 L60 12 L102 30 L102 76 L18 76 Z"/>
+                    <path class="d-ink" d="M18 30 L60 56 L102 30"/>
+                    <path class="d-ink" d="M18 76 L50 50 M102 76 L70 50"/>
+                    <path class="d-pop" d="M8 88 C 26 80, 34 94, 52 86 S 78 80, 92 90"/>
+                </svg>
+                <h2 class="serif-q">Have an idea, question, or opportunity?</h2>
+                <p class="muted">I'd love to hear about it.</p>
+                <div class="contact-links">
+                    <!-- Put your real email and profile links here -->
+                    <a class="pill" href="mailto:you@example.com">Email</a>
+                    <a class="pill" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="pill" href="https://www.instagram.com/your-handle" target="_blank" rel="noopener">Instagram</a>
                 </div>
             </div>
         </section>
@@ -82,8 +94,53 @@
 
     <script src="projects.js"></script>
     <script>
-        document.getElementById('project-grid').innerHTML = projects.map(cardHTML).join('');
+        // Works grid + filter chips
+        const grid = document.getElementById('project-grid');
+        grid.innerHTML = projects.map((p, i) => workCardHTML(p, i)).join('');
+        const used = new Set(projects.map(workFilterOf));
+        const chips = [{ id: 'all', label: 'All' }, ...WORK_FILTERS.filter(f => used.has(f.id))];
+        const chipBox = document.getElementById('work-chips');
+        chipBox.innerHTML = chips.map((c, i) => `<button type="button" class="chip" data-id="${c.id}" aria-pressed="${i === 0}">${c.label}</button>`).join('');
+        chipBox.addEventListener('click', (e) => {
+            const b = e.target.closest('.chip'); if (!b) return;
+            chipBox.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
+            const id = b.dataset.id;
+            grid.querySelectorAll('.wcard').forEach(card => {
+                const show = id === 'all' || card.dataset.filter === id;
+                card.hidden = !show;
+                if (show) { card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop'); }
+            });
+        });
     </script>
     <script src="script.js"></script>
+    <script>
+        // "Hello" cycles through a few languages (see the notes on fit() below).
+        (() => {
+            const el = document.getElementById('hello-word');
+            if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            // text, extra class (own font for Arabic and Malayalam), language
+            const words = [['Hello', 'c-purple', 'en'], ['Bonjour', 'c-blue', 'fr'], ['Hej', 'c-green', 'sv'], ['مرحبا', 'hw-ar c-orange', 'ar'], ['നമസ്കാരം', 'hw-ml c-blue', 'ml']];
+            const set = (node, [t, cls, lang]) => { node.textContent = t; node.className = 'hello-word' + (cls ? ' ' + cls : ''); node.lang = lang; };
+            // the slot is exactly as wide as "Hello", so "Hello" starts right above the R;
+            // longer words grow to the left and ", I'm" never moves
+            const fit = () => {
+                const probe = el.cloneNode(); probe.removeAttribute('id'); probe.style.cssText = 'position:absolute;visibility:hidden;width:auto';
+                el.parentNode.appendChild(probe);
+                set(probe, words[0]);
+                el.style.width = Math.ceil(probe.getBoundingClientRect().width) + 'px';
+                probe.remove();
+            };
+            // make sure the Arabic and Malayalam fonts are loaded before measuring the widest word
+            const ready = document.fonts ? Promise.all([document.fonts.load("34px Marhey", 'مرحبا'), document.fonts.load("34px Chilanka", 'നമസ്കാരം'), document.fonts.ready]).catch(() => {}) : Promise.resolve();
+            ready.then(fit);
+            window.addEventListener('resize', fit);
+            let i = 0;
+            setInterval(() => {
+                if (document.hidden) return;
+                el.classList.add('out');
+                setTimeout(() => { i = (i + 1) % words.length; set(el, words[i]); }, 280);
+            }, 2400);
+        })();
+    </script>
 </body>
 </html>

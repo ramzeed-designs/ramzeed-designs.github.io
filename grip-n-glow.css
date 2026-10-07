@@ -19,8 +19,8 @@ body.gg {
     --neon: #c6ff4a;            /* neon lime for the key insight */
     --night: #17152a;
 
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     --bg: var(--paper);

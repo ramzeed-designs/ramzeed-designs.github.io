@@ -20,8 +20,8 @@ body.ns {
     /* priority matrix bars */
     --k1: #9e2b25; --k2: #d9603b; --k3: #b08a55; --k4: #6b5a3e;
 
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     --bg: var(--paper);

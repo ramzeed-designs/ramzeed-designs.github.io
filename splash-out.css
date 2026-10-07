@@ -14,8 +14,8 @@ body.so {
     --water-soft: #d9ecf6;
     --deep: #123a57;
 
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     --bg: var(--paper);
@@ -280,4 +280,19 @@ body.so {
     .ori { offset-distance: 45%; }
     .leap { offset-distance: 60%; } .hop { offset-distance: 38%; }
     .reveal { opacity: 1; translate: none; }
+}
+
+/* ---------- 04 physics test clips (shown like GIFs) ---------- */
+video.film-slot--video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+.physics { margin-top: 56px; }
+.physics h3 { font-size: 28px; letter-spacing: -.5px; }
+.physics-note { margin-top: 4px; font-size: 24px; color: var(--orange); }
+.physics-grid { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.physics-grid figure { margin: 0; }
+.physics-grid video { display: block; width: 100%; height: auto; border-radius: 22px; background: #000; }
+.physics-grid figcaption { margin-top: 12px; font-size: 15px; color: var(--body); }
+.physics-grid figcaption b { display: block; font-family: var(--f-display); font-weight: 800; font-size: 17px; color: var(--ink); }
+@media (max-width: 640px) {
+    .physics-grid { grid-template-columns: 1fr; }
+    video.film-slot--video { aspect-ratio: 16 / 9; }
 }

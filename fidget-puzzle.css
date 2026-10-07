@@ -19,8 +19,8 @@ body.fp {
     --peach: #fbe9dd;
     --coral: #f4877a;
 
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     /* site header follows the page colours */
@@ -229,6 +229,35 @@ body.fp { --ov-bg: var(--mint); --ov-line: var(--green); --ov-ink: var(--ink); -
 .film-slot small { color: #c9c6e6; font-size: 15px; }
 .film-slot > .ball { position: absolute; opacity: .9; }
 
+/* Product video stage: navy band, tall phone-shaped video, note beside it */
+.film-stage {
+    position: relative; overflow: hidden; margin-top: 48px; border-radius: 32px; background: #16143a;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px;
+    padding: 56px clamp(28px, 6vw, 96px);
+}
+.film-stage > .ball { position: absolute; opacity: .9; }
+.film-copy { position: relative; z-index: 1; max-width: 380px; }
+.film-copy .hand { color: var(--yellow); font-size: clamp(34px, 3.4vw, 48px); line-height: 1.05; }
+.film-note { margin-top: 16px; color: #c9c6e6; font-size: 17px; line-height: 1.6; }
+.film-phone { position: relative; z-index: 1; margin: 0; width: clamp(240px, 24vw, 320px); }
+.film-phone video {
+    width: 100%; height: auto; aspect-ratio: 9 / 16; display: block; object-fit: cover;
+    border-radius: 28px; background: #0e0c28;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, .08), 0 30px 60px -28px rgba(0, 0, 0, .7);
+}
+.sound-btn {
+    position: absolute; left: 50%; bottom: 16px; translate: -50% 0;
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 600 14px var(--f-body); color: #16143a; background: var(--yellow);
+    border: 0; border-radius: 999px; padding: 10px 16px 10px 12px; cursor: pointer;
+    box-shadow: 0 6px 16px -6px rgba(0, 0, 0, .5);
+    transition: transform .3s var(--bounce, ease);
+}
+.sound-btn:active { transform: scale(.94); }
+.sound-btn .i-on { display: none; }
+.sound-btn[aria-pressed="true"] .i-on { display: block; }
+.sound-btn[aria-pressed="true"] .i-off { display: none; }
+
 /* ---------- 06 OUTCOME ---------- */
 .outcome { display: flex; justify-content: center; padding-top: 140px; }
 .outcome .wrapper { position: relative; width: min(600px, 100%); padding-left: 40px; box-sizing: border-box; }
@@ -309,6 +338,10 @@ body.fp { --ov-bg: var(--mint); --ov-line: var(--green); --ov-ink: var(--ink); -
     .g-mid { gap: 14px; }
     .gallery { gap: 14px; }
     .g-main img, .gallery > img { height: 300px; }
+    .film-stage { grid-template-columns: 1fr; gap: 28px; padding: 36px 22px; border-radius: 24px; margin-top: 32px; text-align: center; }
+    .film-copy { margin-inline: auto; }
+    .film-phone { width: min(100%, 300px); margin-inline: auto; }
+    .film-stage > .ball { display: none; }
     .film-slot { aspect-ratio: 4 / 3; border-radius: 24px; margin-top: 32px; }
     .film-slot .play { width: 76px; height: 76px; }
     .film-slot .hand { font-size: 28px; }

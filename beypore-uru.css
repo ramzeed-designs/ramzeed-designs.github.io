@@ -18,10 +18,10 @@ body.bu {
     --sand: #efe3d3;
     --line: rgba(109, 68, 49, .18);
 
-    --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --f-body: 'DM Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
-    --f-book: 'Lora', Georgia, serif;
+    --f-book: 'Inter', system-ui, sans-serif;
     --f-ml: 'Noto Sans Malayalam', 'Kartika', sans-serif;
 
     --bg: var(--paper);

@@ -7,7 +7,9 @@
     <meta name="description" content="Splash Out: a physics-puzzle game in Unity where a tiny fish escapes a restaurant kitchen before it dries out. A one-week group project where I worked on gameplay and code.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="splash-out.css">
     <script>
@@ -35,7 +37,7 @@
             <nav class="nav-pill" aria-label="Main">
                 <a href="index.html#work">Work</a>
                 <a href="playground.html">Playground</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <button class="theme-btn" id="theme-btn" type="button"
                         aria-label="Switch to dark mode" title="Switch to dark mode">
                     <span class="theme-dot"></span>
@@ -210,6 +212,20 @@
                     <li class="reveal"><b>Playtesting</b> and tuning, so the clumsiness feels fun rather than frustrating.</li>
                 </ul>
             </div>
+            <div class="physics">
+                <h3>Testing the physics in Unity</h3>
+                <p class="physics-note hand">before any art: just a ball and some boxes</p>
+                <div class="physics-grid">
+                    <figure class="reveal">
+                        <video class="gif" src="images/videos/splash-out-physics-fish.mp4" poster="images/videos/splash-out-physics-fish-poster.jpg" width="960" height="480" muted loop playsinline autoplay preload="metadata" aria-label="Unity test: a ball stands in for the fish, jumping in and out of a water volume"></video>
+                        <figcaption><b>Fish movement</b> Jumping in and out of water</figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <video class="gif" src="images/videos/splash-out-physics-env.mp4" poster="images/videos/splash-out-physics-env-poster.jpg" width="960" height="354" muted loop playsinline autoplay preload="metadata" aria-label="Unity test: kitchen props built from blocks, knocked around by physics"></video>
+                        <figcaption><b>Environment</b> Props reacting to physics</figcaption>
+                    </figure>
+                </div>
+            </div>
         </section>
 
         <!-- ============ 05 ENVIRONMENTAL PROGRESSION ============ -->
@@ -234,9 +250,7 @@
                 <img class="reveal" src="images/splash-out/cs/shot-3.webp" width="487" height="247" loading="lazy" alt="The stove with a flame, pots and shelves of food">
                 <img class="reveal" src="images/splash-out/cs/shot-4.webp" width="487" height="247" loading="lazy" alt="The corner of the kitchen with the stove and shelves">
             </div>
-            <iframe class="film-slot film-slot--video reveal" loading="lazy"
-                    src="https://www.youtube-nocookie.com/embed/hLDSYl76qiE?controls=0&amp;modestbranding=1&amp;disablekb=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=hLDSYl76qiE&amp;playsinline=1&amp;rel=0"
-                    title="Splash Out gameplay video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <video class="film-slot film-slot--video reveal" src="images/videos/splash-out-gameplay.mp4" poster="images/videos/splash-out-gameplay-poster.jpg" width="1280" height="720" controls playsinline preload="none" aria-label="Splash Out gameplay: the kitchen level"></video>
             <div class="tools-row">
                 <div class="tools">
                     <span>Tools used</span>
@@ -288,6 +302,13 @@
             if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(el => el.classList.add('is-in')); return; }
             const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
             els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+        (function () {
+            const gifs = document.querySelectorAll('video.gif');
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) { gifs.forEach(v => { v.removeAttribute('autoplay'); v.pause(); v.controls = true; }); return; }
+            if (!('IntersectionObserver' in window)) return;
+            const io = new IntersectionObserver(es => es.forEach(e => { e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause(); }), { threshold: 0.2 });
+            gifs.forEach(v => io.observe(v));
         })();
     </script>
     <script src="script.js"></script>

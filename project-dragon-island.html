@@ -7,7 +7,9 @@
     <meta name="description" content="Dragon Island: an augmented reality experience that turns the campus table-tennis area into a magical encounter. A one-week class project built with Unity and Vuforia.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dragon-island.css">
     <script>
@@ -22,7 +24,7 @@
             <nav class="nav-pill" aria-label="Main">
                 <a href="index.html#work">Work</a>
                 <a href="playground.html">Playground</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <button class="theme-btn" id="theme-btn" type="button"
                         aria-label="Switch to dark mode" title="Switch to dark mode">
                     <span class="theme-dot"></span>
@@ -139,7 +141,7 @@
             <div class="inner">
                 <div class="label"><b style="--c: var(--orange)">04</b><span>Experience video</span></div>
                 <h2 class="di-h2">Walk in and see it come alive.</h2>
-                <iframe class="film-slot film-slot--video reveal" src="https://www.youtube.com/embed/WLldmz1CA_E?modestbranding=1&amp;disablekb=1&amp;cc_load_policy=1&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=WLldmz1CA_E&amp;playsinline=1&amp;rel=0&amp;start=2" title="Dragon Island AR walkthrough" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+                <video class="film-slot film-slot--video film-slot--ar reveal" src="images/videos/dragon-island-ar.mp4" poster="images/videos/dragon-island-ar-poster.jpg" width="1280" height="590" controls playsinline preload="none" aria-label="Dragon Island AR walkthrough: walking up to the spot, the island appears and the dragon comes alive"></video>
                 <div class="tools">
                     <span>Tools used</span>
                     <div class="logo"><img src="images/dragon-island/cs/logo-vuforia.webp" width="456" height="327" loading="lazy" alt="Vuforia"></div>

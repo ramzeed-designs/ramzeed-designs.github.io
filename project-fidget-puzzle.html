@@ -7,7 +7,9 @@
     <meta name="description" content="DIY Fidget Puzzle: a build-it-yourself rotating ball puzzle designed around Smartivity's existing PP ball inventory, from brief to approved prototype in 3 weeks.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Caveat:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500;1,9..40,700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fidget-puzzle.css">
     <script>
@@ -22,7 +24,7 @@
             <nav class="nav-pill" aria-label="Main">
                 <a href="index.html#work">Work</a>
                 <a href="playground.html">Playground</a>
-                <a href="index.html#about">About</a>
+                <a href="about.html">About</a>
                 <button class="theme-btn" id="theme-btn" type="button"
                         aria-label="Switch to dark mode" title="Switch to dark mode">
                     <span class="theme-dot"></span>
@@ -209,16 +211,24 @@
                 <img class="reveal" src="images/fidget-puzzle/cs/final-hand.webp" width="422" height="401" loading="lazy" alt="The final prototype being turned in two hands">
             </div>
 
-            <!-- Product video: swap this block for
-                 <video class="film-slot" src="videos/fidget-puzzle.mp4" poster="images/fidget-puzzle/cs/final-render.webp" autoplay muted loop playsinline></video> -->
-            <div class="film-slot reveal">
-                <span class="play"><svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#16143a"/></svg></span>
-                <p class="hand">product video goes here</p>
-                <small>Short clip of the puzzle turning and clicking (MP4, up to 10 sec)</small>
-                <i class="ball ball--r" style="--s:60px; left:7%; top:12%"></i>
-                <i class="ball ball--b" style="--s:34px; right:8%; top:20%"></i>
-                <i class="ball ball--g" style="--s:46px; right:10%; bottom:14%"></i>
-                <i class="ball ball--y" style="--s:28px; left:12%; bottom:12%"></i>
+            <!-- Product video (with sound). Starts muted because browsers block autoplay with sound; the button turns it on -->
+            <div class="film-stage reveal">
+                <div class="film-copy">
+                    <p class="hand">turn it, hear it click</p>
+                    <p class="film-note">Six ball sets, one rotating cylinder, and a click detent you can feel in your fingers. Sound on for the full effect.</p>
+                </div>
+                <figure class="film-phone">
+                    <video id="fp-video" src="images/videos/fidget-puzzle-play.mp4" poster="images/videos/fidget-puzzle-play-poster.jpg" width="720" height="1280" muted loop playsinline preload="metadata" aria-label="Turning the final fidget puzzle in two hands"></video>
+                    <button class="sound-btn" id="fp-sound" type="button" aria-pressed="false" aria-label="Turn sound on">
+                        <svg class="i-off" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l4 6m0-6l-4 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <svg class="i-on" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <span class="sound-label">Sound on</span>
+                    </button>
+                </figure>
+                <i class="ball ball--r" style="--s:60px; left:6%; bottom:12%"></i>
+                <i class="ball ball--b" style="--s:34px; right:8%; top:14%"></i>
+                <i class="ball ball--g" style="--s:46px; right:12%; bottom:12%"></i>
+                <i class="ball ball--y" style="--s:28px; left:30%; top:14%"></i>
             </div>
         </section>
 
@@ -290,6 +300,24 @@
                 if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
             }), { rootMargin: '0px 0px -8% 0px' });
             els.forEach((el, n) => { el.style.setProperty('--d', (n % 4) * 70 + 'ms'); io.observe(el); });
+        })();
+    </script>
+    <script>
+        // Product video: plays while on screen; the button switches the sound on/off
+        (function () {
+            const v = document.getElementById('fp-video'), btn = document.getElementById('fp-sound');
+            if (!v) return;
+            const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            new IntersectionObserver(es => es.forEach(e => {
+                if (e.isIntersecting && !still) v.play().catch(() => {}); else v.pause();
+            }), { threshold: 0.35 }).observe(v);
+            btn.addEventListener('click', () => {
+                v.muted = !v.muted;
+                if (!v.muted) v.play().catch(() => {});
+                btn.setAttribute('aria-pressed', String(!v.muted));
+                btn.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
+                btn.querySelector('.sound-label').textContent = v.muted ? 'Sound on' : 'Sound off';
+            });
         })();
     </script>
     <script src="script.js"></script>

@@ -17,8 +17,8 @@ body.di {
     --orange-soft: #fde3d6;
     --green: #6db86f;
 
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     --bg: var(--paper);
@@ -239,3 +239,7 @@ body.di {
 /* YouTube player in the video slot */
 iframe.film-slot--video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; padding: 0; border: 0; }
 @media (max-width: 640px) { iframe.film-slot--video { aspect-ratio: 16 / 9; } }
+
+/* Self-hosted AR video (phone screen recording, kept at its own wide shape) */
+video.film-slot--ar { display: block; width: 100%; height: auto; aspect-ratio: 1280 / 590; padding: 0; border: 0; background: #000; object-fit: contain; }
+@media (max-width: 640px) { video.film-slot--ar { aspect-ratio: 1280 / 590; } }

@@ -15,8 +15,8 @@ body.sk {
     --pro: #4f8a5b;          /* the green "pros" (a touch darker than Figma's #79ac83 so it reads on white) */
     --con: #b42222;
 
-    --f-display: 'Bricolage Grotesque', 'Plus Jakarta Sans', system-ui, sans-serif;
-    --f-body: 'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --f-display: 'Satoshi', system-ui, sans-serif;
+    --f-body: 'Inter', system-ui, sans-serif;
     --f-hand: 'Caveat', 'Comic Sans MS', cursive;
 
     /* site header follows the page colours */
