@@ -503,6 +503,20 @@ body.tp--orange { --t: var(--k-orange); --t-soft: var(--c-orange); --t-ink: #1a1
 .d-rules .r--door b { background: #ffd25a; }
 .d-rules p { font-size: 15px; line-height: 1.45; color: var(--d-muted); }
 
+/* Build process: rows of three, each photo at its own proportions (same height per row, no cropping) */
+.d-process { display: flex; flex-direction: column; gap: 18px; }
+.d-prow { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; align-items: flex-start; }
+.d-prow li {
+    flex: 1 1 0; min-width: 0; display: flex; flex-direction: column;
+    border-radius: 22px; overflow: hidden;
+    background: var(--night-2); border: 1px solid var(--d-line);
+}
+.d-process img { display: block; width: 100%; height: auto; }
+.d-process div { padding: 16px 18px 18px; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; align-items: baseline; }
+.d-process b { grid-row: span 2; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--glow-hi); }
+.d-process strong { font-family: var(--f-display); font-size: 18px; color: var(--d-ink); }
+.d-process p { font-size: 15px; line-height: 1.45; color: var(--d-muted); }
+
 .d-build { display: flex; flex-wrap: wrap; gap: 12px; }
 .d-build img { flex: none; width: auto; max-width: 100%; height: 190px; border-radius: 14px; border: 1px solid var(--d-line); }
 
@@ -551,8 +565,30 @@ body.tp--orange { --t: var(--k-orange); --t-soft: var(--c-orange); --t-ink: #1a1
 .deep--sage .f-col:last-child .f-node strong { color: #10241a; }
 .deep--sage .f-col:last-child .f-node span { color: #24453a; }
 
+/* Closing film (with sound, plays on click) */
+.d-film { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.d-film .d-label { align-self: flex-start; }
+.d-film video { display: block; width: min(100%, 440px); height: auto; aspect-ratio: 464 / 580; border-radius: 24px; background: var(--night-2); border: 1px solid var(--d-line); }
+.d-film-note { margin-top: 14px; font-size: 15px; color: var(--d-muted); }
+
+/* Smart speaker panel: navy from the wave desk mat, MDF wood, soldering-iron yellow */
+.deep--wave {
+    --night: #13203a; --night-2: #1b2b4b; --glow: #f2c230; --glow-hi: #f6d77a;
+    --d-ink: #f4eee2; --d-muted: #b9c2d6; --d-line: rgba(217, 177, 122, .3);
+    --mono: var(--f-body);
+    background:
+        radial-gradient(ellipse 70% 60% at 90% 0%, rgba(217, 177, 122, .18), transparent 70%),
+        var(--night);
+}
+.deep--wave .d-label { font-weight: 700; letter-spacing: 1.4px; }
+.deep--wave .f-col:last-child .f-node { background: #d9b17a; border-color: #d9b17a; }
+.deep--wave .f-col:last-child .f-node strong { color: #2a1c0c; }
+.deep--wave .f-col:last-child .f-node span { color: #4d3820; }
+
 @media (max-width: 900px) {
     .d-steps, .d-contrib { grid-template-columns: 1fr; }
+    .d-prow { flex-wrap: wrap; }
+    .d-prow li { flex: 1 1 100% !important; }
     .d-rules { grid-template-columns: 1fr; }
     .d-compare { grid-template-columns: 1fr; }
     .d-adds > span { width: 2px; height: 26px; margin: 4px 0 0 18px; }

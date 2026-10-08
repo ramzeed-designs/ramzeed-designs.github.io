@@ -176,11 +176,33 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 .stat b { font-family: var(--f-display); font-weight: 800; font-size: clamp(52px, 5vw, 72px); line-height: 1; color: var(--cs-blue); }
 .stat span { font-size: 17px; line-height: 1.3; color: var(--cs-body); }
 [data-theme="ink"] .stat b { color: #7f9bff; }
+[data-theme="ink"] .stat--yellow b { color: #1b1a17; }
 .stat--yellow { background: var(--cs-yellow); }
 .stat--yellow b, .stat--yellow span { color: #1b1a17; }
 .stat--dark { background: #1b1a17; }
 .stat--dark b { color: var(--cs-yellow); }
 .stat--dark span { color: #fbf6ec; }
+/* Sales approved: the headline result, so it gets the brand blue and a stamped tick */
+.stat--approved {
+    position: relative; background: var(--cs-blue);
+    box-shadow: 0 0 0 4px var(--cs-yellow), 0 14px 34px rgba(43, 80, 200, .28);
+}
+.stat--approved::after {
+    content: "APPROVED"; position: absolute; top: 22px; right: 22px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.6px; color: #1b1a17;
+    background: var(--cs-yellow); border-radius: 999px; padding: 5px 10px;
+}
+.stat--approved .ok-badge {
+    width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--cs-yellow); color: #1b1a17;
+}
+.stat--approved .ok-badge svg { width: 38px; height: 38px; }
+.stat--approved .ok-badge path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.stat--approved.is-in .ok-badge path { animation: ok-draw .6s ease .5s forwards; }
+@keyframes ok-draw { to { stroke-dashoffset: 0; } }
+.stat--approved span { color: #fff; }
+.stat--approved strong { display: block; font-family: var(--f-display); font-weight: 800; font-size: 22px; line-height: 1.15; }
+[data-theme="ink"] .stat--approved .ok-badge { color: #1b1a17; }
 .meta-sec { padding-bottom: 120px; }
 .meta-sec .cs-wrap { display: flex; flex-direction: column; gap: 40px; }
 
@@ -204,8 +226,8 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 .game {
     position: relative; aspect-ratio: 16 / 9;
     border-radius: 24px; overflow: hidden;
-    background: var(--cs-blue);
-    border: 2px dashed var(--cs-zumthor);
+    /* Still of the low-poly model, rendered from games/wrist-launcher/wrist-launcher.glb */
+    background: #eef1f5 url("images/wrist-shooter/cs/game-thumb.webp") center / cover no-repeat;
 }
 .game.is-live { border-style: solid; border-color: transparent; background: #eef1f5; }
 .game iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -213,10 +235,13 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 .game-cover {
     position: absolute; inset: 0; width: 100%;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-    background: none; border: 0; cursor: pointer; color: #fff; font: inherit;
+    background: linear-gradient(to bottom, rgba(27, 26, 23, 0) 0%, rgba(27, 26, 23, 0) 52%, rgba(27, 26, 23, .45) 78%, rgba(27, 26, 23, .8) 100%);
+    border: 0; cursor: pointer; color: #fff; font: inherit;
+    justify-content: flex-end; padding-bottom: clamp(24px, 4vw, 48px);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .35);
 }
 .game-cover .hand { font-size: clamp(28px, 2.8vw, 40px); }
-.game-cover small { font-size: 15px; color: var(--cs-zumthor); }
+.game-cover small { font-size: 15px; color: #fff; opacity: .9; }
 .game-cover .play-dot {
     width: 84px; height: 84px; border-radius: 50%;
     display: grid; place-items: center; margin-bottom: 6px;
@@ -287,11 +312,11 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 /* ---------- 04 BRIEF ---------- */
 .brief-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
 .brief-top .sec-head { max-width: 760px; }
-.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.module { border-radius: 24px; padding: 32px; }
+.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 900px; }
+.module { border-radius: 20px; padding: 20px; }
 .module .slot {
-    height: 204px; background: none; border-radius: 16px; border-color: #1b1a17;
-    font-family: var(--f-display); font-weight: 800; font-size: clamp(24px, 2.2vw, 32px); color: #1b1a17;
+    height: 130px; background: none; border-radius: 14px; border-color: #1b1a17;
+    font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 1.7vw, 24px); color: #1b1a17;
 }
 .module--orange { background: var(--cs-orange); }
 .module--yellow { background: var(--cs-yellow); }
@@ -382,13 +407,13 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
     font-size: clamp(30px, 3.4vw, 52px); line-height: 1.05; transform: rotate(-6deg);
 }
 
-/* Product film: a wide clip and a tall clip side by side at the same height
-   (column widths follow each video's own proportions, so nothing is cropped) */
-.film-duo { display: grid; grid-template-columns: 1.209fr .5625fr; gap: 20px; }
+/* Product film: two clips in matching square frames, side by side.
+   Each frame is aimed at where the action happens, so the toy stays in view */
+.film-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .film-clip { margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.film-clip video { width: 100%; height: auto; display: block; border-radius: 28px; background: #26241f; }
-.film-clip--wide video { aspect-ratio: 960 / 794; }
-.film-clip--tall video { aspect-ratio: 9 / 16; }
+.film-clip video { width: 100%; height: auto; display: block; border-radius: 28px; background: #26241f; aspect-ratio: 1 / 1; object-fit: cover; }
+.film-clip--wide video { object-position: 45% 50%; }
+.film-clip--tall video { object-position: 50% 72%; }
 .film-clip figcaption { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: #fbf6ec; }
 .film-clip .step {
     width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
@@ -396,7 +421,6 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 }
 @media (max-width: 640px) {
     .film-duo { grid-template-columns: 1fr; gap: 28px; }
-    .film-clip--tall { width: min(100%, 280px); margin-inline: auto; }
     .film-clip video { border-radius: 22px; }
 }
 
@@ -501,7 +525,7 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
     .concepts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .slot--conf .stamp { font-size: 10px; letter-spacing: 1px; padding: 6px 8px; }
     .play-box, .twist { padding: 28px 20px; border-radius: 24px; }
-    .game { aspect-ratio: 3 / 4; }
+    .game { aspect-ratio: 3 / 4; background-color: #e4e9ef; background-size: 165% auto; background-position: 50% 0; }
     .letter { font-size: 72px; }
     .mod-text h3 { font-size: 28px; }
     .note { font-size: 21px; padding: 22px; }
@@ -525,4 +549,5 @@ body.cs { --ov-bg: var(--cs-yellow); --ov-line: #1b1a17; --ov-ink: #1b1a17; --ov
 @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; translate: none; }
     .hero-stage .blob, .game-cover .play-dot, .classified::after { animation: none; }
+    .stat--approved .ok-badge path { stroke-dashoffset: 0; animation: none !important; }
 }

@@ -58,6 +58,24 @@ const projects = [
         brand: 'smartivity'
     },
     {
+        slug: 'blowpli',
+        title: 'BlowPli',
+        category: 'Toy design',
+        summary: 'A breath-powered maze toy for Anganwadi kids, with Gulab Tribe',
+        thumb: 'images/blowpli/cs/room.webp',
+        page: 'project-blowpli.html',
+        tags: ['Early childhood development']
+    },
+    {
+        slug: 'binome',
+        title: 'BinoMe',
+        category: 'Toy design',
+        summary: 'A role-play toy that helps kids explore emotions, with Gulab Tribe',
+        thumb: 'images/binome/cs/thumb.webp',
+        page: 'project-binome.html',
+        tags: ['Social-emotional learning']
+    },
+    {
         slug: 'hydraulic-press',
         title: 'Hydraulic Crusher / Lifter',
         category: 'Toy concept',
@@ -93,28 +111,10 @@ const projects = [
         tags: ['Level design']
     },
     {
-        slug: 'blowpli',
-        title: 'BlowPli',
-        category: 'Toy design',
-        summary: 'A breath-powered maze toy for Anganwadi kids, with Gulab Tribe',
-        thumb: 'images/blowpli/cs/room.webp',
-        page: 'project-blowpli.html',
-        tags: ['Early childhood development']
-    },
-    {
-        slug: 'binome',
-        title: 'BinoMe',
-        category: 'Toy design',
-        summary: 'A role-play toy that helps kids explore emotions, with Gulab Tribe',
-        thumb: 'images/binome/cs/thumb.webp',
-        page: 'project-binome.html',
-        tags: ['Social-emotional learning']
-    },
-    {
         slug: 'naveena-sombu',
         title: 'Naveena Sombu',
         category: 'Product design',
-        summary: 'A modern lota: a one-hand spit container for drivers who chew pan',
+        summary: 'A modern lota: designing for extreme users, drivers who chew pan',
         thumb: 'images/naveena-sombu/cs/thumb.webp',
         page: 'project-naveena-sombu.html',
         tags: ['Behavioural study', 'User research']
@@ -152,10 +152,10 @@ const projects = [
    a compact page built from those items (no hand-coded page needed).
 
    title    topic name on the tile and page
-   tag      sticker on the tile, e.g. '3 builds' (leave out to count the items)
+   tag      sticker on the tile (only shown on tiles without items, e.g. 'Soon')
    summary  one line on the tile
    shape    'tall', 'wide' or 'square'
-   colour   'purple', 'orange', 'green' or 'blue' (tile + topic page colour)
+   colour   'purple', 'orange', 'green', 'blue', 'yellow' or 'pink' (tile + topic page colour)
    icon     line drawing on the tile while there's no thumb: gear, cursor, heart, toy
    thumb    tile image (optional)
    tagline  handwritten line on the topic page
@@ -165,6 +165,8 @@ const projects = [
 
    items: the projects inside a topic. Each one can have:
      title, tagline (handwritten), text (2–3 lines), kicker (small label above the title),
+     thumb: small photo for the Playground tile (falls back to the first photo / poster / video still),
+     short: shorter name for that tile photo (optional),
      type / madeWith / team / role / course / when / status (facts row; leave out any you don't know),
      tools: ['TouchDesigner', ...],
      media: first one is big, up to 3 more show small underneath:
@@ -185,6 +187,7 @@ const playground = [
         items: [
             {
                 title: 'Luminara',
+                thumb: 'images/luminara/cs/story-4.webp',
                 kicker: 'Interactive installation',
                 text: 'An installation inspired by bioluminescence and drawn from my own encounter with it. A Kinect reads your hands over a dark, still surface; TouchDesigner answers with glowing ripples of light, and Ableton Live with shifting voices.',
                 type: 'Interactive installation',
@@ -214,6 +217,7 @@ const playground = [
             },
             {
                 title: 'Ratkasque',
+                thumb: 'images/ratkasque/cs/logo.webp',
                 kicker: 'AR art installation',
                 text: 'An AR installation that critiques how consumerist algorithms push people into impulsive purchases. Set as a maze game, players help Mimi the rat buy shoes for the Great Cheese Marathon, and meet the algorithm\'s tricks along the way.',
                 type: 'AR art installation',
@@ -238,7 +242,7 @@ const playground = [
         ]
     },
     {
-        slug: 'mechatronics', title: 'Mechatronics', tag: '3 builds', icon: 'gear',
+        slug: 'mechatronics', title: 'Mechatronics', icon: 'gear',
         summary: 'Small machines that move, blink and beep',
         shape: 'tall', colour: 'blue', thumb: '',
         tagline: 'wired, coded & brought to life',
@@ -246,6 +250,7 @@ const playground = [
         items: [
             {
                 title: 'Blink & Break',
+                thumb: 'images/mechatronics/cs/bb-final.webp',
                 kicker: 'Arduino game',
                 tagline: 'crack the code.',
                 text: 'An interactive puzzle game about memory and pattern recognition. LEDs on a 3×3 grid blink a sequence, and players repeat it on a matching 3×3 button grid to unlock a safe. Give it a go right here.',
@@ -286,6 +291,7 @@ const playground = [
             },
             {
                 title: 'The Cockroach',
+                thumb: 'images/mechatronics/cs/roach-interactive.webp', short: 'Cockroach',
                 kicker: 'Interactive artifact',
                 tagline: 'it knows you\'re there.',
                 text: 'A senior had built a static cockroach out of waste materials, as a display piece. I helped bring it to life: an ultrasonic sensor notices when something comes close, and servo motors make the cockroach react with lifelike movements.',
@@ -317,18 +323,43 @@ const playground = [
             },
             {
                 title: 'Smart DIY Bluetooth Speaker',
+                short: 'DIY Speaker',
+                thumb: 'images/mechatronics/cs/speaker-final.webp',
                 kicker: 'Hobby build',
                 tagline: 'on my desk right now.',
-                text: 'A hobby project I\'m in the middle of: my own Bluetooth speaker, with a few smart touches. More once it\'s done.',
+                text: 'What if your speaker could track your movement, so you get a seamless listening experience wherever you are in the room? That\'s the idea behind this build: a Bluetooth speaker in a laser-cut wooden body, with two ultrasonic sensors on top and a turning base underneath, all run by an Arduino.',
                 type: 'Hobby project',
                 status: 'In progress',
-                media: []                               // photos coming
+                tools: ['Arduino', 'Ultrasonic sensors', 'Stepper motor', 'Laser-cut MDF'],
+                media: [
+                    { src: 'images/mechatronics/cs/speaker-final.webp', alt: 'The speaker from the front: two drivers in a wooden box, two ultrasonic sensors on top' },
+                    { src: 'images/mechatronics/cs/speaker-first-look.webp', alt: 'The wooden speaker sitting on its metal turntable on the desk' },
+                ],
+                deep: {
+                    theme: 'wave',
+                    flow: [
+                        { label: 'Sense', nodes: [{ name: '2 ultrasonic sensors', note: 'on top of the box' }] },
+                        { label: 'Process', nodes: [{ name: 'Arduino', note: 'reads the sensors' }] },
+                        { label: 'Output', nodes: [{ name: 'Stepper motor', note: 'turns the base' }, { name: 'Bluetooth audio', note: 'two drivers' }] },
+                        { label: 'Result', nodes: [{ name: 'An interactive speaker', note: 'that turns with you' }] }
+                    ],
+                    processLabel: 'How it came together',
+                    process: [
+                        { src: 'images/mechatronics/cs/sp-p1-base.webp', title: 'The base', text: 'Drilling the base.', alt: 'Drilling the laser-cut base plate' },
+                        { src: 'images/mechatronics/cs/speaker-wiring.webp', title: 'Breadboard first', text: 'Testing the Arduino, stepper motor and both ultrasonic sensors before building anything around them.', alt: 'An Arduino, a stepper motor and two ultrasonic sensors wired on a breadboard' },
+                        { src: 'images/mechatronics/cs/sp-p3-turntable.webp', title: 'The turning base', text: 'Making a DIY lazy Susan turntable for the speaker to turn on.', alt: 'A metal turntable, wires and two ultrasonic sensors on the desk' },
+                        { src: 'images/mechatronics/cs/sp-p4-body.webp', grow: 1, ratio: '3 / 4', title: 'Building the body', text: 'Assembling the laser-cut box around the two drivers and the audio board.', alt: 'The laser-cut wooden box open, with a circuit board and wires inside, next to a soldering iron' },
+                        { src: 'images/mechatronics/cs/sp-p5-inside.webp', grow: 1, ratio: '3 / 4', pos: '40% 50%', title: 'Wiring it inside', text: 'Fitting the board and soldering the connections inside the box.', alt: 'Top view of the open wooden body with the board inside and a soldering iron beside it' },
+                        { src: 'images/mechatronics/cs/speaker-desk.webp', grow: 1.5, ratio: '3 / 4', title: 'On the table', text: 'All wired up and sitting on its turntable for the first time.', alt: 'The finished speaker on the desk: two drivers in a wooden box, two ultrasonic sensors on top, on its metal turntable' }
+                    ],
+                    film: { video: 'images/videos/speaker-film.mp4', poster: 'images/videos/speaker-film-poster.jpg', label: 'See it in action', note: 'Turn your sound on', alt: 'The speaker on the desk, turning on its base' }
+                }
             }
         ]
     },
-    { slug: 'hobbies',      title: 'Hobbies',      tag: 'Off the clock', icon: 'heart', summary: 'What I do when I\'m not designing',     shape: 'tall',   colour: 'orange', thumb: '', soon: true },
+    { slug: 'hobbies',      title: 'Hobbies',      tag: 'Off the clock', icon: 'heart', summary: 'What I do when I\'m not designing',     shape: 'tall',   colour: 'yellow', thumb: '', soon: true },
     {
-        slug: 'soft-toys', title: 'Soft Toys', tag: '1 project', icon: 'toy',
+        slug: 'soft-toys', title: 'Soft Toys', icon: 'toy',
         summary: 'Stitched, stuffed and squeezable',
         shape: 'square', colour: 'green', thumb: '',
         tagline: 'stitched, stuffed & squeezable',
@@ -336,6 +367,7 @@ const playground = [
         items: [
             {
                 title: 'Shark Cast Cover',
+                thumb: 'images/soft-toys/cs/shark-assembled.webp',
                 kicker: 'Soft toy',
                 tagline: 'a cast worth showing off.',
                 text: 'A soft toy for kids who have broken their arm. It slips over the hand cast and covers it, so the cast turns into a shark and becomes something cool to show off instead of something to hide.',
@@ -355,7 +387,7 @@ const playground = [
             }
         ]
     },
-    { slug: 'more-1',       title: 'More on the way', tag: 'Soon',                     summary: '',                                        shape: 'square', colour: 'orange', thumb: '', soon: true }
+    { slug: 'more-1',       title: 'More on the way', tag: 'Soon',                     summary: '',                                        shape: 'square', colour: 'pink', thumb: '', soon: true }
 ];
 
 /* ---------- Helpers used by the pages (no need to edit) ---------- */
@@ -376,12 +408,36 @@ const PLAY_ICONS = {
     toy:    '<circle cx="18" cy="16" r="7"/><circle cx="46" cy="16" r="7"/><circle cx="32" cy="34" r="20"/><circle cx="25" cy="31" r="1.5"/><circle cx="39" cy="31" r="1.5"/><path d="M28 40q4 4 8 0"/><path d="M14 46l-4 8M50 46l4 8" stroke-dasharray="3 4"/>'
 };
 
+// Picture for one project inside a topic: its own thumb, else the first photo, poster or video still
+function itemThumb(it) {
+    if (it.thumb) return it.thumb;
+    for (const m of (it.media || [])) {
+        if (m.src) return m.src;
+        if (m.poster) return m.poster;
+        if (m.youtube) return 'https://i.ytimg.com/vi/' + m.youtube + '/hqdefault.jpg';
+    }
+    if (it.collage && it.collage[0]) return it.collage[0].src;
+    return '';
+}
+
 function playCardHTML(p) {
-    let media = '<span class="play-dots" aria-hidden="true"></span>';
-    if (p.thumb) media = `<img src="${escapeHTML(p.thumb)}" alt="" loading="lazy">`;
-    else if (p.icon && PLAY_ICONS[p.icon]) media += `<svg class="play-icon" viewBox="0 0 64 64" aria-hidden="true">${PLAY_ICONS[p.icon]}</svg>`;
-    const n = p.items ? p.items.length : 0;
-    const tag = p.tag || (n ? n + (n === 1 ? ' project' : ' projects') : '');
+    let media;
+    if (p.items && p.items.length) {
+        // A little photo wall of the projects inside this topic, each with its name
+        const shots = p.items.map(it => {
+            const src = itemThumb(it);
+            const pic = src
+                ? `<img src="${escapeHTML(src)}" alt="" loading="lazy">`
+                : `<span class="play-shot-empty" aria-hidden="true">${it.status ? escapeHTML(it.status) : 'Photos soon'}</span>`;
+            return `<span class="play-shot">${pic}<b>${escapeHTML(it.short || it.title)}</b></span>`;
+        }).join('');
+        media = `<div class="play-shots n${Math.min(p.items.length, 4)}">${shots}</div>`;
+    } else {
+        media = '<span class="play-dots" aria-hidden="true"></span>';
+        if (p.thumb) media = `<img src="${escapeHTML(p.thumb)}" alt="" loading="lazy">`;
+        else if (p.icon && PLAY_ICONS[p.icon]) media += `<svg class="play-icon" viewBox="0 0 64 64" aria-hidden="true">${PLAY_ICONS[p.icon]}</svg>`;
+    }
+    const tag = p.items && p.items.length ? '' : (p.tag || '');
     const inner = `
         <div class="play-media">${media}</div>
         ${tag ? `<span class="play-tag">${escapeHTML(tag)}</span>` : ''}

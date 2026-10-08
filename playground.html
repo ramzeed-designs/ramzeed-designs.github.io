@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400;1,14..32,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -33,11 +34,22 @@
     </header>
 
     <main class="playground">
-        <div class="wrap">
-            <div class="play-intro">
-                <h1>Playground</h1>
-                <p>Side projects, hobbies and experiments. The things I make when nobody's asking.</p>
+        <!-- Intro: canvas grid like the home hero. Letters hop when touched (click to recolour), shapes can be dragged -->
+        <section class="pg-top">
+            <div class="wrap">
+                <div class="play-intro">
+                    <h1 class="pg-head" aria-label="Playground">
+                        <span class="pg-name" id="pg-name"><span class="pg-l" aria-hidden="true">P</span><span class="pg-l" aria-hidden="true">l</span><span class="pg-l" aria-hidden="true">a</span><span class="pg-l" aria-hidden="true">y</span><span class="pg-l" aria-hidden="true">g</span><span class="pg-l" aria-hidden="true">r</span><span class="pg-l" aria-hidden="true">o</span><span class="pg-l" aria-hidden="true">u</span><span class="pg-l" aria-hidden="true">n</span><span class="pg-l" aria-hidden="true">d</span></span>
+                    </h1>
+                    <p>Side projects, hobbies and experiments. The things I make when nobody's asking.</p>
+                    <div class="play-confetti" id="pg-confetti" aria-hidden="true">
+                        <i></i><i></i><i></i><i></i><i></i><i></i>
+                        <span class="pg-hint">psst, drag us around!</span>
+                    </div>
+                </div>
             </div>
+        </section>
+        <div class="wrap">
             <!-- Tiles are built from the `playground` list in projects.js -->
             <div class="play-wall" id="play-wall"></div>
         </div>
@@ -52,5 +64,36 @@
         document.getElementById('play-wall').innerHTML = playground.map(playCardHTML).join('');
     </script>
     <script src="script.js"></script>
+    <script>
+        (() => {
+            const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const COLS = ['var(--pg-purple)', 'var(--pg-orange)', 'var(--pg-green)', 'var(--pg-blue)', 'var(--pg-yellow)', 'var(--pg-pink)'];
+
+            // 1. Letters hop when the pointer touches them; a click or tap gives a letter the next colour
+            document.querySelectorAll('#pg-name .pg-l').forEach((l, i) => {
+                let c = i % COLS.length;
+                const hop = () => { if (still) return; l.classList.remove('hop'); void l.offsetWidth; l.classList.add('hop'); };
+                l.addEventListener('pointerenter', hop);
+                l.addEventListener('click', () => { c = (c + 1) % COLS.length; l.style.color = COLS[c]; hop(); });
+            });
+
+            // 2. The little shapes can be dragged anywhere and stay where they're dropped
+            document.querySelectorAll('#pg-confetti i').forEach(sh => {
+                let sx, sy, ox = 0, oy = 0;
+                sh.addEventListener('pointerdown', e => {
+                    sh.setPointerCapture(e.pointerId); sh.classList.add('drag');
+                    sx = e.clientX - ox; sy = e.clientY - oy;
+                    document.getElementById('pg-confetti').classList.add('used');
+                });
+                sh.addEventListener('pointermove', e => {
+                    if (!sh.classList.contains('drag')) return;
+                    ox = e.clientX - sx; oy = e.clientY - sy;
+                    sh.style.translate = ox + 'px ' + oy + 'px';
+                });
+                const drop = () => sh.classList.remove('drag');
+                sh.addEventListener('pointerup', drop); sh.addEventListener('pointercancel', drop);
+            });
+        })();
+    </script>
 </body>
 </html>

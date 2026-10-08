@@ -170,10 +170,33 @@
                 <small class="d-label">How the setup works</small>
                 ${flowHTML(d.flow)}
             </div>`;
+        // Build process: numbered photos in rows of three, each at its own proportions, with a short line
+        if (d.process) {
+            // optional per step: grow (fixed width share), ratio + pos (frame the photo at a set shape)
+            const card = (s, i) => `
+                    <li${s.grow ? ` style="flex-grow:${+s.grow}"` : ''}>
+                        <img src="${esc(s.src)}" alt="${esc(s.alt || s.text)}" loading="lazy"${s.ratio ? ` style="aspect-ratio:${esc(s.ratio)};object-fit:cover;object-position:${esc(s.pos || 'center')}"` : ''}${s.grow ? '' : ' onload="this.parentNode.style.flexGrow = this.naturalWidth / this.naturalHeight"'}>
+                        <div><b>${String(i + 1).padStart(2, '0')}</b><strong>${esc(s.title)}</strong><p>${esc(s.text)}</p></div>
+                    </li>`;
+            let rows = '';
+            for (let r = 0; r < d.process.length; r += 3) rows += `<ol class="d-prow" start="${r + 1}">${d.process.slice(r, r + 3).map((s, k) => card(s, r + k)).join('')}</ol>`;
+            h += `
+            <div class="d-sec">
+                <small class="d-label">${esc(d.processLabel || 'How it came together')}</small>
+                <div class="d-process">${rows}</div>
+            </div>`;
+        }
         if (d.build) h += `
             <div class="d-sec">
                 <small class="d-label">${esc(d.buildLabel || 'Making it')}</small>
                 <div class="d-build">${d.build.map(b => `<img src="${esc(b.src)}" alt="${esc(b.alt || '')}">`).join('')}</div>
+            </div>`;
+        // A closing film with sound: plays only when the visitor presses play
+        if (d.film) h += `
+            <div class="d-sec d-film">
+                <small class="d-label">${esc(d.film.label || 'See it in action')}</small>
+                <video src="${esc(d.film.video)}"${d.film.poster ? ` poster="${esc(d.film.poster)}"` : ''} controls playsinline preload="none" aria-label="${esc(d.film.alt || it.title)}"></video>
+                ${d.film.note ? `<p class="d-film-note">${esc(d.film.note)}</p>` : ''}
             </div>`;
         if (d.videos) h += `
             <div class="d-sec">
