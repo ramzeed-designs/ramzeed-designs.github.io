@@ -484,10 +484,10 @@
 
         // Figma prototype: only loads when asked for
         document.getElementById('load-proto').addEventListener('click', function () {
-            const proto = 'https://www.figma.com/proto/CwMKjn1RfBIhL550uHDVcM/UI-Mockup_KMC?node-id=0-1&scaling=scale-down&hide-ui=1';
+            const src = 'https://embed.figma.com/proto/CwMKjn1RfBIhL550uHDVcM/UI-Mockup_KMC?node-id=0-1&scaling=scale-down&content-scaling=fixed&hide-ui=1&embed-host=share';
             const f = document.getElementById('proto-frame');
             f.classList.add('is-live');
-            f.innerHTML = '<iframe title="Trove clickable prototype" allowfullscreen src="https://www.figma.com/embed?embed_host=share&url=' + encodeURIComponent(proto) + '"></iframe>';
+            f.innerHTML = '<iframe title="Trove clickable prototype" allowfullscreen src="' + src + '"></iframe>';
             this.disabled = true; this.lastChild.textContent = ' Prototype loaded';
         });
 

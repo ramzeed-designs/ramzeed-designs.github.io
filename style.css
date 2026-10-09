@@ -728,6 +728,7 @@ a.card:focus-visible .arrow { background: var(--pop); color: var(--pop-ink, #1a1
 .about-facts dd { font-weight: 600; line-height: 1.45; }
 
 .about-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.about-actions .btn-cv { padding: 18px 30px; }
 .btn-ghost { border-color: var(--line); }
 
 /* the sketch portrait */

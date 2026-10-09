@@ -85,6 +85,15 @@ const projects = [
         tags: ['3D design']
     },
     {
+        slug: 'naveena-sombu',
+        title: 'Naveena Sombu',
+        category: 'Product design',
+        summary: 'A modern lota: designing for extreme users, drivers who chew pan',
+        thumb: 'images/naveena-sombu/cs/thumb.webp',
+        page: 'project-naveena-sombu.html',
+        tags: ['Behavioural study', 'User research']
+    },
+    {
         slug: 'dragon-island',
         title: 'Dragon Island',
         category: 'AR experience',
@@ -109,15 +118,6 @@ const projects = [
         thumb: 'images/splash-out/cs/shot-3.webp',
         page: 'project-splash-out.html',
         tags: ['Level design']
-    },
-    {
-        slug: 'naveena-sombu',
-        title: 'Naveena Sombu',
-        category: 'Product design',
-        summary: 'A modern lota: designing for extreme users, drivers who chew pan',
-        thumb: 'images/naveena-sombu/cs/thumb.webp',
-        page: 'project-naveena-sombu.html',
-        tags: ['Behavioural study', 'User research']
     },
     {
         slug: 'trove',

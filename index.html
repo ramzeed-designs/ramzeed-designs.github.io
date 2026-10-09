@@ -80,6 +80,7 @@
                 <div class="contact-links">
                     <!-- Put your real email and profile links here -->
                     <a class="pill" href="mailto:mohammed_r@nid.edu">Email</a>
+                    <a class="pill" href="Ramzi-CV.pdf" download>Download CV</a>
                     <a class="pill" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
                     <a class="pill" href="https://www.instagram.com/your-handle" target="_blank" rel="noopener">Instagram</a>
                 </div>
@@ -101,16 +102,27 @@
         const chips = [{ id: 'all', label: 'All' }, ...WORK_FILTERS.filter(f => used.has(f.id))];
         const chipBox = document.getElementById('work-chips');
         chipBox.innerHTML = chips.map((c, i) => `<button type="button" class="chip" data-id="${c.id}" aria-pressed="${i === 0}">${c.label}</button>`).join('');
-        chipBox.addEventListener('click', (e) => {
-            const b = e.target.closest('.chip'); if (!b) return;
-            chipBox.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
-            const id = b.dataset.id;
+        function applyFilter(id) {
+            if (!chips.some(c => c.id === id)) id = 'all';
+            chipBox.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.id === id));
             grid.querySelectorAll('.wcard').forEach(card => {
                 const show = id === 'all' || card.dataset.filter === id;
                 card.hidden = !show;
                 if (show) { card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop'); }
             });
+        }
+        chipBox.addEventListener('click', (e) => {
+            const b = e.target.closest('.chip'); if (!b) return;
+            applyFilter(b.dataset.id);
+            // keep the address bar in step, so a filtered view can be copied and shared
+            const url = new URL(location.href);
+            if (b.dataset.id === 'all') url.searchParams.delete('filter'); else url.searchParams.set('filter', b.dataset.id);
+            url.hash = 'work';
+            history.replaceState(null, '', url);
         });
+        // Shareable links: index.html?filter=games#work opens with that chip already picked
+        const startFilter = new URLSearchParams(location.search).get('filter');
+        if (startFilter) applyFilter(startFilter);
     </script>
     <script src="script.js"></script>
     <script>
