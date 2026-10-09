@@ -246,7 +246,7 @@ const playground = [
         summary: 'Small machines that move, blink and beep',
         shape: 'tall', colour: 'blue', thumb: '',
         tagline: 'wired, coded & brought to life',
-        intro: 'Small builds where code meets moving parts: a safe you crack with your memory, a cockroach that reacts when you come close, and a speaker I\'m building right now.',
+        intro: 'Small builds where code meets moving parts: a safe you crack with your memory, a speaker I\'m building right now, and a cockroach that reacts when you come close.',
         items: [
             {
                 title: 'Blink & Break',
@@ -290,38 +290,6 @@ const playground = [
                 }
             },
             {
-                title: 'The Cockroach',
-                thumb: 'images/mechatronics/cs/roach-interactive.webp', short: 'Cockroach',
-                kicker: 'Interactive artifact',
-                tagline: 'it knows you\'re there.',
-                text: 'A senior had built a static cockroach out of waste materials, as a display piece. I helped bring it to life: an ultrasonic sensor notices when something comes close, and servo motors make the cockroach react with lifelike movements.',
-                type: 'Interactive model',
-                team: 'A senior\'s project',
-                role: 'Sensors, servos & code',
-                when: 'Sep 2025',                       // guessed from the video date: confirm
-                tools: ['Arduino', 'Ultrasonic sensor', 'Servo motors', 'Wing mechanism'],
-                media: [{ video: 'images/videos/cockroach-interactive.mp4', poster: 'images/videos/cockroach-interactive-poster.jpg', portrait: true, alt: 'A hand comes close to the cockroach and it reacts' }],
-                deep: {
-                    theme: 'sage',
-                    compare: {
-                        before: { src: 'images/mechatronics/cs/roach-static.webp', label: 'Where it started', note: 'a static model made from waste materials', alt: 'The static cockroach model: a striped green and black body with wire legs, on a wooden table' },
-                        adds: ['Arduino', 'Servo + wing mechanism', 'Ultrasonic sensor'],
-                        after: { src: 'images/mechatronics/cs/roach-interactive.webp', label: 'Where it ended up', note: 'electronics built into the body', alt: 'The cockroach on a workbench with its circuit board, servo and wires built into the body' }
-                    },
-                    contrib: [
-                        'Added interactivity with an <b>ultrasonic sensor</b> that detects nearby objects.',
-                        'Programmed the <b>servo motors</b> so the cockroach moves and reacts to its surroundings.',
-                        'Fitted the electronics into the <b>existing model</b>, so it still reads as one creature.'
-                    ],
-                    flow: [
-                        { label: 'Sense', nodes: [{ name: 'Ultrasonic sensor', note: 'something comes close' }] },
-                        { label: 'Process', nodes: [{ name: 'Arduino', note: 'reads the distance' }] },
-                        { label: 'Output', nodes: [{ name: 'Servo motors', note: 'drive the wing mechanism' }] },
-                        { label: 'Result', nodes: [{ name: 'A lifelike reaction', note: 'from a model made of waste' }] }
-                    ]
-                }
-            },
-            {
                 title: 'Smart DIY Bluetooth Speaker',
                 short: 'DIY Speaker',
                 thumb: 'images/mechatronics/cs/speaker-final.webp',
@@ -353,6 +321,38 @@ const playground = [
                         { src: 'images/mechatronics/cs/speaker-desk.webp', grow: 1.5, ratio: '3 / 4', title: 'On the table', text: 'All wired up and sitting on its turntable for the first time.', alt: 'The finished speaker on the desk: two drivers in a wooden box, two ultrasonic sensors on top, on its metal turntable' }
                     ],
                     film: { video: 'images/videos/speaker-film.mp4', poster: 'images/videos/speaker-film-poster.jpg', label: 'See it in action', note: 'Turn your sound on', alt: 'The speaker on the desk, turning on its base' }
+                }
+            },
+            {
+                title: 'The Cockroach',
+                thumb: 'images/mechatronics/cs/roach-interactive.webp', short: 'Cockroach',
+                kicker: 'Interactive artifact',
+                tagline: 'it knows you\'re there.',
+                text: 'A senior had built a static cockroach out of waste materials, as a display piece. I helped bring it to life: an ultrasonic sensor notices when something comes close, and servo motors make the cockroach react with lifelike movements.',
+                type: 'Interactive model',
+                team: 'A senior\'s project',
+                role: 'Sensors, servos & code',
+                when: 'Sep 2025',                       // guessed from the video date: confirm
+                tools: ['Arduino', 'Ultrasonic sensor', 'Servo motors', 'Wing mechanism'],
+                media: [{ video: 'images/videos/cockroach-interactive.mp4', poster: 'images/videos/cockroach-interactive-poster.jpg', portrait: true, alt: 'A hand comes close to the cockroach and it reacts' }],
+                deep: {
+                    theme: 'sage',
+                    compare: {
+                        before: { src: 'images/mechatronics/cs/roach-static.webp', label: 'Where it started', note: 'a static model made from waste materials', alt: 'The static cockroach model: a striped green and black body with wire legs, on a wooden table' },
+                        adds: ['Arduino', 'Servo + wing mechanism', 'Ultrasonic sensor'],
+                        after: { src: 'images/mechatronics/cs/roach-interactive.webp', label: 'Where it ended up', note: 'electronics built into the body', alt: 'The cockroach on a workbench with its circuit board, servo and wires built into the body' }
+                    },
+                    contrib: [
+                        'Added interactivity with an <b>ultrasonic sensor</b> that detects nearby objects.',
+                        'Programmed the <b>servo motors</b> so the cockroach moves and reacts to its surroundings.',
+                        'Fitted the electronics into the <b>existing model</b>, so it still reads as one creature.'
+                    ],
+                    flow: [
+                        { label: 'Sense', nodes: [{ name: 'Ultrasonic sensor', note: 'something comes close' }] },
+                        { label: 'Process', nodes: [{ name: 'Arduino', note: 'reads the distance' }] },
+                        { label: 'Output', nodes: [{ name: 'Servo motors', note: 'drive the wing mechanism' }] },
+                        { label: 'Result', nodes: [{ name: 'A lifelike reaction', note: 'from a model made of waste' }] }
+                    ]
                 }
             }
         ]
