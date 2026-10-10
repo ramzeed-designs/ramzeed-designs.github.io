@@ -40,3 +40,7 @@ images/videos/Wrist shooter video.mp4
 hero-icons.js
 hero-mosaic.js
 hero-scene.js
+
+# Build output and tools (made automatically, not uploaded)
+node_modules/
+_site/
