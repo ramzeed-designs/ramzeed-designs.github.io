@@ -1,7 +1,7 @@
 // Hero background that changes with the theme.
 // Light ("chalk"): small, faint watercolour cherry blossoms open petal by petal at random spots on the
 // sides, stay a while, then fold back in and fade.
-// Dark ("ink"): a night sky where tiny stars twinkle, a few sparkles flash, and a faint shooting star
+// Dark ("ink"): a night sky where tiny stars twinkle, and a faint shooting star
 // crosses every 10–15 seconds.
 // Nothing falls or moves around much: things just appear and fade away again.
 (() => {
@@ -70,19 +70,9 @@
                     <stop offset="0" stop-color="#c41f62" stop-opacity=".85"/>
                     <stop offset="1" stop-color="#e2639a" stop-opacity="0"/>
                 </radialGradient>
-                <radialGradient id="sky-glow">
-                    <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
-                    <stop offset=".35" stop-color="#cfd8ff" stop-opacity=".18"/>
-                    <stop offset="1" stop-color="#cfd8ff" stop-opacity="0"/>
-                </radialGradient>
                 <symbol id="sky-p" viewBox="-25 -50 50 54">
                     <path d="${PETAL}" fill="url(#sky-petal)" stroke="#e58aab" stroke-opacity=".35" stroke-width=".8"/>
                     <path d="${PETAL}" fill="url(#sky-wash)"/>
-                </symbol>
-                <!-- four-point sparkle star -->
-                <symbol id="sky-spark" viewBox="-50 -50 100 100">
-                    <circle r="30" fill="url(#sky-glow)"/>
-                    <path d="M0 -50 C 2.5 -9, 9 -2.5, 50 0 C 9 2.5, 2.5 9, 0 50 C -2.5 9, -9 2.5, -50 0 C -9 -2.5, -2.5 -9, 0 -50 Z" fill="#fff"/>
                 </symbol>
             </defs>
         </svg>`;
@@ -191,7 +181,7 @@
         else el.innerHTML = flowerSVG(life, delay);
     }
 
-    // ---------- night: stars, sparkles, shooting stars ----------
+    // ---------- night: stars and shooting stars ----------
     function addStar(prefill = false) {
         const { x, y } = spot(false);
         const big = Math.random() < 0.18;
@@ -202,17 +192,6 @@
             size: big ? rand(2.4, 3.4) : rand(1, 2.2),
             opacity: big ? rand(0.75, 1) : rand(0.35, 0.8)
         });
-    }
-    function addSparkle(delay = 0) {
-        const others = live(nightLayer, 'sparkle').map(e => e._pos);
-        const { x, y } = spot(true, others, 20);
-        const el = item(nightLayer, 'sparkle', 'sky-sparkle', {
-            x, y, delay,
-            size: rand(18, 42) * (small() ? 0.75 : 1),
-            opacity: rand(0.7, 1),
-            duration: rand(4, 7)
-        });
-        svgUse(el, 'sky-spark', 100, 100);
     }
 
     // a faint shooting star: a thin streak that glides across and fades
@@ -238,8 +217,8 @@
 
     // how many of each to keep on screen
     const want = () => small()
-        ? { flower: 4, star: 38, sparkle: 2 }
-        : { flower: 10, star: 80, sparkle: 4 };
+        ? { flower: 4, star: 38 }
+        : { flower: 10, star: 80 };
 
     const mode = () => root.getAttribute('data-theme') === 'ink' ? 'night' : 'day';
 
@@ -252,7 +231,6 @@
             for (let i = have; i < n.flower; i++) addBlossom(d(8));
         } else {
             for (let i = live(nightLayer, 'star').length; i < n.star; i++) addStar(first && !still);
-            for (let i = live(nightLayer, 'sparkle').length; i < n.sparkle; i++) addSparkle(d(3));
         }
     }
 
@@ -286,7 +264,6 @@
         } else {
             const missing = n.star - live(nightLayer, 'star').length;
             for (let i = 0; i < Math.min(missing, 8); i++) if (Math.random() < 0.8) addStar();
-            if (live(nightLayer, 'sparkle').length < n.sparkle && Math.random() < 0.35) addSparkle();
         }
     }, 450);
 
