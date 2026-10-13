@@ -155,13 +155,16 @@ const projects = [
    tag      sticker on the tile (only shown on tiles without items, e.g. 'Soon')
    summary  one line on the tile
    shape    'tall', 'wide' or 'square'
-   colour   'purple', 'orange', 'green', 'blue', 'yellow' or 'pink' (tile + topic page colour)
+   colour   'purple', 'orange', 'green', 'blue', 'yellow', 'pink' or 'mat' (green cutting mat) (tile + topic page colour)
    icon     line drawing on the tile while there's no thumb: gear, cursor, heart, toy
    thumb    tile image (optional)
    tagline  handwritten line on the topic page
    intro    one or two sentences under the topic title
-   layout   'list' (default) or 'gallery' (photo wall, for Hobbies)
+   layout   'list' (default), 'gallery' (photo wall) or 'scrapbook' (Hobbies: green cutting mat,
+            taped photos with handwritten captions, torn-paper titles, sticky notes)
    soon     true = dashed "Coming soon" tile that can't be clicked
+   noSummary true = no line under the title on the tile
+   folder   optional list of photos for the folder on the tile (else the projects' own thumbs)
 
    items: the projects inside a topic. Each one can have:
      title, tagline (handwritten), text (2–3 lines), kicker (small label above the title),
@@ -183,6 +186,7 @@ const playground = [
         slug: 'interaction-design', title: 'Interaction Design', icon: 'cursor',
         summary: 'Spaces and objects that respond to people',
         shape: 'wide', colour: 'purple', thumb: '',
+        folder: ['images/luminara/cs/story-4.webp', 'images/ratkasque/cs/logo.webp', 'images/luminara/cs/story-2.webp'],
         intro: 'Some experiments of mine, trying out new tools and seeing how people respond to what I make.',
         items: [
             {
@@ -357,11 +361,78 @@ const playground = [
             }
         ]
     },
-    { slug: 'hobbies',      title: 'Hobbies',      tag: 'Off the clock', icon: 'heart', summary: 'What I do when I\'m not designing',     shape: 'tall',   colour: 'yellow', thumb: '', soon: true },
+    {
+        slug: 'hobbies', title: 'Hobbies', icon: 'heart',
+        summary: 'What I do when I\'m not designing',
+        shape: 'tall', colour: 'mat', thumb: '',   // 'mat' = the green cutting mat from the Hobbies page
+        noSummary: true,                       // Playground tile: just the title under the folder, no line
+        folder: ['images/hobbies/cs/painting-theyyam.webp', 'images/hobbies/cs/chess-play.webp', 'images/hobbies/cs/fishing-catch.webp'],
+        layout: 'scrapbook',                   // green cutting mat, taped photos, torn-paper titles (from the Figma page "Hobbies")
+        tagline: 'the things I do off the clock',
+        // Each hobby: photos (first one big), each with a handwritten caption under it.
+        // A photo can also be a short clip: { video: '...mp4', poster: '...', cap: '...' }
+        // phrases: little torn-paper cards (French), [French, English]
+        items: [
+            {
+                title: 'Chess', short: 'Chess',
+                text: 'I love playing chess with my nephew. He\'s so much fun to play against, though sometimes our pawns turn into Batman.',
+                media: [
+                    { src: 'images/hobbies/cs/chess-play.webp', cap: 'Team Batman', alt: 'My nephew moving a chess piece, with little Batman figures standing in for pawns' },
+                    { src: 'images/hobbies/cs/chess-award.webp', cap: 'my chess award', w: 360, alt: 'Close-up of a pencil drawing of me holding a sign that reads "chess award for Muhammed Ramzi"' }
+                ]
+            },
+            {
+                title: 'Crochet', short: 'Crochet',
+                text: 'I crochet a bit when I get the time. I\'m still a newbie. Here\'s something I made.',
+                media: [
+                    { src: 'images/hobbies/cs/crochet-headphones.webp', cap: 'headphone cover', alt: 'My headphones with a brown crochet cover on the headband' },
+                    { src: 'images/hobbies/cs/crochet-flower.webp', cap: 'more crochet', alt: 'A small pink and cream crochet piece' }
+                ]
+            },
+            {
+                title: 'Sketching & Painting', short: 'Painting',
+                text: 'I sketch and paint, though I don\'t always keep what I make. I\'m trying to draw every day now.',
+                media: [
+                    { src: 'images/hobbies/cs/painting-portrait.webp', cap: 'portrait 🍰', alt: 'A painted portrait of a woman with dark curly hair in a red top' },
+                    { src: 'images/hobbies/cs/painting-wall.webp', cap: 'wall painting', alt: 'Me painting a wall mural of boats on a river with palm trees' },
+                    { src: 'images/hobbies/cs/painting-theyyam.webp', cap: 'Theyyam + Kathakali', alt: 'A round painting: half a Theyyam face, half a Kathakali face' }
+                ]
+            },
+            {
+                title: 'Fishing', short: 'Fishing',
+                text: 'I love fishing, often with my brother. Most of the time, I just make sure the fish don\'t go hungry.',
+                media: [
+                    { src: 'images/hobbies/cs/fishing-catch.webp', cap: 'the catch', alt: 'Me at night, smiling and holding up a fish in each hand' },
+                    { src: 'images/hobbies/cs/fishing-wait.webp', cap: 'the wait', alt: 'My silhouette fishing by the water at dusk' }
+                ]
+            },
+            {
+                title: 'Gardening', short: 'Gardening',
+                text: 'I\'ve loved gardening since I was a kid. Right now I\'m trying to grow mulberries.',
+                media: [
+                    { src: 'images/hobbies/cs/garden-grapes.webp', cap: 'grapes', alt: 'Looking up through grape vine leaves, with a small bunch of young grapes' },
+                    { src: 'images/hobbies/cs/garden-mulberries.webp', cap: 'my mulberries', alt: 'Young mulberry plants in pots' },
+                    { video: 'images/hobbies/cs/guppy-pond.mp4', poster: 'images/hobbies/cs/guppy-pond.webp', cap: 'guppy pond', alt: 'Guppies swimming between water plants in my pond' }
+                ]
+            },
+            {
+                title: 'Learning French', short: 'French',
+                text: 'I\'m learning French on Duolingo. So far I can order tea, coffee and a croissant, hehe.',
+                phrases: [
+                    ['Un thé, s\'il vous plaît.', 'a tea, please'],
+                    ['Un café, s\'il vous plaît.', 'a coffee, please']
+                ],
+                media: [
+                    { src: 'images/hobbies/cs/french-streak.webp', cap: 'currently', alt: 'My Duolingo streak screen showing 20 days' }
+                ]
+            }
+        ]
+    },
     {
         slug: 'soft-toys', title: 'Soft Toys', icon: 'toy',
         summary: 'Stitched, stuffed and squeezable',
         shape: 'square', colour: 'green', thumb: '',
+        folder: ['images/soft-toys/cs/shark-teeth.webp', 'images/soft-toys/cs/shark-assembled.webp', 'images/soft-toys/cs/shark-worn-1.webp'],
         tagline: 'stitched, stuffed & squeezable',
         intro: 'Soft things I\'ve cut, sewn and stuffed by hand.',
         items: [
@@ -420,32 +491,37 @@ function itemThumb(it) {
     return '';
 }
 
+// Up to three photos from inside a topic, for the folder on its tile
+function folderPhotos(p, n = 3) {
+    const out = [];
+    const add = src => { if (src && !out.includes(src) && out.length < n) out.push(src); };
+    const items = p.items || [];
+    (p.folder || []).forEach(add);                               // a topic can pick its own
+    items.forEach(it => add(itemThumb(it)));
+    items.forEach(it => {                                        // fill up from photos inside
+        (it.media || []).forEach(m => add(m.src || m.poster));
+        (it.collage || []).forEach(c => add(c.src));
+    });
+    return out;
+}
+
+const FOLDER_ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16L16 8M9.5 8H16v6.5"/></svg>';
+
 function playCardHTML(p) {
-    let media;
-    if (p.items && p.items.length) {
-        // A little photo wall of the projects inside this topic, each with its name
-        const shots = p.items.map(it => {
-            const src = itemThumb(it);
-            const pic = src
-                ? `<img src="${escapeHTML(src)}" alt="" loading="lazy">`
-                : `<span class="play-shot-empty" aria-hidden="true">${it.status ? escapeHTML(it.status) : 'Photos soon'}</span>`;
-            return `<span class="play-shot">${pic}<b>${escapeHTML(it.short || it.title)}</b></span>`;
-        }).join('');
-        media = `<div class="play-shots n${Math.min(p.items.length, 4)}">${shots}</div>`;
-    } else {
-        media = '<span class="play-dots" aria-hidden="true"></span>';
-        if (p.thumb) media = `<img src="${escapeHTML(p.thumb)}" alt="" loading="lazy">`;
-        else if (p.icon && PLAY_ICONS[p.icon]) media += `<svg class="play-icon" viewBox="0 0 64 64" aria-hidden="true">${PLAY_ICONS[p.icon]}</svg>`;
-    }
-    const tag = p.items && p.items.length ? '' : (p.tag || '');
+    // A frosted folder with photos from inside peeking out the top, an arrow button
+    // on the front, and the topic name in capitals underneath. No coloured box.
+    const pics = (p.items && p.items.length ? folderPhotos(p) : []).map((src, i) =>
+        `<img class="pf-photo pf-photo--${i + 1}" src="${escapeHTML(src)}" alt="" loading="lazy">`).join('');
     const inner = `
-        <div class="play-media">${media}</div>
-        ${tag ? `<span class="play-tag">${escapeHTML(tag)}</span>` : ''}
-        <div class="play-label">
-            <h3>${escapeHTML(p.title)}</h3>
-            <p>${escapeHTML(p.soon ? 'Coming soon' : p.summary)}</p>
-        </div>`;
-    const cls = `play-card play--${p.shape || 'square'} play--${p.colour || 'purple'}`;
+        <div class="play-folder" aria-hidden="true">
+            <span class="pf-back"></span>
+            ${pics}
+            <span class="pf-edge"></span>
+            <span class="pf-front"><span class="pf-arrow">${p.soon ? '' : FOLDER_ARROW}</span></span>
+        </div>
+        <h3 class="play-name">${escapeHTML(p.title)}</h3>
+        ${p.soon ? '<span class="play-soon">Coming soon</span>' : ''}`;
+    const cls = `play-card play--${p.colour || 'purple'}`;
     return p.soon
         ? `<div class="${cls} is-soon">${inner}</div>`
         : `<a class="${cls}" href="${escapeHTML(projectLink(p))}">${inner}</a>`;

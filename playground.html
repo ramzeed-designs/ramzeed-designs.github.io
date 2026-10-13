@@ -62,6 +62,14 @@
     <script src="projects.js"></script>
     <script>
         document.getElementById('play-wall').innerHTML = playground.map(playCardHTML).join('');
+        // each folder enters a moment after the one before it; photos fade in when they've loaded
+        document.querySelectorAll('#play-wall > .play-card').forEach((c, i) => c.style.setProperty('--i', i));
+        document.querySelectorAll('#play-wall .pf-photo').forEach(img => {
+            if (img.complete && img.naturalWidth) return;
+            img.classList.add('pf-wait');
+            const show = () => img.classList.remove('pf-wait');
+            img.addEventListener('load', show); img.addEventListener('error', show);
+        });
     </script>
     <script src="script.js"></script>
     <script>

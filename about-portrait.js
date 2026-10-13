@@ -149,6 +149,7 @@ function loop(ts) {
 const load = (src) => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
 Promise.all([load(stage.dataset.bg), load(stage.dataset.me)]).then(([a, b]) => {
   bg = a; me = b;
+  requestAnimationFrame(() => requestAnimationFrame(() => stage.classList.add('is-ready')));   // fade the drawing in after its first frame
   new MutationObserver(() => { readCol(); if (still) draw(99); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   if (still) { draw(99); return; }
   const resume = () => { if (!running && !document.hidden && visible) { running = true; requestAnimationFrame(loop); } };

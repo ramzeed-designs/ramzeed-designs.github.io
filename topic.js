@@ -10,6 +10,7 @@
     document.title = topic.title + ' – Ramzi';
     document.body.classList.add('tp--' + (topic.colour || 'purple'));
     if (topic.layout === 'gallery') document.body.classList.add('tp--gallery');
+    if (topic.layout === 'scrapbook') document.body.classList.add('tp--scrapbook');
 
     const esc = escapeHTML;
     const pad = n => String(n + 1).padStart(2, '0');
@@ -206,6 +207,64 @@
         return `<div class="deep${d.theme ? ' deep--' + esc(d.theme) : ''} reveal" aria-label="More about ${esc(it.title)}">${h}</div>`;
     }
 
+    /* ---------- Scrapbook (Hobbies): built from the Figma page "Hobbies" ---------- */
+    // Rough, torn edge for a paper strip: a clip-path polygon with small random dents.
+    // Seeded, so each strip tears the same way on every visit.
+    function torn(seed) {
+        let s = seed * 9301 + 49297;
+        const r = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+        const pts = [];
+        for (let x = 0; x <= 100; x += 4) pts.push(`${x}% ${(r() * 7).toFixed(1)}px`);
+        for (let y = 10; y <= 90; y += 20) pts.push(`calc(100% - ${(r() * 5).toFixed(1)}px) ${y}%`);
+        for (let x = 100; x >= 0; x -= 4) pts.push(`${x}% calc(100% - ${(r() * 7).toFixed(1)}px)`);
+        for (let y = 90; y >= 10; y -= 20) pts.push(`${(r() * 5).toFixed(1)}px ${y}%`);
+        return `polygon(${pts.join(',')})`;
+    }
+    const paper = (inner, seed, cls = '') =>
+        `<div class="sb-paper ${cls}"><div class="sb-paper-in" style="clip-path:${torn(seed)}">${inner}</div></div>`;
+
+    // One taped photo with a handwritten caption underneath; clips play like GIFs
+    const snap = (m, it, size) => `
+        <figure class="sb-snap sb-snap--${size}">
+            ${m.video
+                ? `<video class="clip" src="${esc(m.video)}"${m.poster ? ` poster="${esc(m.poster)}"` : ''} muted loop playsinline preload="metadata"${reduce ? ' controls' : ' autoplay'} aria-label="${esc(m.alt || it.title)}"></video>`
+                : `<img src="${esc(m.src)}" alt="${esc(m.alt || it.title)}" loading="lazy">`}
+            ${m.cap ? `<figcaption class="hand">${esc(m.cap)}</figcaption>` : ''}
+        </figure>`;
+
+    function scrapbookHTML() {
+        const hero = `
+        <div class="tp-wrap">
+            <a class="tp-back" href="playground.html">← Playground</a>
+            <section class="sb-hero">
+                <span class="sb-tag">Playground · ${esc(topic.title)}</span>
+                ${paper(`<h1>${esc(topic.title)}</h1>`, 7, 'sb-paper--hero')}
+                ${topic.tagline ? `<p class="hand sb-tagline">${esc(topic.tagline)}</p>` : ''}
+                <span class="sb-star sb-star--a" aria-hidden="true"></span>
+                <span class="sb-star sb-star--b" aria-hidden="true"></span>
+            </section>
+        </div>`;
+        const body = items.map((it, i) => {
+            const media = it.media || [];
+            const [big, ...small] = media;
+            const photos = it.phrases
+                ? `<div class="sb-phrases">${it.phrases.map(([fr, en], k) =>
+                        paper(`<strong lang="fr">${esc(fr)}</strong><span class="hand">${esc(en)}</span>`, 300 + k * 7, 'sb-phrase')).join('')}</div>
+                   ${big ? `<div class="sb-side">${snap(big, it, 'small')}</div>` : ''}`
+                : `${big ? snap(big, it, 'big') : ''}
+                   ${small.length ? `<div class="sb-side"${small.some(m => m.w) ? ` style="--sb-sidew:${Math.max(...small.map(m => +m.w || 0))}px"` : ''}>${small.map(m => snap(m, it, 'small')).join('')}</div>` : ''}`;
+            return `
+            <section class="sb-hobby${media.some(m => m.w) ? ' sb-hobby--wide' : ''} reveal" id="item-${i + 1}">
+                <div class="sb-photos${it.phrases ? ' sb-photos--phrases' : ''}">${photos}</div>
+                <div class="sb-copy">
+                    ${paper(`<h2>${esc(it.title)}</h2>`, 100 + i * 13, 'sb-paper--title')}
+                    <p class="sb-note">${esc(it.text)}</p>
+                </div>
+            </section>`;
+        }).join('');
+        return hero + `<div class="tp-wrap sb-book">${body}</div>`;
+    }
+
     /* ---------- Hero ---------- */
     const index = items.map((it, i) =>
         `<li><a href="#item-${i + 1}"><b>${pad(i)}</b>${esc(it.title)}<span aria-hidden="true">↓</span></a></li>`).join('');
@@ -283,6 +342,7 @@
             </article>`;
         }).join('') + `</div>`;
     }
+    if (topic.layout === 'scrapbook') html = scrapbookHTML();
     main.innerHTML = html;
 
     /* ---------- Click-to-play YouTube ----------
