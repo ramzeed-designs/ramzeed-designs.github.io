@@ -1101,7 +1101,7 @@ a.play-card:hover .play-folder::before { opacity: .55; }
 
 .play-name {
     font-family: var(--f-head); font-weight: 900; text-transform: uppercase; text-align: center;
-    font-size: clamp(24px, 2.6vw, 40px); line-height: 1; letter-spacing: -.01em;
+    font-size: clamp(18px, 1.8vw, 26px); line-height: 1.1; letter-spacing: .01em;   /* always smaller than the Playground title */
 }
 .play-soon { margin-top: -8px; font-size: 14px; color: var(--muted); }
 
@@ -1185,7 +1185,7 @@ a.play-card:focus-visible .play-name { text-decoration: underline; text-underlin
     .play-confetti { gap: 9px; }
     .play-confetti i { scale: .85; }
     .pg-hint { font-size: 18px; margin-left: 2px; }
-    .play-name { font-size: 20px; }
+    .play-name { font-size: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
